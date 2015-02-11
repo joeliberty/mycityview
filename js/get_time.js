@@ -9,7 +9,7 @@ time_app.controller("GetTimeCtrl", function($scope, $rootScope, $http) {
     // console.log('city_data: ' + city_data[t_city].lat)
 
     $http({
-        url: 'http://api.geonames.org/timezoneJSON',
+        url: ,
         dataType: 'jsonp', 
         method: "GET",
         params: {
