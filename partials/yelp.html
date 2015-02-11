@@ -1,0 +1,101 @@
+<div class='row'>
+	<div class='logo'>
+	<div class="col-xs-12"><img src="images/yelp-2c.jpg" alt="Yelp logo"></div>
+	</div>
+</div>
+<div class='row'>
+	<div class="yelp_container">
+		<div class="col-md-3">
+			<div ng-controller="MusicVenueCtrl">
+				<h4>Music Venues</h4>
+				<ul>
+					<li ng-repeat="venue in musicvenues | orderBy:'-rating'">
+						<div ng-controller="ToggleCtrl">
+							<ul class='horz_list'>
+						  	<li><img ng-src="{{venue.rating_img_url_small}}" /> </li>
+								<li><span ng-click="toggleCustom()"> {{venue.name | limitTo:nameLength}}
+									<i ng-show="custom" class="fa fa-caret-right"></i>
+				          <i ng-hide="custom" class="fa fa-caret-down"></i></span>
+				        </li>
+				      </ul>
+			        <div ng-hide="custom">Ph: {{venue.display_phone}} <br/>
+			         Loc: {{venue.location.address | toString}}, {{venue.location.city}}<br/>
+			         <span ng-controller="SetLatLng" class="mapit" ng-click="set_marker(venue.location.coordinate)"> Map it</span><br/>
+			         Url: <a href="{{venue.url}}" target="_blank">{{venue.name | limitTo:nameLength}}</a>
+			       </div>
+			      </div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class = "col-md-3">
+			<div ng-controller="RestaurantCtrl">
+				<h4>Restaurants</h4>
+				<ul>
+					<li ng-repeat="restaurant in restaurants | orderBy:'-rating'">
+						<div ng-controller="ToggleCtrl">
+							<ul class='horz_list'>
+						  	<li><img ng-src="{{restaurant.rating_img_url_small}}" /> </li>
+								<li><span ng-click="toggleCustom()"> {{restaurant.name | limitTo:nameLength}}
+									<i ng-show="custom" class="fa fa-caret-right"></i>
+				          <i ng-hide="custom" class="fa fa-caret-down"></i></span>
+				        </li>
+				      </ul>
+			        <div ng-hide="custom">Ph: {{restaurant.display_phone}} <br/> 
+			        	Loc: {{restaurant.location.address | toString}}, {{restaurant.location.city}}<br/>
+			        	<span ng-controller="SetLatLng" class="mapit" ng-click="set_marker(restaurant.location.coordinate)"> Map it</span><br/>
+			        	Url: <a href="{{restaurant.url}}" target="_blank">{{restaurant.name | limitTo:nameLength}}</a>
+			        </div>
+			      </div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class = "col-md-3">
+			<div ng-controller="ClubCtrl">
+				<h4>Happy Hour</h4>
+				<ul>
+					<li ng-repeat="club in clubs | orderBy:'-rating'">
+						<div ng-controller="ToggleCtrl">
+							<ul class='horz_list'>
+						  	<li><img ng-src="{{club.rating_img_url_small}}" /> </li>
+								<li><span ng-click="toggleCustom()"> {{club.name | limitTo:nameLength}}
+									<i ng-show="custom" class="fa fa-caret-right"></i>
+				          <i ng-hide="custom" class="fa fa-caret-down"></i></span>
+				        </li>
+				      </ul>
+			        <div ng-hide="custom">Ph: {{club.display_phone}} <br/> 
+			        	Loc: {{club.location.address | toString}}, {{club.location.city}}<br/>
+			        	<span ng-controller="SetLatLng" class="mapit" ng-click="set_marker(club.location.coordinate)"> Map it</span><br/>
+			        	Url: <a href="{{club.url}}" target="_blank">{{club.name | limitTo:nameLength}}</a>
+			        </div>
+			      </div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class = "col-md-3">
+			<div ng-controller="GallaryCtrl">
+				<h4>Galleries</h4>
+				<ul>
+					<li ng-repeat="gallery in galleries | orderBy:'-rating'">
+						<div ng-controller="ToggleCtrl">
+							<ul class='horz_list'>
+						  	<li><img ng-src="{{gallery.rating_img_url_small}}" /> </li>
+								<li><span ng-click="toggleCustom()"> {{gallery.name | limitTo:nameLength}}
+									<i ng-show="custom" class="fa fa-caret-right"></i>
+				          <i ng-hide="custom" class="fa fa-caret-down"></i></span>
+				        </li>
+				      </ul>
+			        <div ng-hide="custom">Ph: {{gallery.display_phone}} <br/> 
+			        	Loc: {{gallery.location.address | toString}}, {{gallery.location.city}}<br/>
+			        	<span ng-controller="SetLatLng" class="mapit" ng-click="set_marker(gallery.location.coordinate)"> Map it</span><br/>
+			        	Url: <a href="{{gallery.url}}" target="_blank">{{gallery.name | limitTo:nameLength}}</a>
+							</div>
+			      </div>
+			    </li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>

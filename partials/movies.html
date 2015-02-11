@@ -1,0 +1,26 @@
+<div class="row">
+	<div class="col-md-12">
+		<div class="movies">
+			<!-- <h4>Movie Listings </h4> -->
+			<div ng-controller="MovieCtrl">
+		    <accordion ng-hide="show_movies">
+			    <accordion-group heading="{{theater.name | isnull}}" ng-repeat="theater in theaters">
+				    <div class="moviepanel">
+				    	 <span class="mname">{{theater.address | uppercase}} {{theater.phone}}</span>
+				      <ul>
+				        <li ng-repeat="movie in theater.movies">
+				        	<span class="mname">{{movie.name}}: </span> 
+				        	<span ng-show="movie.howlong">{{movie.howlong}} - </span>
+				        	<span ng-show="movie.rating"> {{movie.rating}} - </span>
+				        	<span ng-show="movie.type">{{movie.type}} - </span> 
+				        	<span ng-show="movie.trailer"><a href="{{movie.trailer}}" target="_blank">Trailer</a></span>
+				        	<br/> {{movie.times | removeAmp}}
+				        </li>
+				      </ul>
+				    </div>
+			    </accordion-group>   
+			  </accordion>
+			</div>
+		</div>
+	</div>
+</div>

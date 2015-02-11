@@ -1,0 +1,419 @@
+/*.navbar-custom {
+    background-color:#229922;
+    color:#ffffff;
+}
+
+.navbar-custom .navbar-nav > li > a {
+    color:#fff;
+}
+.navbar-custom .navbar-nav > .active > a, .navbar-nav > .active > a:hover, .navbar-nav > .active > a:focus {
+    color: #ffffff;
+    background-color:transparent;
+}
+.navbar-custom .navbar-brand {
+    color:#eeeeee;
+}
+
+.navbar{ 
+    background-image: none;
+    background-color:red;
+}*/
+
+body {
+  /*padding-top: 50px;*/
+  /*padding-left: 0px;
+  padding-right: 0px;*/
+  /*overflow-x: hidden;*/
+  /*min-height: 2000px;*/
+  /*padding-top: 70px;*/
+  /*height: 100%;*/
+}
+
+.navbar {
+  opacity: 0.8;
+}
+
+.container>.navbar-header, .container-fluid>.navbar-header, 
+.container>.navbar-collapse, .container-fluid>.navbar-collapse {
+  /*margin-left: 5%;*/
+}
+.navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand {
+  /*margin-left: 0px;*/
+}
+.navbar-fixed-top {
+  margin-bottom: 0px;
+}
+
+.navbar-inverse .navbar-brand, .navbar-inverse .navbar-nav>li>a {
+  color: #f9f9f9;
+  
+}
+.starter-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+
+/*#header_image {
+  background-image: url("images/pic12.jpg");
+  background-repeat: repeat-x;
+  height: 399px;
+  margin-top: -50px;
+}*/
+
+.container-fluid {
+  /*padding-left: 0px;
+  padding-right: 0px;
+  width: 100%;*/
+}
+
+.container {
+  margin-top: 20px;
+  /*width: 100%;
+  margin: 0px;
+  padding: 0px;*/
+}
+
+.page_container {
+  /*padding-left: 15px;
+  padding-right: 15px;*/
+  /*margin-left: 8%;
+  margin-right: 6%;*/
+  /*margin-bottom: 100px;*/
+  /*width: 80%;*/
+}
+
+.page_container h1 {
+  text-align: center;
+}
+
+/*.row {
+  padding-left: 15px;
+  padding-right: 15px;
+}*/
+
+/*#static_well {
+  float: right;
+  margin-left: 70%;
+  position: fixed;
+  z-index: 2000;
+  color: #cccccc;
+}*/
+
+.astro_container, .weather_container, .quote_container {
+  text-align: center;
+  font-size: 90%;
+  padding: 3%;
+}
+
+/*.astro_container, .quote_container p {
+  text-align: center;
+}*/
+
+.quote_container div{
+  text-align: center;
+}
+
+.astro_imgs {
+  margin-bottom: 10px;
+}
+
+.astro_imgs a {
+  margin-right: 0px;
+}
+
+.astro_imgs a:hover {
+  background-color: #E6F5FA;
+}
+
+#astro_horoscope i{
+  /*margin-left: 5%;*/
+  margin-top: 3%;
+  display: none;
+}
+
+#astro_forcast {
+  /*height: 75px;*/
+}
+
+ul {
+    list-style-type: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+#copyright {
+  text-align: center;
+  /*margin-top: 10px;
+  margin-bottom: 4px;*/
+  position: relative;
+  /*bottom: 0;*/
+  width: 100%;
+  background-color: #000000;
+  opacity: 0.8;
+  color: #d3d3d3;
+  -webkit-backface-visibility: hidden;
+  margin-top: 40px;
+  display: none;
+}
+
+.weather_container {
+  text-align: center;
+}
+
+.weather_container img{
+  margin-bottom: -16px;
+  margin-top: -8px;
+}
+
+#weatherpic {
+  margin-bottom: 24px;
+}
+
+#weatherpic img{
+  margin-bottom: -26px;
+  margin-top: -20px;
+}
+
+.horz_list li{
+  display: inline-block;
+}
+
+.horz_list span{
+  cursor: pointer;
+}
+
+.horz_list span:hover {
+  color: #0099CC;
+}
+
+/*accordian*/
+.panel-title {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.newspanel, .moviepanel {
+  height: 200px;
+  overflow-y: scroll;
+}
+
+.panel-heading {
+  padding: 0px 15px;
+  cursor: pointer;
+}
+
+.panel-heading:hover {
+  background-color: #E6F5FA;
+}
+
+.panel-heading a{
+  text-decoration: none;
+}
+
+.panel-heading a:hover {
+  color: #0099CC;
+}
+
+.mname {
+  font-weight: 500;
+}
+
+/*hack to make accordain header clickable*/
+.accordion-toggle { display: block; }
+
+.mycity {
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+}
+
+#header_text {
+  text-align: center;
+  margin-top: 53px;
+  position: relative;
+}
+
+#header_image{
+  width: 100%;
+  
+}
+
+#news_container {
+  /*height: 360px;*/
+  /*max-width: 300px;*/
+  /*overflow-x: scroll;*/
+  /*border: 1px solid #cccccc;*/
+  /*padding: 10px;*/
+}
+
+.news_title {
+  /*white-space: nowrap;*/
+  /*overflow: hidden;*/
+  font-weight: 500;
+  margin: 0px;
+  padding: 0px;
+}
+
+.news_summary {
+  font-size: 12px;
+  margin: 0px;
+  padding: 0px;
+  font-weight: 400;
+}
+
+.news_url {
+  font-size: 10px;
+  color: blue;
+  text-decoration: underline;
+}
+
+.forcast_container li {
+  display: inline-block;
+  margin-left: 4%;
+  /*text-align: center;*/
+  font-size: 80%;
+}
+
+.forcast_container img {
+  margin-bottom: -12px;
+}
+
+.dropdown {
+  margin-top: 6px;
+}
+
+.more, .less {
+  color: #0099CC;
+}
+
+.more:hover, .less:hover {
+  cursor: pointer;
+}
+
+/*.forcast_container, .news_container, .movies, .logo {*/
+.news_container, .movies, .logo {
+  /*padding-left: 5%;*/
+}
+
+.forcast_container {
+  /*padding-left: 5%;*/
+  white-space: nowrap;
+  overflow-x: scroll;
+  /*text-align: center;*/
+  /*margin-left: -4%;*/
+  margin-right: 4%;
+}
+
+.forcast_container h4 {
+  margin-left: 3%;
+}
+
+ .yelp_container {
+  /*padding-left: 4%;
+  padding-right: 0px;
+  margin-bottom: 10px;*/
+ }
+
+/*.DayForcastCtrl {
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+}*/
+
+.weather_forcast {
+  float: left;
+}
+
+.navbar-nav {
+  margin-top: -5px;
+}
+
+.dropdown-menu {
+  height: 300px;
+  overflow-x: auto;
+}
+
+.dropdown-menu li a {
+  cursor: pointer;
+}
+
+#map-canvas {
+  height: 400px;
+  margin: 0px;
+  padding: 0px;
+
+}
+
+#map_container {
+  padding-left: 3%;
+  padding-right: 3%;
+  margin-top: 50px;
+}
+
+#map-canvas {
+  border: 1px solid #000000;
+}
+
+.tabs_container {
+  margin-left: 3%;
+  margin-right: 3%;
+  position: relative;
+  clear: both;
+}
+
+.tab-content {
+  border-left: 1px solid #cccccc;
+  border-right: 1px solid #cccccc;
+  border-bottom: 1px solid #cccccc;
+  padding: 10px;
+  /*height: 250px;*/
+  /*overflow-y: scroll;*/
+  padding-left: 3%;
+  padding-right:3%;
+  position: relative;
+  clear: both;
+}
+
+.nav-tabs>li>a {
+  cursor: pointer;
+}
+
+/*li:nth-child(odd) {
+  background-color: #fcfcfc;
+}*/
+
+.event_container {
+  height: 250px;
+  overflow-y: scroll;
+}
+
+.mapit {
+  color: #337ab7;
+}
+
+.mapit:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/*.navbar-brand {
+  font-family: Georgia, Times New Roman, Times, serif;
+}*/
+
+/*li{
+  white-space: nowrap;
+  overflow: hidden;
+}*/
+
+/*.span8 {
+  width: 620px;
+}
+
+.span4 {
+  width: 300px;
+  float: right;
+}*/
+
+/*.row {
+  margin-left: -20px;
+  *zoom: 1;
+}*/

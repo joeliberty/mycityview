@@ -1,0 +1,292 @@
+<div id="header_image"></div>
+<script type="text/javascript">
+  $(document).ready(function(){
+      $('[data-toggle="tooltip"]').tooltip({
+          placement : 'top'
+      });
+  });
+</script>
+<style type="text/css">
+  .bs-example{
+      /*margin: 100px 50px;*/
+    }
+</style>
+
+<div class="page_container" ng-controller="GetTimeCtrl">
+	<h1>
+		<span class="mycity">myCityview</span> {{city}}
+	</h1>
+	<div class="row">
+		<div class="span4">
+			<div class="weather_container">
+				<h4>Weather</h4>
+				<!-- <p>{{description}}</p> -->
+				<div ng-controller="CurWeatherCtrl">
+					<ul>
+						<li>It's {{cur_temp | temp:[2, 'C']}}/{{cur_temp | temp:[2, 'F']}} @ {{times.current}}</li>
+						<!-- <li>with a high of {{temp_max  | temp:[2, 'C']}} {{temp_max  | temp:[2, 'F']}}</l> -->
+						<li><img ng-src="{{imagepath}}"/><li>
+						<li>{{description}}</li>
+					<ul>
+				</div>
+			</div>
+		</div>
+		<div class="span4">
+			<div class="astro_container">
+				<h4>Horoscope</h4>
+				<div ng-controller="AstroCtrl">
+					<div class="astro_imgs">
+	        	<a href id='Aries' ng-click="call('aries')"><img border="0" alt="Aries" src="images/astro/40px-Aries.svg.png" width="20" height="19" data-toggle="tooltip" data-original-title="Aries"></a>
+
+	        	<a href id='Taurus' ng-click="call('taurus')"><img border="0" alt="Taurus" src="images/astro/40px-Taurus.svg.png" width="20" height="19" data-toggle="tooltip" data-original-title="Taurus"></a>
+
+	        	<a href id='Gemini' ng-click="call('gemini')"><img border="0" alt="Gemini" src="images/astro/40px-Gemini.svg.png" width="20" height="19" data-toggle="tooltip" data-original-title="Gemini"></a>
+
+	        	<a href id='Cancer' ng-click="call('cancer')"><img border="0" alt="Cancer" src="images/astro/40px-Cancer.svg.png" width="20" height="19" data-toggle="tooltip" data-original-title="Cancer"></a>
+
+	        	<a href id='Leo' ng-click="call('leo')"><img border="0" alt="Leo" src="images/astro/40px-Leo.svg.png" width="20" height="19" data-toggle="tooltip" data-original-title="Leo"></a>
+
+	        	<a href id='Virgo' ng-click="call('virgo')"><img border="0" alt="Virgo" src="images/astro/40px-Virgo.svg.png" width="20" height="19" data-toggle="tooltip" data-original-title="Virgo"></a>
+	        	
+	        	<a href id='Libra' ng-click="call('libra')"><img border="0" alt="Libra" src="images/astro/40px-Libra.svg.png" width="20" height="19" data-toggle="tooltip" data-original-title="Libra"></a>
+
+	        	<a href id='Scorpio' ng-click="call('scorpio')"><img border="0" alt="Scorpio" src="images/astro/40px-Scorpio.svg.png" width="20" height="19" data-toggle="tooltip" data-original-title="Scorpio"></a>
+
+	        	<a href id='Sagittarius' ng-click="call('sagittarius')"><img border="0" alt="Sagittarius" src="images/astro/40px-Sagittarius.svg.png" width="20" height="19" data-toggle="tooltip" data-original-title="Sagittarius"></a>
+
+	        	<a href id='Capricorn' ng-click="call('capricorn')"><img border="0" alt="Capricorn" src="images/astro/40px-Capricorn.svg.png" width="20" height="19" data-toggle="tooltip" data-original-title="Capricorn"></a>
+
+	        	<a href id='Aquarius' ng-click="call('aquarius')"><img border="0" alt="Aquarius" src="images/astro/40px-Aquarius.svg.png" width="20" height="19" data-toggle="tooltip" data-original-title="Aquarius"></a>
+
+	        	<a href id='Pisces' ng-click="call('pisces')"><img border="0" alt="Pisces" src="images/astro/40px-Pisces.svg.png" width="20" height="19" data-toggle="tooltip" data-original-title="Pisces"></a>
+
+					</div>
+					<p id='astro_forcast'>{{forcast}}<i class="fa fa-refresh fa-spin fa-2x"></i></p>
+					<!-- <p id='astro_forcast'>Choose your sign.<i class="fa fa-refresh fa-spin fa-2x"></i></p> -->
+		    </div>
+		  </div>
+		</div>
+		<div class="span4">
+			<div class="quote_container">
+				<h4>Quote</h4>
+				<div ng-controller="QuoteCtrl">
+					<span ng-click="toggle_more_less()" ng-bind-html="quote"></span>
+					<!-- <span ng-show="toggle_quote" ng-click="toggle_more_less()" ng-bind-html="more"></span> -->
+					<!-- <div> {{more}} </div> -->
+					<br/>{{author}}
+				<!-- </div> -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<div class='forcast_container'>
+			<div ng-controller="DayForcastCtrl">
+				<h4>36 Hour Forcast</h4>
+				<ul>
+					<li ng-repeat="day in daycast track by $index">
+						<img ng-src="{{day.icons}}"/><br/>
+				    {{day.temps  | temp:[2, 'C']}}<br/>
+				    {{day.times}}
+				    
+				    <!-- <p>{{day.descripts}}</p> -->
+				  </li>
+				</ul>
+			</div>
+		</div>
+		</div>
+	</div>
+  <div class="row">
+		<div class="span6">
+			<div class="news_container">
+				<h4>News </h4>
+				<div ng-controller="NewsCtrl">
+				  <accordion>
+				    <accordion-group heading="Local">
+				    <div class="newspanel">
+					      <ul>
+								<li ng-repeat="local in localnews" >
+									<p class="news_title">{{local.title}}</p>
+									<p ng-show={{isnews}} class="news_summary" >{{local.summary | removehtml}} </span> <a href="{{local.url}}" target="_blank">LINK</a></p>
+								</li>
+							</ul>
+						</div>
+				    </accordion-group>
+				    <accordion-group heading="Headline">
+				    <div class="newspanel">
+				    	<ul>
+				      <li ng-repeat="top in topnews">
+								<p class="news_title">{{top.title}}</p>
+								<p class="news_summary">{{top.summary}}> <a href="{{top.url}}" target="_blank">LINK</a></p>
+							</li>
+							<ul>
+						</div>
+				    </accordion-group>
+				    <accordion-group heading="Entertainment">
+				    <div class="newspanel">
+				    	<ul>
+				      <li ng-repeat="show in entertainmentnews">
+								<p class="news_title">{{show.title}}</p>
+								<p class="news_summary">{{show.summary}}> <a href="{{show.url}}" target="_blank">LINK</a></p>
+							</li>
+							<ul>
+						</div>
+				    </accordion-group>
+				    <accordion-group heading="Technology">
+				    <div class="newspanel">
+				    	<ul>
+				      <li ng-repeat="tech in technews">
+								<p class="news_title">{{tech.title}}</p>
+								<p class="news_summary">{{tech.summary}}> <a href="{{tech.url}}" target="_blank">LINK</a></p>
+							</li>
+							<ul>
+						</div>
+				    </accordion-group>
+				    <accordion-group heading="Sports">
+				    <div class="newspanel">
+				    	<ul>
+				      <li ng-repeat="sport in sportsnews">
+								<p class="news_title">{{sport.title}}</p>
+								<p class="news_summary">{{sport.summary}}> <a href="{{sport.url}}" target="_blank">LINK</a></p>
+							</li>
+							<ul>
+						</div>
+				    </accordion-group>
+				    <accordion-group heading="Travel">
+				    <div class="newspanel">
+				    	<ul>
+				      <li ng-repeat="travel in travelnews">
+								<p class="news_title">{{travel.title}}</p>
+								<p class="news_summary">{{travel.summary}}> <a href="{{travel.url}}" target="_blank">LINK</a></p>
+							</li>
+							<ul>
+						</div>
+				    </accordion-group>
+				    <accordion-group heading="Music">
+				    <div class="newspanel">
+				    	<ul>
+				      <li ng-repeat="music in musicnews">
+								<p class="news_title">{{music.title}}</p>
+								<p class="news_summary">{{music.summary}}> <a href="{{music.url}}" target="_blank">LINK</a></p>
+							</li>
+							<ul>
+						</div>
+				    </accordion-group>
+				    
+				  </accordion>
+				</div>
+			</div>
+		</div>
+	<!-- </div>
+	<div class="row"> -->
+		<div class="span6">
+				<div class="movies">
+					<h4>Movie Listings </h4>
+					<div ng-controller="MovieCtrl">
+				    <accordion>
+					    <accordion-group heading="{{theater.name}}" ng-repeat="theater in theaters">
+					      <ul>
+					        <li ng-repeat="movie in theater.movies"><span class="mname">{{movie.name}}:</span> @ {{movie.times | removeAmp}}</li>
+					      </ul>
+					    </accordion-group>   
+					  </accordion>
+					</div>
+				<div>
+			</div>
+		</div>
+	</div>
+</div>
+	<div class='row'>
+		<div class='logo'>
+		<div class="col-xs-12"><img src="images/yelp-2c.jpg" alt="Yelp logo"></div>
+		</div>
+	</div>
+	<div class='row'>
+		<div class="yelp_container">
+		<div class="span3">
+			<div ng-controller="MusicVenueCtrl">
+				<h4>Music Venues</h4>
+				<ul>
+					<li ng-repeat="venue in musicvenues | orderBy:'-rating'">
+						<div ng-controller="ToggleCtrl">
+							<ul class='horz_list'>
+						  	<li><img ng-src="{{venue.rating_img_url_small}}" /> </li>
+								<li><span ng-click="toggleCustom()"> {{venue.name | limitTo:nameLength}}
+									<i ng-show="custom" class="fa fa-caret-right"></i>
+				          <i ng-hide="custom" class="fa fa-caret-down"></i></span>
+				        </li>
+				      </ul>
+			        <div ng-hide="custom">Ph: {{venue.display_phone}} <br/> Loc: {{venue.location.address | toString}}, {{venue.location.city}}<br/>Url: <a href="{{venue.url}}" target="_blank">{{venue.name | limitTo:nameLength}}</a></div>
+			      </div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class = "span3">
+			<div ng-controller="RestaurantCtrl">
+				<h4>Restaurants</h4>
+				<ul>
+					<li ng-repeat="restaurant in restaurants | orderBy:'-rating'">
+						<div ng-controller="ToggleCtrl">
+							<ul class='horz_list'>
+						  	<li><img ng-src="{{restaurant.rating_img_url_small}}" /> </li>
+								<li><span ng-click="toggleCustom()"> {{restaurant.name | limitTo:nameLength}}
+									<i ng-show="custom" class="fa fa-caret-right"></i>
+				          <i ng-hide="custom" class="fa fa-caret-down"></i></span>
+				        </li>
+				      </ul>
+			        <div ng-hide="custom">Ph: {{restaurant.display_phone}} <br/> Loc: {{restaurant.location.address | toString}}, {{restaurant.location.city}}<br/>Url: <a href="{{restaurant.url}}" target="_blank">{{restaurant.name | limitTo:nameLength}}</a></div>
+			      </div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class = "span3">
+			<div ng-controller="ClubCtrl">
+				<h4>Happy Hour</h4>
+				<ul>
+					<li ng-repeat="club in clubs | orderBy:'-rating'">
+						<div ng-controller="ToggleCtrl">
+							<ul class='horz_list'>
+						  	<li><img ng-src="{{club.rating_img_url_small}}" /> </li>
+								<li><span ng-click="toggleCustom()"> {{club.name | limitTo:nameLength}}
+									<i ng-show="custom" class="fa fa-caret-right"></i>
+				          <i ng-hide="custom" class="fa fa-caret-down"></i></span>
+				        </li>
+				      </ul>
+			        <div ng-hide="custom">Ph: {{club.display_phone}} <br/> Loc: {{club.location.address | toString}}, {{club.location.city}}<br/>Url: <a href="{{club.url}}" target="_blank">{{club.name | limitTo:nameLength}}</a></div>
+			      </div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class = "span3">
+			<div ng-controller="GallaryCtrl">
+				<h4>Galleries</h4>
+				<ul>
+					<li ng-repeat="gallery in galleries | orderBy:'-rating'">
+						<div ng-controller="ToggleCtrl">
+							<ul class='horz_list'>
+						  	<li><img ng-src="{{gallery.rating_img_url_small}}" /> </li>
+								<li><span ng-click="toggleCustom()"> {{gallery.name | limitTo:nameLength}}
+									<i ng-show="custom" class="fa fa-caret-right"></i>
+				          <i ng-hide="custom" class="fa fa-caret-down"></i></span>
+				        </li>
+				      </ul>
+			        <div ng-hide="custom">Ph: {{gallery.display_phone}} <br/> Loc: {{gallery.location.address | toString}}, {{gallery.location.city}}<br/>Url: <a href="{{gallery.url}}" target="_blank">{{gallery.name | limitTo:nameLength}}</a></div>
+			      </div>
+			    </li>
+				</ul>
+			</div>
+		</div>
+		</div>
+	</div>
+  
+	<!-- <div class="row">
+		<div class = "col-xs-12">
+				<p>{{ message }}</p>
+			</div>
+	</row> -->
+	
+</div>

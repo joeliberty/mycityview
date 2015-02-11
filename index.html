@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="Site">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- <link rel="icon" href="http://getbootstrap.com/favicon.ico"> -->
+    <!-- <link rel="shortcut icon" href="/favicon.ico"> -->
+
+    <!-- For Google maps -->
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    
+    <title></title>
+    <!-- Bootstrap core CSS -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp" + "&signed_in=true&callback=initialize"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular.min.js"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular-sanitize.js"></script>
+
+    <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.9.0.js"></script>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular-route.js"></script>
+    
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+  <!--
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=">
+    </script>
+  -->
+
+    
+    <!--  <script src="example.js"></script> -->
+    <!--
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    -->
+
+    <!--<script src="https://timezonedb.googlecode.com/files/timezonedb.js" type="text/javascript"></script>-->
+    
+
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"> -->
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css"> -->
+
+    <script type="text/javascript" src="js/site.js"></script>
+    <script type="text/javascript" src="js/get_weather.js"></script>
+    <script type="text/javascript" src="js/get_yelp.js"></script>
+    <script type="text/javascript" src="js/get_horoscope.js"></script>
+    <script type="text/javascript" src="js/get_movies.js"></script>
+    <script type="text/javascript" src="js/get_news.js"></script>
+    <script type="text/javascript" src="js/get_quote.js"></script>
+    <script type="text/javascript" src="js/get_time.js"></script>
+    <script type="text/javascript" src="js/directives.js"></script>
+    <script type="text/javascript" src="js/get_map.js"></script>
+    <script type="text/javascript" src="js/get_events.js"></script>
+    
+    <!-- Custom styles for this template -->
+    <link href="custom.css" rel="stylesheet">
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+          $('[data-toggle="tooltip"]').tooltip({
+              placement : 'top'
+          });
+      });
+    </script>
+  </head>
+
+  <body>
+    <div ng-include="'navbar.html'"></div>
+      <ng-view></ng-view>
+      <div id="copyright" class="mycity">myCityview <i class="fa fa-copyright"></i> 2015</div>
+</body>
+</html>

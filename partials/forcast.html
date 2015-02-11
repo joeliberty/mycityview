@@ -1,0 +1,18 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<div class='forcast_container'>
+				<h4>36 Hour Forcast</h4>
+				<div ng-controller="DayForcastCtrl">
+					<ul>
+						<li ng-repeat="day in daycast track by $index">
+							<img ng-src="{{day.icons}}"/><br/>
+					    {{day.temps  | temp:[2, 'C']}}<br/>
+					    {{day.times}}
+					  </li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
