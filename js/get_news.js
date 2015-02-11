@@ -14,7 +14,7 @@ news_app.controller("NewsCtrl", function($scope, $rootScope, $http) {
     // var url = 'http://api.feedzilla.com/v1/categories/547/subcategories/21594/articles.json'
     $scope.isnews = false;
     var locnews = $scope.locnews;
-    var url = 'http://api.feedzilla.com/v1/categories/' + $rootScope.newsdata.cat + '/subcategories/' + $rootScope.newsdata.subcat + '/articles.json'
+    var url = 
     $http({
         url: url,
         dataType: 'json', 
