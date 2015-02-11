@@ -13,9 +13,7 @@ time_app.controller("GetTimeCtrl", function($scope, $rootScope, $http) {
         dataType: 'jsonp', 
         method: "GET",
         params: {
-                lat: city_data[t_city].lat,
-                lng: city_data[t_city].lon,
-                username: 'jliberty'
+                
                 }
     }).success(function(data) {
         // console.log(data.time)
