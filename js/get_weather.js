@@ -6,11 +6,10 @@ weather_app.controller("CurWeatherCtrl", function($scope, $rootScope, $http) {
     // console.log($rootScope.city +' '+ $rootScope.state +' '+$rootScope.country)
     var state = ($rootScope.state) ? $rootScope.state : ' ';
     $http({
-        url: 'http://api.openweathermap.org/data/2.5/weather',
+        url: ,
         dataType: 'json', 
         method: "GET",
-        params: {q: $rootScope.city +','+ state +','+$rootScope.country,
-                units: 'metric'}
+        params: 
     }).success(function(data) {
         // console.log(data)
         $scope.cur_temp = data.main.temp;
