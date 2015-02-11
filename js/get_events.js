@@ -56,7 +56,7 @@ events_app.controller("EventsCtrl", function($scope, $rootScope, $http, formatDa
 
     if($rootScope.country == 'au') {
         $scope.events = { events: {name:'Retrieving Events'}};
-        var url = 'php/'
+        var url = ''
         $http({
             url: url,
             dataType: 'json', 
@@ -92,7 +92,7 @@ events_app.controller("EventsCtrl", function($scope, $rootScope, $http, formatDa
 
     if($rootScope.country == 'us') {
         $scope.events = { events: {name:'Retrieving Events'}};
-        url = 'http://api.seatgeek.com/2/events?lon=' + city_data[t_city].lon + '&lat=' + city_data[t_city].lat + '&range=15mi'
+        url = ''
         $http({
             url: url,
             dataType: 'json', 
@@ -127,7 +127,7 @@ events_app.controller("EventsCtrl", function($scope, $rootScope, $http, formatDa
         $scope.events = { events: {name:'Retrieving Events'}};
         var sw_events = [];
         // var url = 'http://api-sandbox.seatwave.com/v2/discovery/events?apikey=af96e20b18044e8bb8e62152f134eec3&where=' + $rootScope.city + '&what=concerts&whenFrom=2015-02-06&whenTo=2015-02-07&callback=JSON_CALLBACK';
-        var url = 'http://api-sandbox.seatwave.com/v2/discovery/events?apikey=af96e20b18044e8bb8e62152f134eec3&where=' + $rootScope.city + '&what=concerts&callback=JSON_CALLBACK';
+        var url = '';
         $http.jsonp(url).success(function(data) {
             console.log('euro_event:')
             console.log(data.Events.length)
@@ -179,7 +179,7 @@ events_app.controller("EventsCtrl", function($scope, $rootScope, $http, formatDa
             
         });
 
-        var url = 'http://api-sandbox.seatwave.com/v2/discovery/events?apikey=af96e20b18044e8bb8e62152f134eec3&where=' + $rootScope.city + '&what=sports&callback=JSON_CALLBACK';
+        var url = '';
         $http.jsonp(url).success(function(data) {
             // var sw_events = [];
             var event_total = 30;
@@ -198,7 +198,7 @@ events_app.controller("EventsCtrl", function($scope, $rootScope, $http, formatDa
         // $scope.events = sw_events;
         });
 
-        var url = 'http://api-sandbox.seatwave.com/v2/discovery/events?apikey=af96e20b18044e8bb8e62152f134eec3&where=' + $rootScope.city + '&what=theater&callback=JSON_CALLBACK';
+        var url = '';
         $http.jsonp(url).success(function(data) {
             // var sw_events = [];
             var event_total = 30;
