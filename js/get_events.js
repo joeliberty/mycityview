@@ -56,13 +56,13 @@ events_app.controller("EventsCtrl", function($scope, $rootScope, $http, formatDa
 
     if($rootScope.country == 'au') {
         $scope.events = { events: {name:'Retrieving Events'}};
-        var url = 'get_event.php'
+        var url = 'php/'
         $http({
             url: url,
             dataType: 'json', 
             method: 'GET',
-            params: {username: 'wwwmycityviewinfo',
-                    password: '567nd6xx8k7f',
+            params: {username: '',
+                    password: '',
                     point: point,
                     radius: '100',
                     start_date: today,
