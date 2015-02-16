@@ -152,7 +152,7 @@ ul {
   opacity: 0.8;
   color: #d3d3d3;
   -webkit-backface-visibility: hidden;
-  margin-top: 40px;
+  margin-top: 6px;
   display: none;
 }
 
@@ -192,10 +192,10 @@ ul {
   font-weight: 500;
 }
 
-.newspanel, .moviepanel {
+/*.newspanel, .moviepanel {
   height: 200px;
   overflow-y: scroll;
-}
+}*/
 
 .panel-heading {
   padding: 0px 15px;
@@ -381,7 +381,7 @@ ul {
   background-color: #fcfcfc;
 }*/
 
-.event_container {
+.event_container, .places_container, .newspanel, .moviepanel {
   height: 250px;
   overflow-y: scroll;
 }
@@ -393,6 +393,69 @@ ul {
 .mapit:hover {
   cursor: pointer;
   text-decoration: underline;
+}
+
+
+
+#credits_header {
+  text-align: center;
+  color: #4F4F4F;
+  margin-top: 20px;
+  margin-bottom: 4px;
+}
+
+#owm_credit {
+  font-family: oswald, sans-serif;
+font-size: 16px;
+position: relative;
+top: 4px;
+color: #4F4F4F;
+font-weight: bold;
+letter-spacing: -1px;
+}
+
+#bs_credit, #geonames_credit {
+font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+position: relative;
+color: #4F4F4F;
+top: 5px;
+font-size: 17px;
+font-weight: bold;
+}
+
+.credit_container li {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.credit_container img {
+  height: 20px;
+  /*width: 24px;*/
+}
+
+#google {
+  margin-top: 5px;
+height: 25px
+}
+
+#yelp {
+  height: 34px;
+position: relative;
+top: -4px;
+}
+
+#eventfinda {
+  height: 33px;
+position: relative;
+top: 2px;
+}
+
+#geonames {
+  margin-top: 3px;
+}
+
+#geonames_credit {
+  top:  7px;
 }
 
 /*.navbar-brand {
