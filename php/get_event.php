@@ -18,7 +18,7 @@
 
   // $url = 'http://api.eventfinda.com.au/v2/events.json?point=-37.8175,144.967&radius=10&start_date=2015-02-01&end_date=2015-02-03';
 
-  $url = ;
+  $url = 'http://api.eventfinda.com.au/v2/events.json?point=' . $point . '&radius=' . $radius . '&start_date=' . $start_date . '&end_date=' . $end_date;
 
   // $url = 'http://api.eventfinda.com.au/v2/events.json?point=' . $point . '&radius=' . $radius;
 

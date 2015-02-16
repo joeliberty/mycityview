@@ -11,7 +11,7 @@ astro_app.controller("AstroCtrl", function($scope, $http) {
     $scope.horoscope = '';
     $('#astro_horoscope i').css('display', 'inline-block');
     $http({
-      url: '', 
+      url: 'https://sender.blockspring.com/api_v2/blocks/dba3c2ca01c063df9cdf9fc6f0cf93f9?api_key=db81b1fa591380eb4110ff3093829176', 
       method: "POST",
       dataType: 'json',
       data: JSON.stringify({ sign: sign})

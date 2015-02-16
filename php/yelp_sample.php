@@ -24,16 +24,16 @@ require_once('lib/OAuth.php');
 // Set your OAuth credentials here  
 // These credentials can be obtained from the 'Manage API Access' page in the
 // developers documentation (http://www.yelp.com/developers)
-$CONSUMER_KEY = '';
-$CONSUMER_SECRET = '';
-$TOKEN = '';
-$TOKEN_SECRET = '';
+$CONSUMER_KEY = 'N-vPXMSQJMdY7KYmEGq8kQ';
+$CONSUMER_SECRET = 'RK-tCS0hK1c6YE9L44kPTC4LhD4';
+$TOKEN = 'c7Ghj5t3GfO6QIta1XnKLMplNNzafEqV';
+$TOKEN_SECRET = 'wj1kyy0HYqsZctpOL5w3k3Neo64';
 $API_HOST = 'api.yelp.com';
 // $DEFAULT_TERM = 'music';
 $DEFAULT_TERM = isset($_GET['term']) ? $_GET['term'] : 'dinner';
 // $DEFAULT_LOCATION = 'Melbournd, Victoria';
 $DEFAULT_LOCATION = isset($_GET['location']) ? $_GET['location'] : 'Melbourne, vic';
-$SEARCH_LIMIT = 3;
+$SEARCH_LIMIT = 10;
 $SEARCH_PATH = '/v2/search/';
 $BUSINESS_PATH = '/v2/business/';
 /** 

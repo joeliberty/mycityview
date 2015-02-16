@@ -3,7 +3,7 @@ var yelp_app = angular.module('yelp_app', []);
 yelp_app.controller("MusicVenueCtrl", function($scope, $rootScope, $http) {
     // $scope.music_limit = 16;
     $http({
-        url: 'yelp_sample.php', 
+        url: 'php/yelp_sample.php', 
         method: "GET",
         params: {term: 'music venue',
                 location: $rootScope.city +',' + $rootScope.state}
@@ -19,7 +19,7 @@ yelp_app.controller("MusicVenueCtrl", function($scope, $rootScope, $http) {
 yelp_app.controller("RestaurantCtrl", function($scope, $rootScope, $http) {
     $scope.restaurant_limit = 16;
     $http({
-        url: 'yelp_sample.php', 
+        url: 'php/yelp_sample.php', 
         method: "GET",
         params: {term: 'restaurant',
                 location: $rootScope.city +',' + $rootScope.state}
@@ -34,7 +34,7 @@ yelp_app.controller("RestaurantCtrl", function($scope, $rootScope, $http) {
 
 yelp_app.controller("ClubCtrl", function($scope, $rootScope, $http) {
     $http({
-        url: 'yelp_sample.php', 
+        url: 'php/yelp_sample.php', 
         method: "GET",
         params: {term: 'happy hour',
                 location: $rootScope.city +',' + $rootScope.state}
@@ -43,31 +43,13 @@ yelp_app.controller("ClubCtrl", function($scope, $rootScope, $http) {
         var data_array = eval('(' + data_array + ')');
         var type = Object.prototype.toString.call(data_array);
         $scope.clubs = data_array.businesses;
-        // for (var i=0;i<data_array.businesses.length;i++) {
-        //      var grp_ob = data_array.businesses[i];
-             // for(var key in grp_ob) {
-             //     if(grp_ob.hasOwnProperty(key)) {
-             //         // Gets all listings values
-             //         console.log(key + " -> " + ' value: '+grp_ob[key] );
-             //         if (key == 'location') {
-             //             var location = grp_ob[key];
-             //              for(var loc in location) {
-             //                if(location.hasOwnProperty(loc)) {
-             //                  console.log(loc + " -> " + ' value: '+location[loc] );
-                            
-             //                }
-             //              }
-             //         }
-             //     }
-             // }
-         // }
     }); 
 });
 
 yelp_app.controller("GallaryCtrl", function($scope, $rootScope, $http) {
     $scope.gallery_limit = 16;
     $http({
-        url: 'yelp_sample.php', 
+        url: 'php/yelp_sample.php', 
         method: "GET",
         params: {term: 'art',
                 location: $rootScope.city +',' + $rootScope.state}

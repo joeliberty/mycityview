@@ -2,22 +2,10 @@
 
 var map_app = angular.module('map_app', []);
 
-// map_app.factory('mapService', function() {
-//   var mapService = {
-//     someData: 'hey'
-//   };
-//   return mapService;
-// });
-
 map_app.controller("GetMapCtrl", function($scope, $rootScope) {
-    // var self = this;
-    // $scope.shared = mapService;
     var t_city = $rootScope.city_id;
     var city_data = $rootScope.locs;
-    // console.log('city_data: ' + city_data[t_city].lat)
 
-    // console.log('in initialize')
-    // var myLatlng = new google.maps.LatLng(city_data[t_city].lat,city_data[t_city].lon);
     $rootScope.lat_lng = new google.maps.LatLng(city_data[t_city].lat,city_data[t_city].lon);
     var mapOptions = {
         zoom: 13,
@@ -25,7 +13,10 @@ map_app.controller("GetMapCtrl", function($scope, $rootScope) {
     };
 
     var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-    // console.log(map)
+    
+    /*
+    * Watch for change on $rootScope.lat_lng and update marker on map.
+    */
     var markers = [];
     $scope.$watch('lat_lng', function() {
         var lat_lng = null;
@@ -40,11 +31,8 @@ map_app.controller("GetMapCtrl", function($scope, $rootScope) {
             }
             var coord_array = $rootScope.lat_lng.split(',');
             var lat = coord_array[0];
-            // console.log('lat: ' + lat)
             var lng = coord_array[1];
-            // console.log('lng: ' + lng)
             lat_lng = new google.maps.LatLng(lat, lng);
-            // console.log('lat_lng: ' + typeof lat_lng)
             scroll_to_map = true;
         }
         var marker = new google.maps.Marker({
@@ -53,7 +41,6 @@ map_app.controller("GetMapCtrl", function($scope, $rootScope) {
         });
         map.setCenter(marker.getPosition());
         markers.push(marker);
-        // console.log('scroll_to_map: ' + scroll_to_map)
         if(scroll_to_map) {
             // Scroll browser window to foucus google map
             var el = $('#map_container');
@@ -100,15 +87,15 @@ map_app.controller('SetLatLng', function ($scope, $rootScope) {
                 lng = (key == 'lng') ? location[key] : location['lon'];
                 switch(key) {
                 case 'lng':
-                    console.log('lng')
+                    // console.log('lng')
                     lng = location[key];
                     break;
                 case 'lon':
-                    console.log('lon')
+                    // console.log('lon')
                     lng = location[key];
                     break;
                 case 'longitude':
-                    console.log('longitude')
+                    // console.log('longitude')
                     lng = location[key];
                     break;
                 case 'lat':
@@ -117,10 +104,16 @@ map_app.controller('SetLatLng', function ($scope, $rootScope) {
                 case 'latitude':
                     lat = location[key];
                     break;
+                case 'k':
+                    lat = location[key];
+                    break;
+                case 'D':
+                    lng = location[key];
+                    break;
                 }
             }
         }
-        // console.log('lat: ' + lat + 'lng: ' + lng)
+        // console.log('lat: ' + lat + ' lng: ' + lng)
         $rootScope.lat_lng = lat + ', ' + lng;
     };
 });

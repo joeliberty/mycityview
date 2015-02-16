@@ -4,7 +4,7 @@ movie_app.controller("MovieCtrl", function($scope, $rootScope, $http) {
     var city_state = $rootScope.city.replace(' ', ',') + ',' + $rootScope.state;
     // console.log('city_state: ' + city_state)
     $http({
-        url: 'get_movies.php',
+        url: 'php/get_movies.php',
         dataType: 'json', 
         method: "GET",
         params: {city: city_state}

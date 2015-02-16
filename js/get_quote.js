@@ -4,24 +4,25 @@ var quote_app = angular.module('quote_app', []);
 quote_app.controller("QuoteCtrl", function($scope, $http) {
   var self = this;
   var less_len = 200; 
-    $http({
-        url: 'php/get_quote.php',
-        dataType: 'json', 
-        method: "GET",
-        params: {}
-    }).success(function(data) {
-      console.log('data: ' + data)
-
-      $scope.fullquote = data.quote;
-      $scope.author = '--' + data.author;
-
+  var quotes = [];
+    $http.get('js/quotes.json').success(function(data){
+      $.each(data, function () {
+        var quote = {};
+        quote['quote'] = this.quote;
+        quote['author'] = this.author;
+        quotes.push(quote);
+      });
+      /* choose random quote */
+      var rand_num = Math.floor((Math.random() * quotes.length));
+      var rand_quote = quotes[rand_num];
+      $scope.fullquote = rand_quote.quote;
+      $scope.author = '--' + rand_quote.author;
       $scope.toggle_quote = true;
       if($scope.fullquote.length <= less_len) {
         $scope.quote = $scope.fullquote;
       } else {
         self.get_less_n_more('less');
       }
-      
     }); 
 
     this.get_less_n_more = function(state) {

@@ -6,10 +6,11 @@ weather_app.controller("CurWeatherCtrl", function($scope, $rootScope, $http) {
     // console.log($rootScope.city +' '+ $rootScope.state +' '+$rootScope.country)
     var state = ($rootScope.state) ? $rootScope.state : ' ';
     $http({
-        url: '',
+        url: 'http://api.openweathermap.org/data/2.5/weather',
         dataType: 'json', 
         method: "GET",
-        params: {}
+        params: {q: $rootScope.city +','+ state +','+$rootScope.country,
+                units: 'metric'}
     }).success(function(data) {
         // console.log(data)
         $scope.cur_temp = data.main.temp;
@@ -52,10 +53,12 @@ weather_app.controller("DayForcastCtrl", function($scope, $rootScope, $http) {
     }
     var self = this;
     $http({
-        url: '', 
+        url: 'http://api.openweathermap.org/data/2.5/forecast', 
         dataType: 'jsonp', 
         method: "GET",
-        params: {}
+        params: {q: $rootScope.city +','+ $rootScope.state +','+$rootScope.country,
+                units: 'metric',
+                cnt: 1}
     }).success(function(data) {
         // console.log('cur_time1: ' + $rootScope.times.fulltime)
         // var date_time = new Date($rootScope.times.fulltime);

@@ -33,11 +33,11 @@ $html = str_get_html($str);
 $theaters_array = array();
 foreach($html->find('#movie_results .theater') as $div) {
     $theater_array = array();
-    
     // $value = $div->find('h2 a',0)->innertext;
     $value = $div->find('h2 a',0)->innertext;
     $theater_array['name'] = $value;
     $full_address = $div->find('.info', 0)->innertext;
+    $theater_array['full_address'] = $full_address;
     $index = strpos($full_address, ',');
     $address = substr($full_address, 0, $index);
     $theater_array['address'] = $address;

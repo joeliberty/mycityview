@@ -3,7 +3,7 @@ var news_app = angular.module('news_app', ['ui.bootstrap']);
 news_app.controller("NewsCtrl", function($scope, $rootScope, $http) {
     $scope.isnews = false;
     var locnews = $scope.locnews;
-    var url = ''
+    var url = 'http://api.feedzilla.com/v1/categories/' + $rootScope.newsdata.cat + '/subcategories/' + $rootScope.newsdata.subcat + '/articles.json'
     $http({
         url: url,
         dataType: 'json', 
@@ -19,7 +19,7 @@ news_app.controller("NewsCtrl", function($scope, $rootScope, $http) {
         }
     }); 
 
-    url = ''
+    url = 'http://api.feedzilla.com/v1/categories/1071/articles.json'
     $http({
         url: url,
         dataType: 'json', 
@@ -28,7 +28,7 @@ news_app.controller("NewsCtrl", function($scope, $rootScope, $http) {
         $scope.sportsnews = data.articles;
     }); 
 
-    url = ''
+    url = 'http://api.feedzilla.com/v1/categories/1073/articles.json'
     $http({
         url: url,
         dataType: 'json', 
@@ -37,7 +37,7 @@ news_app.controller("NewsCtrl", function($scope, $rootScope, $http) {
         $scope.travelnews = data.articles;
     }); 
 
-    url = ''
+    url = 'http://api.feedzilla.com/v1/categories/1141/articles.json'
     $http({
         url: url,
         dataType: 'json', 
@@ -46,7 +46,7 @@ news_app.controller("NewsCtrl", function($scope, $rootScope, $http) {
         $scope.topnews = data.articles;
     }); 
 
-    url = ''
+    url = 'http://api.feedzilla.com/v1/categories/1082/articles.json'
     $http({
         url: url,
         dataType: 'json', 
@@ -55,7 +55,7 @@ news_app.controller("NewsCtrl", function($scope, $rootScope, $http) {
         $scope.entertainmentnews = data.articles;
     }); 
 
-    url = ''
+    url = 'http://api.feedzilla.com/v1/categories/1086/articles.json'
     $http({
         url: url,
         dataType: 'json', 
@@ -64,7 +64,7 @@ news_app.controller("NewsCtrl", function($scope, $rootScope, $http) {
         $scope.technews = data.articles;
     }); 
 
-    url = ''
+    url = 'http://api.feedzilla.com/v1/categories/1084/articles.json'
     $http({
         url: url,
         dataType: 'json', 
