@@ -70,4 +70,17 @@
         templateUrl: "partials/header-image.html",
       };
     });
+
+    app.directive("places", function() {
+      return {
+        restrict: 'E',
+        templateUrl: "partials/places.html"
+      };
+    });
+    app.directive("credits", function() {
+      return {
+        restrict: 'E',
+        templateUrl: "partials/credits.html"
+      };
+    });
 })();
