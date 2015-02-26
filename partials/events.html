@@ -34,7 +34,7 @@
 								<div>
 									<span ng-controller="SetLatLng" class="mapit" ng-show="event.point" ng-click="set_marker(event.point)"> Map it</span>
 									<span ng-controller="SetLatLng" class="mapit" ng-show="event.venue.location" ng-click="set_marker(event.venue.location)"> Map it</span><br/>
-				         	<a href="{{event.url}}" target="_blank">Event/Tickets</a>
+				         	<a ng-show="event.url" href="{{event.url}}" target="_blank">Event/Tickets</a>
 			         </div>
 								<li><hr></li>
 				      </ul>

@@ -1,6 +1,8 @@
 var news_app = angular.module('news_app', ['ui.bootstrap']);
 
 news_app.controller("NewsCtrl", function($scope, $rootScope, $http) {
+    /* Make the tabs container visible. */
+    $('.tabs_container').css('visibility', 'visible');
     $scope.isnews = false;
     var locnews = $scope.locnews;
     var url = 'http://api.feedzilla.com/v1/categories/' + $rootScope.newsdata.cat + '/subcategories/' + $rootScope.newsdata.subcat + '/articles.json'
@@ -9,13 +11,14 @@ news_app.controller("NewsCtrl", function($scope, $rootScope, $http) {
         dataType: 'json', 
         method: "GET"
     }).success(function(data) {
+        // console.log('data: ' + data)
         if(data.articles != '') {
             $scope.localnews = data.articles;
             $scope.isnews = true;
         } else {
             // console.log('empty!!!')
             $scope.isnews = false;
-            $scope.localnews = {"articles": {"title": "Sorry no local news available.", "summary": ""}};
+            $scope.localnews = {"articles": {"title": "Sorry no local news is unavailable at this time.", "summary": ""}};
         }
     }); 
 

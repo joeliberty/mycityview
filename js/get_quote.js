@@ -3,7 +3,7 @@ var quote_app = angular.module('quote_app', []);
 
 quote_app.controller("QuoteCtrl", function($scope, $http) {
   var self = this;
-  var less_len = 200; 
+  var less_len = 300; 
   var quotes = [];
     $http.get('js/quotes.json').success(function(data){
       $.each(data, function () {

@@ -37,7 +37,7 @@ function callback(results, status, pagination) {
                 console.log('got error')
               }
             });
-          }, 1000 + (500 * ind));
+          }, 1000 + (1000 * ind));
        })(i);
     }
 

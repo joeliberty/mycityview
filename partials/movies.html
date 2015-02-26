@@ -4,8 +4,8 @@
 			<!-- <h4>Movie Listings </h4> -->
 			<div ng-controller="MovieCtrl">
 		    <accordion ng-hide="show_movies">
-			    <accordion-group heading="{{theater.name | isnull}}" ng-repeat="theater in theaters">
-				    <div class="moviepanel">
+			    <accordion-group heading="{{theater.name | theater_name:this}}" ng-repeat="theater in theaters">
+				    <div ng-show="good_data" class="moviepanel">
 				    	 <span class="mname">{{theater.address | uppercase}} {{theater.phone}}</span>
 				      <ul>
 				        <li ng-repeat="movie in theater.movies">
@@ -14,7 +14,7 @@
 				        	<span ng-show="movie.rating"> {{movie.rating}} - </span>
 				        	<span ng-show="movie.type">{{movie.type}} - </span> 
 				        	<span ng-show="movie.trailer"><a href="{{movie.trailer}}" target="_blank">Trailer</a></span>
-				        	<br/> {{movie.times | removeAmp}}
+				        	<br/> {{movie.times | movie_times}}
 				        </li>
 				      </ul>
 				    </div>

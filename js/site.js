@@ -14,7 +14,7 @@ Site.controller('ShowHomeController', function($scope, $rootScope, $location) {
   $rootScope.locs = {
     
       "Santa_Fe": {"cat": 7, "subcat": 294, "state": "nm", "country": "us", "lon": "-105.94","lat": "35.69"},
-      "Melbourne": {"cat": 547, "subcat": 21594, "state": "vic", "country": "au", "lon": "144.97","lat": "-37.82"},
+      "Melbourne": {"cat": 547, "subcat": 21594, "state": "", "country": "au", "lon": "144.97","lat": "-37.82"},
       "New_York": {"cat": 7, "subcat": 297, "state": "ny", "country": "us", "lon": "-74.01","lat": "40.71"},
       "Boston": {"cat": 7, "subcat": 250, "state": "ma", "country": "us", "lon": "-71.06","lat": "42.36"},
       "Leesburg": {"cat": 7, "subcat": 323, "state": "va", "country": "us", "lon": "-77.57","lat": "39.12"},
@@ -23,21 +23,31 @@ Site.controller('ShowHomeController', function($scope, $rootScope, $location) {
       "Los_Angeles": {"cat": 7, "subcat": 277, "state": "ca", "country": "us", "lon": "-118.25","lat": "34.05"},
       "Fairfax": {"cat": 7, "subcat": 323, "state": "va", "country": "us", "lon": "-77.31","lat": "38.84"},
       "Adelaide": {"cat": 547, "subcat": 21584, "state": "", "country": "au", "lon": "138.59988","lat": "-34.9261"},
-      "Brisbane": {"cat": 547, "subcat": 21587, "state": "qld", "country": "au", "lon": "153.02342","lat": "-27.46846"},
-      "Hobart": {"cat": 547, "subcat": 22569, "state": "tas", "country": "au", "lon": "147.33162","lat": "-42.88164"},
-      "Perth": {"cat": 547, "subcat": 21595, "state": "wa", "country": "au", "lon": "115.85741","lat": "-31.95264"},
+      "Brisbane": {"cat": 547, "subcat": 21587, "state": "", "country": "au", "lon": "153.02342","lat": "-27.46846"},
+      "Hobart": {"cat": 547, "subcat": 22569, "state": "", "country": "au", "lon": "147.33162","lat": "-42.88164"},
+      "Perth": {"cat": 547, "subcat": 21595, "state": "", "country": "au", "lon": "115.85741","lat": "-31.95264"},
       "San_Francisco": {"cat": 7, "subcat": 312, "state": "ca", "country": "us", "lon": "-122.42","lat": "37.78"},
       "Paris": {"cat": 19, "subcat": 951, "state": "", "country": "fr", "lon": "2.3412","lat": "48.8569"},
       "London": {"cat": 19, "subcat": 1748, "state": "", "country": "uk", "lon": "-0.13","lat": "51.51"},
       "Rome": {"cat": 19, "subcat": 957, "state": "", "country": "it", "lon": "12.5","lat": "41.9"},
       "Singapore": {"cat": 1070, "subcat": 29032, "state": "", "country": "sg", "lon": "103.85","lat": "1.29"},
-      "Hagerstown": {"cat": 7, "subcat": 280, "state": "", "country": "us", "lon": "-77.72","lat": "39.64"},
+      "Hagerstown": {"cat": 7, "subcat": 280, "state": "md", "country": "us", "lon": "-77.72","lat": "39.64"},
       "Madrid": {"cat": 1070, "subcat": 27034, "state": "", "country": "es", "lon": "-3.7","lat": "40.42"},
       "Toledo": {"cat": 1070, "subcat": 27034, "state": "", "country": "es", "lon": "-4.02","lat": "39.86"},
       "Granada": {"cat": 1070, "subcat": 27034, "state": "", "country": "es", "lon": "-3.61","lat": "37.19"},
       "Seville": {"cat": 1070, "subcat": 27034, "state": "", "country": "es", "lon": "-6","lat": "37.39"},
       "Costa_del_Sol": {"cat": 1070, "subcat": 27034, "state": "", "country": "es", "lon": "-15.39","lat": "27.95"},
-      "Sydney": {"cat": 547, "subcat": 21113, "state": "nsw", "country": "au", "lon": "151.21","lat": "-33.87"}
+      "Amsterdam": {"cat": 1070, "subcat": 28050, "state": "", "country": "nl", "lon": "4.89","lat": "52.37"},
+      "Auckland": {"cat": 19, "subcat": 989, "state": "", "country": "nz", "lon": "174.77","lat": "-36.87"},
+      "Montreal": {"cat": 19, "subcat": 919, "state": "", "country": "ca", "lon": "-73.59","lat": "45.51"},
+      "Toronto": {"cat": 19, "subcat": 917, "state": "", "country": "ca", "lon": "-79.42","lat": "43.7"},
+      "Dublin": {"cat": 19, "subcat": 956, "state": "", "country": "ie", "lon": "-6.27","lat": "53.34"},
+      "Kuala_Lumpur": {"cat": 19, "subcat": 895, "state": "", "country": "my", "lon": "101.69","lat": "3.14"},
+      "Jakarta": {"cat": 19, "subcat": 895, "state": "", "country": "my", "lon": "106.8","lat": "-6.58"},
+      "Moscow": {"cat": 19, "subcat": 967, "state": "", "country": "ru", "lon": "37.62","lat": "55.75"},
+      "Helsinki": {"cat": 19, "subcat": 950, "state": "", "country": "fi", "lon": "24.94","lat": "60.17"},
+      "McCrae": {"cat": 547, "subcat": 21594, "state": "", "country": "au", "lon": "144.93","lat": "-38.35"},
+      "Sydney": {"cat": 547, "subcat": 21113, "state": "", "country": "au", "lon": "151.21","lat": "-33.87"}
 
   }
   // console.log('loc_path: ' + $location.absUrl())
@@ -47,6 +57,7 @@ Site.controller('ShowHomeController', function($scope, $rootScope, $location) {
     * new_city is the user selected city from navbar dropdown menu
     */
     var new_city = $location.hash();
+    // console.log('new_city: ' + new_city)
     // var new_city = window.location.hash();
     
 
@@ -54,7 +65,7 @@ Site.controller('ShowHomeController', function($scope, $rootScope, $location) {
     /* Set defaults */
     $rootScope.city = (new_city) ? new_city.replace(/_/g, ' ') : 'Melbourne';
     $rootScope.city_id = (new_city) ? new_city : 'Melbourne';
-    $rootScope.state = (new_city) ? $rootScope.locs[new_city].state : 'vic';
+    $rootScope.state = (new_city) ? $rootScope.locs[new_city].state : '';
     $rootScope.country = (new_city) ? $rootScope.locs[new_city].country : 'au';
     $rootScope.newsdata = {};
     $rootScope.newsdata['cat'] = (new_city) ? $rootScope.locs[new_city].cat : '547';
@@ -69,39 +80,22 @@ Site.controller('ShowHomeController', function($scope, $rootScope, $location) {
     var cities = $rootScope.locs;
     $scope.actions = [];
     for(var city in cities) {
+
       if(cities.hasOwnProperty(city)) {
         var obj = {};
         // Gets all listings values
+        // console.log('state: ' + cities[city].state)
         obj['id'] = city;
-        obj['name'] = city.replace(/_/g, ' ');
+        var city_st = (cities[city].state) ?
+          city.replace(/_/g, ' ') + ', ' + cities[city].state.toUpperCase() :
+          city.replace(/_/g, ' ');
+        obj['name'] = city_st;
+        // obj['name'] = city.replace(/_/g, ' ');
         // replace(/_/g, ' ')
         // console.log(city + " -> " + ' value: '+cities[city] );
         $scope.actions.push(obj)
       }
     }
-
-    // $scope.actions = [
-    //   {id: 'Melbourne', name: 'Melbourne'},
-    //   {id: 'Sydney', name: 'Sydney'},
-    //   {id: 'Santa_Fe', name: 'Santa Fe'},
-    //   {id: 'Boston', name: 'Boston'},
-    //   {id: 'Leesburg', name: 'Leesburg'},
-    //   {id: 'Knoxville', name: 'Knoxville'},
-    //   {id: 'Tampa', name: 'Tampa'},
-    //   {id: 'Los_Angeles', name: 'Los Angeles'},
-    //   {id: 'Fairfax', name: 'Fairfax'},
-    //   {id: 'Adelaide', name: 'Adelaide'},
-    //   {id: 'Brisbane', name: 'Brisbane'},
-    //   {id: 'Hobart', name: 'Hobart'},
-    //   {id: 'Perth', name: 'Perth'},
-    //   {id: 'San_Francisco', name: 'San Francisco'},
-    //   {id: 'Paris', name: 'Paris'},
-    //   {id: 'London', name: 'London'},
-    //   {id: 'Rome', name: 'Rome'},
-    //   {id: 'New_York', name: 'New York'},
-    //   {id: 'Singapore', name: 'Singapore'}
-    // ];
-
 
     $scope.setAction = function(action) {
       $scope.selectedAction = action;
@@ -128,11 +122,45 @@ Site.controller('ShowContactController', function($scope) {
   $scope.message = 'This is the contact message';
 });
 
-Site.controller('GetHeaderImage', function($scope, $rootScope) {
+Site.controller('GetHeaderImage', function($scope, $rootScope, $http) {
   var random_num = Math.floor((Math.random() * 10) + 1);
   var city = $rootScope.city_id.toLowerCase();
-  var path = 'images/' + city + '/pic' + random_num + '.jpg';
+  if($rootScope.state) {
+    var state = $rootScope.state.toLowerCase();
+  }
+  var country = $rootScope.country.toLowerCase();
+  // var path = 'images/' + city + '/pic' + random_num + '.jpg';
+  var path = '../all_images/' + city;
+  // var path = '/all_images/' + city;
+  if(state) {
+    path += '_' + state;
+  }
+  // console.log('path: ' + path)
+  /*When getting just 1 file
+  path += '_' + country + '_pic' + random_num + '.jpg';
+  console.log('path: ' + path)
   $scope.headerimage = path;
+  */
+
+  /* Get list of files that are prepended with city, state, country */
+  path += '_' + country;
+  // console.log('path: ' + path)
+  $scope.myInterval = 10000;
+  $http({
+    url: 'php/get_image_files.php',
+    dataType: 'json', 
+    method: "GET",
+    params: {filename: path}
+  }).success(function(data) {
+    $scope.slides = data;
+    // $scope.theaters = data;
+    // var data_array = eval('(' + data_array + ')');
+    // $scope.headerimage = path;
+  }); 
+
+  //path += '_' + country + '_pic' + random_num + '.jpg';
+  // console.log('path: ' + path)
+  // $scope.headerimage = path;
 });
 
 Site.config(['$routeProvider',

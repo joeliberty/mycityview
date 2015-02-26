@@ -6,13 +6,10 @@ time_app.controller("GetTimeCtrl", function($scope, $rootScope, $http) {
     // var self = this;
     var t_city = $rootScope.city_id;
     var city_data = $rootScope.locs;
-
     var decrypted = CryptoJS.AES.decrypt('U2FsdGVkX19chVesPhEt4kavFEA2gU1flPvBpDcAz0w=', "secret");
     var pass_phrase = decrypted.toString(CryptoJS.enc.Utf8);
-
     decrypted = CryptoJS.AES.decrypt('U2FsdGVkX19bsHe8yrrl85WI1eKcmTHVBUVyUJwLXRs=', pass_phrase);
     var username = decrypted.toString(CryptoJS.enc.Utf8);
-    
     $http({
         url: 'http://api.geonames.org/timezoneJSON',
         dataType: 'jsonp', 

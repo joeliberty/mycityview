@@ -41,14 +41,11 @@ events_app.controller("EventsCtrl", function($scope, $rootScope, $http, formatDa
     tomorrow = new Date(tomorrow);
     tomorrow = formatDate.yyyy_mm_dd(tomorrow).toString();
 
-    $scope.events = { events: {name:'No Events'}};
+    $scope.events = { events: {name:'Sorry there are no events for ' + $rootScope.city + '.'}};
 
     var decrypted = CryptoJS.AES.decrypt('U2FsdGVkX19chVesPhEt4kavFEA2gU1flPvBpDcAz0w=', "secret");
     var pass_phrase = decrypted.toString(CryptoJS.enc.Utf8);
-    // decrypted = CryptoJS.AES.decrypt('U2FsdGVkX19SrczeGTVDtIbwjXRpRU7x+YJ3MxyfSt/sYCmm71NaXfGPs87xYS6C', pass_phrase);
-    // var username = decrypted.toString(CryptoJS.enc.Utf8);
-    // decrypted = CryptoJS.AES.decrypt('U2FsdGVkX1+YqEl8lzoQ2ayDSoYlXnezuxWUQPL3BjE=', pass_phrase);
-    // var password = decrypted.toString(CryptoJS.enc.Utf8);
+    
     if($rootScope.country == 'au') {
         decrypted = CryptoJS.AES.decrypt('U2FsdGVkX19SrczeGTVDtIbwjXRpRU7x+YJ3MxyfSt/sYCmm71NaXfGPs87xYS6C', pass_phrase);
         var username = decrypted.toString(CryptoJS.enc.Utf8);
@@ -73,7 +70,7 @@ events_app.controller("EventsCtrl", function($scope, $rootScope, $http, formatDa
     } 
     // decrypted = CryptoJS.AES.decrypt('U2FsdGVkX18KWlc+LIQYiib9sGesYalJZCzXUUTravM=', pass_phrase);
     // var aid = decrypted.toString(CryptoJS.enc.Utf8);
-    if($rootScope.country == 'us') {
+    if($rootScope.country == 'us' || $rootScope.country == 'ca') {
         decrypted = CryptoJS.AES.decrypt('U2FsdGVkX18KWlc+LIQYiib9sGesYalJZCzXUUTravM=', pass_phrase);
         var aid = decrypted.toString(CryptoJS.enc.Utf8);
         $scope.events = { events: {name:'Retrieving Events'}};
@@ -87,7 +84,7 @@ events_app.controller("EventsCtrl", function($scope, $rootScope, $http, formatDa
             $scope.events = data.events;
         }); 
     }
-    var euro_countries = ['uk', 'fr', 'it', 'es'];
+    var euro_countries = ['uk', 'fr', 'it', 'es', 'nl', 'ie', 'ru', 'fi'];
     // decrypted = CryptoJS.AES.decrypt('U2FsdGVkX1/usFxGy6+N1xBtTWtGqqXfxpFtmVWpZMEHHICHW0qU3kEWOJrSzDbSXnifUlz22zFXPKiWh1E2Nw==', "secret");
     // var apikey = decrypted.toString(CryptoJS.enc.Utf8);
     var is_euro = 0;

@@ -53,12 +53,10 @@ body {
   text-align: center;
 }
 
-/*#header_image {
-  background-image: url("images/pic12.jpg");
-  background-repeat: repeat-x;
-  height: 399px;
-  margin-top: -50px;
-}*/
+#header_image {
+  height: 310px;
+  margin-top: 53px;
+}
 
 .container-fluid {
   /*padding-left: 0px;
@@ -84,6 +82,11 @@ body {
 
 .page_container h1 {
   text-align: center;
+}
+
+.carousel-indicators li {
+  position: relative;
+  top: 24px;
 }
 
 /*.row {
@@ -228,7 +231,7 @@ ul {
 
 #header_text {
   text-align: center;
-  margin-top: 53px;
+  /*margin-top: 53px;*/
   position: relative;
 }
 
@@ -358,6 +361,7 @@ ul {
   margin-right: 3%;
   position: relative;
   clear: both;
+  visibility: hidden;
 }
 
 .tab-content {

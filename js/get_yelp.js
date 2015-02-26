@@ -10,7 +10,10 @@ yelp_app.controller("MusicVenueCtrl", function($scope, $rootScope, $http) {
     }).success(function(data) {
         var data_array = jQuery.parseJSON(data);
         var data_array = eval('(' + data_array + ')');
-        // console.log(data_array.businesses)
+        $scope.yelp_unavailable = false;
+        if(data_array.error) {
+            $scope.yelp_unavailable = true;
+        }
         $scope.musicvenues = data_array.businesses;
          
     }); 
@@ -26,9 +29,11 @@ yelp_app.controller("RestaurantCtrl", function($scope, $rootScope, $http) {
     }).success(function(data) {
         var data_array = jQuery.parseJSON(data);
         var data_array = eval('(' + data_array + ')');
-        // var type = Object.prototype.toString.call(data_array);
+        $scope.yelp_unavailable = false;
+        if(data_array.error) {
+            $scope.yelp_unavailable = true;
+        }
         $scope.restaurants = data_array.businesses;
-        // console.log('forcast: ' + $scope.forcast)
     }); 
 });
 
@@ -42,6 +47,10 @@ yelp_app.controller("ClubCtrl", function($scope, $rootScope, $http) {
         var data_array = jQuery.parseJSON(data);
         var data_array = eval('(' + data_array + ')');
         var type = Object.prototype.toString.call(data_array);
+        $scope.yelp_unavailable = false;
+        if(data_array.error) {
+            $scope.yelp_unavailable = true;
+        }
         $scope.clubs = data_array.businesses;
     }); 
 });
@@ -56,13 +65,11 @@ yelp_app.controller("GallaryCtrl", function($scope, $rootScope, $http) {
     }).success(function(data) {
         var data_array = jQuery.parseJSON(data);
         var data_array = eval('(' + data_array + ')');
-        // console.log(data_array)
-        // var type = Object.prototype.toString.call(data_array);
+        $scope.yelp_unavailable = false;
+        if(data_array.error) {
+            $scope.yelp_unavailable = true;
+        }
         $scope.galleries = data_array.businesses;
-
-        // Copyright is hidden till last element is displayed
-        // $('#copyright').css('display', 'inline-block');
-        // console.log('forcast: ' + $scope.forcast)
     }); 
 });
 

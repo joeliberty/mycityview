@@ -3,14 +3,21 @@
 var weather_app = angular.module('weather_app', []);
 
 weather_app.controller("CurWeatherCtrl", function($scope, $rootScope, $http) {
-    // console.log($rootScope.city +' '+ $rootScope.state +' '+$rootScope.country)
-    var state = ($rootScope.state) ? $rootScope.state : ' ';
+    
+    // var state = ($rootScope.state) ? $rootScope.state : '';
+    var city_state_country = '';
+    if($rootScope.state) {
+        city_state_country = $rootScope.city +','+ $rootScope.state +','+$rootScope.country;
+    } else {
+        city_state_country = $rootScope.city +','+$rootScope.country;
+    }
+    // console.log('city_state_country: ' + city_state_country)
     $http({
         url: 'http://api.openweathermap.org/data/2.5/weather',
         dataType: 'json', 
         method: "GET",
-        params: {q: $rootScope.city +','+ state +','+$rootScope.country,
-                units: 'metric'}
+        appid: "4e5600686359104d6dd1ad18d82bd70b",
+        params: {q: city_state_country}
     }).success(function(data) {
         // console.log(data)
         $scope.cur_temp = data.main.temp;
@@ -51,13 +58,19 @@ weather_app.controller("DayForcastCtrl", function($scope, $rootScope, $http) {
             //wait;
         },1000)
     }
-    var self = this;
+    // var self = this;
+    var city_state_country = '';
+    if($rootScope.state) {
+        city_state_country = $rootScope.city +','+ $rootScope.state +','+$rootScope.country;
+    } else {
+        city_state_country = $rootScope.city +','+$rootScope.country;
+    }
     $http({
         url: 'http://api.openweathermap.org/data/2.5/forecast', 
-        dataType: 'jsonp', 
+        dataType: 'jsonp',
+        appid: "4e5600686359104d6dd1ad18d82bd70b",
         method: "GET",
-        params: {q: $rootScope.city +','+ $rootScope.state +','+$rootScope.country,
-                units: 'metric',
+        params: {q: city_state_country,
                 cnt: 1}
     }).success(function(data) {
         // console.log('cur_time1: ' + $rootScope.times.fulltime)
@@ -164,25 +177,34 @@ weather_app.controller("DayForcastCtrl", function($scope, $rootScope, $http) {
 
 weather_app.filter('temp', function($filter) {
     return function(input, t_array) {
-        // console.log('input: ' + input)
-        // console.log('pre: ' + t_array[0])
-        // console.log('type: ' +t_array[1])
-        var precision = t_array[0];
-        var temp_type = t_array[1];
-        // if (!precision) {
+        if(input) {
+            // conver from kelvin to celcius
+            input = input - 273.15;
+            var precision = t_array[0];
+            var temp_type = t_array[1];
             precision = 1;
-        // }
-        // console.log('type: ' + type)
-        var numberFilter = $filter('number');
+            var numberFilter = $filter('number');
 
-        var degree = (temp_type == 'C') ? '\u00B0C' : '\u00B0F';
-        // return numberFilter(input, precision) + '\u00B0C';
-        // weather.farenheit = (data.main.temp * 9.0 / 5.0 + 32).toFixed(2);
+            var degree = (temp_type == 'C') ? '\u00B0C' : '\u00B0F';
 
-        if(input && temp_type == 'F') {
-            input = (input* 9.0 / 5.0 + 32).toFixed(2);
+            if(input && temp_type == 'F') {
+                input = (input* 9.0 / 5.0 + 32).toFixed(2);
+            }
+            return numberFilter(input, precision) + degree;
+        } else {
+            return '';
         }
-        return numberFilter(input, precision) + degree;
+        // var precision = t_array[0];
+        // var temp_type = t_array[1];
+        //     precision = 1;
+        // var numberFilter = $filter('number');
+
+        // var degree = (temp_type == 'C') ? '\u00B0C' : '\u00B0F';
+
+        // if(input && temp_type == 'F') {
+        //     input = (input* 9.0 / 5.0 + 32).toFixed(2);
+        // }
+        // return numberFilter(input, precision) + degree;
         
     };
 });
