@@ -24,8 +24,6 @@
 
   // $url = 'http://api.eventfinda.com.au/v2/events.json';
 
-  // $username = 'wwwmycityviewinfo'; 
-  // $password = '567nd6xx8k7f';
   $process = curl_init($url);
   curl_setopt($process, CURLOPT_USERPWD, $username . ":" . $password);
   curl_setopt($process, CURLOPT_RETURNTRANSFER, TRUE);
