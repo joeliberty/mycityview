@@ -1,3 +1,4 @@
+(function() {
 'use strict';
 
 var weather_app = angular.module('weather_app', []);
@@ -208,29 +209,4 @@ weather_app.filter('temp', function($filter) {
         
     };
 });
-
-// weather_app.controller('WeatherCtrl', function ($scope, weatherService) {
-//     $scope.weather = weatherService.getWeather();
-// });
-
-// weather_app.directive('weatherIcon', function() {
-//     return {
-//         restrict: 'E', replace: true,
-//         scope: {
-//             cloudiness: '@'
-//         },
-//         controller: function($scope) {
-//             $scope.imgurl = function() {
-//                 var baseUrl = 'https://ssl.gstatic.com/onebox/weather/128/';
-//                 if ($scope.cloudiness < 20) {
-//                     return baseUrl + 'sunny.png';
-//                 } else if ($scope.cloudiness < 90) {
-//                    return baseUrl + 'partly_cloudy.png';
-//                 } else {
-//                     return baseUrl + 'cloudy.png';
-//                 }
-//             };
-//         },
-//         template: '<div ><img ng-src="{{ imgurl() }}"></div>'
-//     };
-// });
+})();

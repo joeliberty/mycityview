@@ -1,0 +1,23 @@
+<div class="row">
+		<div class='twitter_container'>
+			<div class="col-md-12">
+				<div ng-controller="TwitterCtrl">
+					<p id='twitter_spinner'><i class="fa fa-refresh fa-spin fa-2x"></i></p>
+					<ul>
+						<li ng-repeat="tweet in tweets track by $index">
+							<ul>
+								<li ng-show="tweet.icon" ><img ng-src="{{tweet.icon}}"/></li>
+								<li ng-show="tweet.name" class="mname"> {{tweet.name}}</li>
+								<li ng-show="tweet.name" > {{tweet.screen_name}}</li>
+								<li ng-bind-html="tweet.text | addUrls"></li>
+								<li ng-bind-html="tweet.description  | addUrls"></li>
+								<li ng-show="tweet.image" class="tw_image"><img ng-src="{{tweet.image}}"/></li>
+								<li ng-show="tweet.url"><a ng-href="{{tweet.url}}" target="_blank">Website</a></li>
+								<li><hr></li>
+							</ul>
+					  </li>
+					</ul>
+				</div>
+			</div>
+		</div>
+</div>

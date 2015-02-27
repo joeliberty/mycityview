@@ -1,3 +1,5 @@
+(function() {
+'use strict';
 var movie_app = angular.module('movie_app', ['ui.bootstrap']);
 
 movie_app.controller("MovieCtrl", function($scope, $rootScope, $http) {
@@ -51,3 +53,4 @@ movie_app.filter('theater_name', function () {
     return item;
   };
 });
+})();

@@ -1,3 +1,5 @@
+(function() {
+'use strict';
 var yelp_app = angular.module('yelp_app', []);
 
 yelp_app.controller("MusicVenueCtrl", function($scope, $rootScope, $http) {
@@ -85,4 +87,4 @@ yelp_app.filter('toString', function () {
       return item.toString();
   };
 });
-
+})();

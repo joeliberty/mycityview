@@ -1,3 +1,4 @@
+(function() {
 'use strict';
 var places_app = angular.module('places_app', []);
 
@@ -102,3 +103,4 @@ places_app.filter('formatType', function () {
     }
   };
 });
+})();
