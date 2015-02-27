@@ -83,4 +83,10 @@
         templateUrl: "partials/credits.html"
       };
     });
+    app.directive("twitter", function() {
+      return {
+        restrict: 'E',
+        templateUrl: "partials/twitter.html"
+      };
+    });
 })();
