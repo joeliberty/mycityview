@@ -1,3 +1,5 @@
+(function() {
+'use strict';
 var Site = angular.module('Site', ['ngRoute', 'ngSanitize', 'weather_app', 'yelp_app', 'astro_app', 'movie_app','news_app', 'quote_app', 'time_app', 'mycity-directives', 'events_app', 'map_app', 'places_app', 'twitter_app']);
 
 Site.controller('ShowHomeController', function($scope, $rootScope, $location) {
@@ -182,3 +184,4 @@ Site.config(['$routeProvider',
         redirectTo: '/ShowHome'
       });
   }]);
+})();

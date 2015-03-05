@@ -1,3 +1,4 @@
+(function() {
 'use strict';
 
 var time_app = angular.module('time_app', []);
@@ -36,3 +37,4 @@ time_app.controller("GetTimeCtrl", function($scope, $rootScope, $http) {
         // console.log('time: ' + $scope.current_time)
    });
 });
+})();

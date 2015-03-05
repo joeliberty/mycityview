@@ -1,3 +1,4 @@
+(function() {
 'use strict';
 
 var map_app = angular.module('map_app', []);
@@ -59,11 +60,8 @@ map_app.controller("GetMapCtrl", function($scope, $rootScope) {
         }
     });
     
-    // this.myvar = 0;
     $scope.change_lat_lng = function(point){
-        // this.myvar = this.myvar + num;
         console.log('point: ' + point)
-      // return this.tab === tabName;
     };
 
     // Copyright is hidden till last element is displayed
@@ -117,3 +115,4 @@ map_app.controller('SetLatLng', function ($scope, $rootScope) {
         $rootScope.lat_lng = lat + ', ' + lng;
     };
 });
+})();

@@ -1,86 +1,75 @@
+(function() {
+'use strict';
 var twitter_app = angular.module('twitter_app', []);
 
-// twitter_app.factory('formatDate', function() {
-//     return {
-//         yyyy_mm_dd : function(today){
-//         var day = today.getDate(today);
-//         if(day < 10) {
-//             day = '0' + day;
-//         }
-//         var month = today.getMonth(today) + 1;
-//         if(month < 10) {
-//             month = '0' + month;
-//         }
-//         var year = today.getFullYear(today);
-//         return year + '-' + month + '-' + day; 
-//         }  
-//     }
-// });
-
-// twitter_app.factory('dateSort', function() {
-//     return {
-//         comparator : function (a,b){
-//         if (a.timestamp < b.timestamp) return -1;
-//         if (a.timestamp > b.timestamp) return 1;
-//         return 0;
-//         }
-//     }
-// });
+twitter_app.factory('formatText', function() {
+    return {
+        add_links : function(item, link_type){
+            var done = false;
+            var str = item;
+            var x = 0;
+            while(x < 10) {
+                var url_start = str.indexOf(link_type);
+                if(url_start == -1 || x > 100) {
+                    done = true;
+                    return item;
+                }
+                var url = str.substring(url_start);
+                var url_end = url.indexOf(' ');
+                var link = '';
+                if(url_end == -1) {url_end = str.length;}
+                url = url.substring(0, url_end);
+                switch(link_type) {
+                    case 'http':
+                        link = '<a href=' + url + ' target="blank">' + url.substring(7) + '</a>';
+                        break;
+                    case '#':
+                        link = '<a href=https://twitter.com/hashtag/' + url.substring(1) + '?src=hash target="blank">' + url.substring(0) + '</a>';
+                        break;
+                    case '@':
+                        link = '<a href=https://twitter.com/' + url.substring(1) + ' target="blank">' + url.substring(0) + '</a>';
+                        break;
+                }
+                var chomp = parseInt(url_start + url_end);
+                str = str.substring(chomp);
+                item = item.replace(url, link);
+                x +=  1;
+            } 
+        }  
+    }
+});
 
 twitter_app.controller("TwitterCtrl", function($scope, $rootScope, $http) {
-    // var t_city = $rootScope.city_id;
-    // var city_data = $rootScope.locs;
-    // var point = city_data[t_city].lat + ',' + city_data[t_city].lon;
-    // // Get todays date and format it.
-    // var today = new Date();
-    // today = formatDate.yyyy_mm_dd(today);
-    // // Get tomorrows date and format it.
-    // var now = new Date();
-    // var tomorrow = new Date(now);
-    // tomorrow = tomorrow.setDate(now.getDate()+1);
-    // tomorrow = new Date(tomorrow);
-    // tomorrow = formatDate.yyyy_mm_dd(tomorrow).toString();
-
-    // $scope.events = { events: {name:'Sorry there are no events for ' + $rootScope.city + '.'}};
-
-    // var decrypted = CryptoJS.AES.decrypt('U2FsdGVkX19chVesPhEt4kavFEA2gU1flPvBpDcAz0w=', "secret");
-    // var pass_phrase = decrypted.toString(CryptoJS.enc.Utf8);
-    
-    
-    // decrypted = CryptoJS.AES.decrypt('U2FsdGVkX18KWlc+LIQYiib9sGesYalJZCzXUUTravM=', pass_phrase);
-    // var aid = decrypted.toString(CryptoJS.enc.Utf8);
-    // $scope.events = { events: {name:'Retrieving Events'}};
-    // url = 'https://api.twitter.com/1.1/search/tweets.json?q=melbourne%20au';
+    var city_state_country = '';
+    var t_city = $rootScope.city.replace(" ", "%20");
+    if($rootScope.state) {
+        city_state_country = '%23' + t_city +'%20'+ $rootScope.state;
+    } else {
+        city_state_country = '%23' + t_city +'%20'+$rootScope.country;
+    }
+    $('#twitter_spinner i').css('display', 'inline-block');
     $http({
         url: 'php/get_twitter.php',
-        dataType: 'json', 
+        dataType: 'json',
+        params: {q: city_state_country},
         method: "GET"
         
     }).success(function(data) {
-        console.log('twitter')
-        console.log(data['statuses'])
-        $scope.twitter = data;
+        // console.log('twitter')
+        // console.log(data)
+        $('#twitter_spinner i').css('display', 'none');
+        $scope.tweets = data;
     }); 
 });
 
-// twitter_app.filter('findDateTime', function (formatDate) {
-//   return function (item) {
-//     if(item) {
-//         var show_date = new Date(parseInt(item+0000));
-//         var time = show_date.toString().substring(16,21);
-//         show_date = formatDate.yyyy_mm_dd(show_date);
-//         return show_date + ' @ ' + time;
-//     }
-//   };
-// });
-
-// twitter_app.filter('parseDateTime', function (formatDate) {
-//   return function (item) {
-//     if(item) {
-//         var show_date = new Date(item);
-//         var time = show_date.toString().substring(16,21);
-//         show_date = formatDate.yyyy_mm_dd(show_date);
-//         return show_date + ' @ ' + time;
-//     }
-//   };
-// });
+twitter_app.filter('addUrls', function ($sce, formatText) {
+  return function (item) {
+    if(item) {
+        item = formatText.add_links(item, 'http');
+        item = formatText.add_links(item, '#');
+        item = formatText.add_links(item, '@');
+        return $sce.trustAsHtml(item);;
+    }
+  };
+});
+})();

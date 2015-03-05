@@ -1,3 +1,5 @@
+(function() {
+'use strict';
 var events_app = angular.module('events_app', []);
 
 events_app.factory('formatDate', function() {
@@ -52,7 +54,7 @@ events_app.controller("EventsCtrl", function($scope, $rootScope, $http, formatDa
         decrypted = CryptoJS.AES.decrypt('U2FsdGVkX1+YqEl8lzoQ2ayDSoYlXnezuxWUQPL3BjE=', pass_phrase);
         var password = decrypted.toString(CryptoJS.enc.Utf8);
         $scope.events = { events: {name:'Retrieving Events'}};
-        var url = 'php/get_event.php'
+        var url = 'php/get_event.php';
         $http({
             url: url,
             dataType: 'json', 
@@ -155,7 +157,7 @@ events_app.controller("EventsCtrl", function($scope, $rootScope, $http, formatDa
 events_app.filter('findDateTime', function (formatDate) {
   return function (item) {
     if(item) {
-        var show_date = new Date(parseInt(item+0000));
+        var show_date = new Date(parseInt(item+'0000'));
         var time = show_date.toString().substring(16,21);
         show_date = formatDate.yyyy_mm_dd(show_date);
         return show_date + ' @ ' + time;
@@ -173,3 +175,4 @@ events_app.filter('parseDateTime', function (formatDate) {
     }
   };
 });
+})();

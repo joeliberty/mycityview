@@ -1,4 +1,6 @@
+(function() {
 'use strict';
+//comment
 $( '#Aries' ).tooltip( "option", "content", "Awesome title!" );
 
 var astro_app = angular.module('astro_app', []);
@@ -23,5 +25,6 @@ astro_app.controller("AstroCtrl", function($scope, $http) {
     }); 
   };
 });
+})();
 
 
