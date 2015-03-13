@@ -77,16 +77,29 @@
         templateUrl: "partials/places.html"
       };
     });
+
     app.directive("credits", function() {
       return {
         restrict: 'E',
         templateUrl: "partials/credits.html"
       };
     });
+
     app.directive("twitter", function() {
       return {
         restrict: 'E',
         templateUrl: "partials/twitter.html"
       };
     });
+
+    // app.directive('imageonload', function() {
+    // return {
+    //     restrict: 'A',
+    //     link: function(scope, element, attrs) {
+    //         element.bind('load', function() {
+    //             $('#image_spacer').css('display', 'none');
+    //         });
+    //     }
+    // };
+// });
 })();

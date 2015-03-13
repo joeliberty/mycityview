@@ -10,16 +10,9 @@ map_app.factory('mapService', function() {
 });
 
 map_app.controller("GetMapCtrl", function($scope, $rootScope, mapService) {
-    // var self = this;
     $scope.shared = mapService;
     var t_city = $rootScope.city_id;
     var city_data = $rootScope.locs;
-    // console.log('city_data: ' + city_data[t_city].lat)
-
-    // console.log('in initialize')
-    // var myLatlng = new google.maps.LatLng(city_data[t_city].lat,city_data[t_city].lon);
-    // console.log(city_data[t_city].lat + ', ' + city_data[t_city].lon)
-    
     var mapExists = document.getElementById("map-canvas");
     if(mapExists) {
         var lat_lng = new google.maps.LatLng(city_data[t_city].lat,city_data[t_city].lon);
@@ -30,12 +23,10 @@ map_app.controller("GetMapCtrl", function($scope, $rootScope, mapService) {
         };
         var markers = [];
         var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-        // $scope.map = map;
         var marker = new google.maps.Marker({
             position: lat_lng,
             map: map
         });
-        // console.log(marker)
         map.setCenter(marker.getPosition());
         markers.push(marker);
     }

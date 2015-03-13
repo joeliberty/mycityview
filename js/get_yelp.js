@@ -3,12 +3,11 @@
 var yelp_app = angular.module('yelp_app', []);
 
 yelp_app.controller("MusicVenueCtrl", function($scope, $rootScope, $http) {
-    // $scope.music_limit = 16;
     $http({
         url: 'php/yelp_sample.php', 
         method: "GET",
         params: {term: 'music venue',
-                location: $rootScope.city +',' + $rootScope.state}
+                location: $rootScope.city_state_country}
     }).success(function(data) {
         var data_array = jQuery.parseJSON(data);
         var data_array = eval('(' + data_array + ')');
@@ -17,7 +16,6 @@ yelp_app.controller("MusicVenueCtrl", function($scope, $rootScope, $http) {
             $scope.yelp_unavailable = true;
         }
         $scope.musicvenues = data_array.businesses;
-         
     }); 
 });
 
@@ -27,7 +25,7 @@ yelp_app.controller("RestaurantCtrl", function($scope, $rootScope, $http) {
         url: 'php/yelp_sample.php', 
         method: "GET",
         params: {term: 'restaurant',
-                location: $rootScope.city +',' + $rootScope.state}
+                location: $rootScope.city_state_country}
     }).success(function(data) {
         var data_array = jQuery.parseJSON(data);
         var data_array = eval('(' + data_array + ')');
@@ -44,7 +42,7 @@ yelp_app.controller("ClubCtrl", function($scope, $rootScope, $http) {
         url: 'php/yelp_sample.php', 
         method: "GET",
         params: {term: 'happy hour',
-                location: $rootScope.city +',' + $rootScope.state}
+                location: $rootScope.city_state_country}
     }).success(function(data) {
         var data_array = jQuery.parseJSON(data);
         var data_array = eval('(' + data_array + ')');
@@ -63,7 +61,7 @@ yelp_app.controller("GallaryCtrl", function($scope, $rootScope, $http) {
         url: 'php/yelp_sample.php', 
         method: "GET",
         params: {term: 'art',
-                location: $rootScope.city +',' + $rootScope.state}
+                location: $rootScope.city_state_country}
     }).success(function(data) {
         var data_array = jQuery.parseJSON(data);
         var data_array = eval('(' + data_array + ')');

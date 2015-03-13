@@ -8,7 +8,7 @@
 				    <div class="newspanel">
 				    	<p id='local_spinner'><i class="fa fa-refresh fa-spin fa-2x"></i></p>
 				      <ul>
-								<li ng-repeat="local in localnews" >
+								<li ng-repeat="local in ::localnews" >
 									<p class="news_title">{{local.title}}</p>
 									<p ng-show={{isnews}} class="news_summary" >{{local.summary | removehtml}}  <a href="{{local.url}}" target="_blank">LINK</a></p>
 								</li>
@@ -19,7 +19,7 @@
 			    <div class="newspanel">
 			    	<p id='world_spinner'><i class="fa fa-refresh fa-spin fa-2x"></i></p>
 			    	<ul>
-				      <li ng-repeat="top in topnews">
+				      <li ng-repeat="top in ::topnews">
 								<p class="news_title">{{top.title}}</p>
 								<p class="news_summary">{{top.summary}}> <a href="{{top.url}}" target="_blank">LINK</a></p>
 							</li>
@@ -30,7 +30,7 @@
 			    <div class="newspanel">
 			    	<p id='entertainment_spinner'><i class="fa fa-refresh fa-spin fa-2x"></i></p>
 			    	<ul>
-				      <li ng-repeat="show in entertainmentnews">
+				      <li ng-repeat="show in ::entertainmentnews">
 								<p class="news_title">{{show.title}}</p>
 								<p class="news_summary">{{show.summary}}> <a href="{{show.url}}" target="_blank">LINK</a></p>
 							</li>
@@ -41,7 +41,7 @@
 			    <div class="newspanel">
 			    	<p id='tech_spinner'><i class="fa fa-refresh fa-spin fa-2x"></i></p>
 			    	<ul>
-				      <li ng-repeat="tech in technews">
+				      <li ng-repeat="tech in ::technews">
 								<p class="news_title">{{tech.title}}</p>
 								<p class="news_summary">{{tech.summary}}> <a href="{{tech.url}}" target="_blank">LINK</a></p>
 							</li>
@@ -52,7 +52,7 @@
 			    <div class="newspanel">
 			    	<p id='sports_spinner'><i class="fa fa-refresh fa-spin fa-2x"></i></p>
 			    	<ul>
-				      <li ng-repeat="sport in sportsnews">
+				      <li ng-repeat="sport in ::sportsnews">
 								<p class="news_title">{{sport.title}}</p>
 								<p class="news_summary">{{sport.summary}}> <a href="{{sport.url}}" target="_blank">LINK</a></p>
 							</li>
@@ -63,7 +63,7 @@
 			    <div class="newspanel">
 			    	<p id='travel_spinner'><i class="fa fa-refresh fa-spin fa-2x"></i></p>
 			    	<ul>
-				      <li ng-repeat="travel in travelnews">
+				      <li ng-repeat="travel in ::travelnews">
 								<p class="news_title">{{travel.title}}</p>
 								<p class="news_summary">{{travel.summary}}> <a href="{{travel.url}}" target="_blank">LINK</a></p>
 							</li>
@@ -74,7 +74,7 @@
 			    <div class="newspanel">
 			    	<p id='music_spinner'><i class="fa fa-refresh fa-spin fa-2x"></i></p>
 			    	<ul>
-				      <li ng-repeat="music in musicnews">
+				      <li ng-repeat="music in ::musicnews">
 								<p class="news_title">{{music.title}}</p>
 								<p class="news_summary">{{music.summary}}> <a href="{{music.url}}" target="_blank">LINK</a></p>
 							</li>

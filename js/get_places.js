@@ -20,7 +20,7 @@ function callback(results, status, pagination) {
   } else {
     var places_service = new google.maps.places.PlacesService($('#for_places').get(0));
 
-    /* Slow request to 1 every half sec */
+    /* Slow request to 1 every sec */
     $scope.places = [];
     for (var i = 0; i < results.length; i++) {
        (function(ind) {
@@ -41,50 +41,54 @@ function callback(results, status, pagination) {
           }, 1000 + (1000 * ind));
        })(i);
     }
+    /*
+    * Leave this code in for use of markers later
+    createMarkers(results);
 
-    // createMarkers(results);
+    if (pagination.hasNextPage) {
+      var moreButton = document.getElementById('more');
 
-    // if (pagination.hasNextPage) {
-    //   var moreButton = document.getElementById('more');
+      moreButton.disabled = false;
 
-    //   moreButton.disabled = false;
-
-    //   google.maps.event.addDomListenerOnce(moreButton, 'click',
-    //       function() {
-    //     moreButton.disabled = true;
-    //     pagination.nextPage();
-    //   });
-    //}
+      google.maps.event.addDomListenerOnce(moreButton, 'click',
+          function() {
+        moreButton.disabled = true;
+        pagination.nextPage();
+      });
+    }
+    */
   }
 }
 
 
+/*
+* For possible later use of markers
+function createMarkers(places) {
+  var bounds = new google.maps.LatLngBounds();
 
-// function createMarkers(places) {
-//   var bounds = new google.maps.LatLngBounds();
+  for (var i = 0, place; place = places[i]; i++) {
+    var image = {
+      url: place.icon,
+      size: new google.maps.Size(71, 71),
+      origin: new google.maps.Point(0, 0),
+      anchor: new google.maps.Point(17, 34),
+      scaledSize: new google.maps.Size(25, 25)
+    };
 
-//   for (var i = 0, place; place = places[i]; i++) {
-//     var image = {
-//       url: place.icon,
-//       size: new google.maps.Size(71, 71),
-//       origin: new google.maps.Point(0, 0),
-//       anchor: new google.maps.Point(17, 34),
-//       scaledSize: new google.maps.Size(25, 25)
-//     };
+    var marker = new google.maps.Marker({
+      map: map,
+      icon: image,
+      title: place.name,
+      position: place.geometry.location
+    });
 
-//     var marker = new google.maps.Marker({
-//       map: map,
-//       icon: image,
-//       title: place.name,
-//       position: place.geometry.location
-//     });
+    placesList.innerHTML += '<li>' + place.name + '</li>';
 
-//     placesList.innerHTML += '<li>' + place.name + '</li>';
-
-//     bounds.extend(place.geometry.location);
-//   }
-//   map.fitBounds(bounds);
-// }
+    bounds.extend(place.geometry.location);
+  }
+  map.fitBounds(bounds);
+}
+*/
 });
 
 places_app.filter('formatType', function () {

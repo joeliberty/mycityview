@@ -8,7 +8,7 @@
 				    <div ng-show="good_data" class="moviepanel">
 				    	 <span class="mname">{{theater.address | uppercase}} {{theater.phone}}</span>
 				      <ul>
-				        <li ng-repeat="movie in theater.movies">
+				        <li ng-repeat="movie in ::theater.movies">
 				        	<span class="mname">{{movie.name}}: </span> 
 				        	<span ng-show="movie.howlong">{{movie.howlong}} - </span>
 				        	<span ng-show="movie.rating"> {{movie.rating}} - </span>

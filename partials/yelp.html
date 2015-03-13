@@ -10,7 +10,7 @@
 				<h5 ng-show="yelp_unavailable">Unavailable for {{city}}.</h5>
 				<h4 ng-hide="yelp_unavailable">Music Venues</h4>
 				<ul>
-					<li ng-repeat="venue in musicvenues | orderBy:'-rating'">
+					<li ng-repeat="venue in ::musicvenues | orderBy:'-rating'">
 						<div ng-controller="ToggleCtrl">
 							<ul class='horz_list'>
 						  	<li><img ng-src="{{venue.rating_img_url_small}}" /> </li>
@@ -35,7 +35,7 @@
 			<div ng-controller="RestaurantCtrl">
 				<h4 ng-hide="yelp_unavailable">Restaurants</h4>
 				<ul>
-					<li ng-repeat="restaurant in restaurants | orderBy:'-rating'">
+					<li ng-repeat="restaurant in ::restaurants | orderBy:'-rating'">
 						<div ng-controller="ToggleCtrl">
 							<ul class='horz_list'>
 						  	<li><img ng-src="{{restaurant.rating_img_url_small}}" /> </li>
@@ -60,7 +60,7 @@
 			<div ng-controller="ClubCtrl">
 				<h4 ng-hide="yelp_unavailable">Happy Hour</h4>
 				<ul>
-					<li ng-repeat="club in clubs | orderBy:'-rating'">
+					<li ng-repeat="club in ::clubs | orderBy:'-rating'">
 						<div ng-controller="ToggleCtrl">
 							<ul class='horz_list'>
 						  	<li><img ng-src="{{club.rating_img_url_small}}" /> </li>
@@ -85,7 +85,7 @@
 			<div ng-controller="GallaryCtrl">
 				<h4 ng-hide="yelp_unavailable">Galleries</h4>
 				<ul>
-					<li ng-repeat="gallery in galleries | orderBy:'-rating'">
+					<li ng-repeat="gallery in ::galleries | orderBy:'-rating'">
 						<div ng-controller="ToggleCtrl">
 							<ul class='horz_list'>
 						  	<li><img ng-src="{{gallery.rating_img_url_small}}" /> </li>

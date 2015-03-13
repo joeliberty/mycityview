@@ -1,5 +1,6 @@
 (function() {
 'use strict';
+
 var twitter_app = angular.module('twitter_app', []);
 
 twitter_app.factory('formatText', function() {
@@ -8,7 +9,7 @@ twitter_app.factory('formatText', function() {
             var done = false;
             var str = item;
             var x = 0;
-            while(x < 10) {
+            while(!done) {
                 var url_start = str.indexOf(link_type);
                 if(url_start == -1 || x > 100) {
                     done = true;
@@ -55,8 +56,6 @@ twitter_app.controller("TwitterCtrl", function($scope, $rootScope, $http) {
         method: "GET"
         
     }).success(function(data) {
-        // console.log('twitter')
-        // console.log(data)
         $('#twitter_spinner i').css('display', 'none');
         $scope.tweets = data;
     }); 
