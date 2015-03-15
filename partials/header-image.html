@@ -1,7 +1,7 @@
 <!-- <img id="header_image" ng-src="{{headerimage}}" /> -->
 <carousel interval="myInterval">
   <slide ng-repeat="slide in slides" active="slide.active">
-    <img ng-src="{{slide.file}}" style="margin:auto;">
+    <img ng-src="{{slide.file}}" imageonload style="margin:auto;">
     <!-- <div class="carousel-caption">
       <h4>Slide {{$index}}</h4>
       <p>{{slide.text}}</p>

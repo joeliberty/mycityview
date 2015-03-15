@@ -344,3 +344,17 @@ top: 2px;
   max-height: 250px;
   max-width: 60%;
 }
+
+#image_spinner {
+  text-align: center;
+  margin-top: 16%;
+  margin-bottom: 12.25%;
+}
+
+#image_spinner i {
+  display:inline-block;
+}
+
+#header_image img{
+  display:none;
+}

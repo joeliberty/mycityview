@@ -8,8 +8,8 @@ weather_app.controller("CurWeatherCtrl", function($scope, $rootScope, $http) {
         url: 'http://api.openweathermap.org/data/2.5/weather',
         dataType: 'json', 
         method: "GET",
-        appid: "4e5600686359104d6dd1ad18d82bd70b",
-        params: {q: $rootScope.city_state_country}
+        params: {q: $rootScope.city_state_country,
+            appid: "4e5600686359104d6dd1ad18d82bd70b"}
     }).success(function(data) {
         $scope.cur_temp = data.main.temp;
         $scope.temp_max = data.main.temp_max;
@@ -24,8 +24,9 @@ weather_app.controller("DayForcastCtrl", function($scope, $rootScope, $http) {
         url: url,
         dataType: 'json', 
         method: "GET",
-        appid: "4e5600686359104d6dd1ad18d82bd70b",
-        params: {q: $rootScope.city_state_country}
+        params: {q: $rootScope.city_state_country,
+            appid: "4e5600686359104d6dd1ad18d82bd70b"
+        }
     }).success(function(data) {
         var date_time = '';
         if($rootScope.times.fulltime) {

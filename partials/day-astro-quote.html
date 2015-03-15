@@ -10,10 +10,10 @@
 		<div class="row">
 			<div class="col-md-4">
 				<div class="weather_container">
-					<h4>Weather</h4>
 					<div ng-controller="CurWeatherCtrl">
+						<h4 ng-show="cur_temp">Weather</h4>
 						<ul>
-							<li>It's {{cur_temp | temp:[2, 'C']}}/{{cur_temp | temp:[2, 'F']}} @ {{times.current}}</li>
+							<li ng-show="cur_temp">It's {{cur_temp | temp:[2, 'C']}}/{{cur_temp | temp:[2, 'F']}} @ {{times.current}}</li>
 							<li><img ng-src="{{imagepath}}"/><li>
 							<li>{{description}}</li>
 						<ul>

@@ -92,14 +92,15 @@
       };
     });
 
-    // app.directive('imageonload', function() {
-    // return {
-    //     restrict: 'A',
-    //     link: function(scope, element, attrs) {
-    //         element.bind('load', function() {
-    //             $('#image_spacer').css('display', 'none');
-    //         });
-    //     }
-    // };
-// });
+    app.directive('imageonload', function() {
+    return {
+        restrict: 'A',
+        link: function(scope, element, attrs) {
+            element.bind('load', function() {
+                $('#image_spinner, #image_spinner i').css('display', 'none');
+                $('#header_image img').css('display', 'block');
+            });
+        }
+    };
+});
 })();

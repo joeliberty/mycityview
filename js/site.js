@@ -1,6 +1,6 @@
 (function() {
 'use strict';
-var Site = angular.module('Site', ['ngRoute', 'ngSanitize', 'weather_app', 'yelp_app', 'astro_app', 'movie_app','news_app', 'quote_app', 'time_app', 'mycity-directives', 'events_app', 'map_app', 'places_app', 'twitter_app']);
+var Site = angular.module('Site', ['ngRoute', 'ngSanitize', 'weather_app', 'yelp_app', 'astro_app', 'movie_app','news_app', 'quote_app', 'time_app', 'mycity-directives', 'events_app', 'map_app', 'places_app', 'twitter_app', 'ngTouch']);
 
 Site.controller('ShowHomeController', function($scope, $rootScope, $location) {
   $scope.message = 'This row reserved for credits';
@@ -68,9 +68,9 @@ Site.controller('ShowHomeController', function($scope, $rootScope, $location) {
   /* Create City State County value*/
   $rootScope.city_state_country = '';
   if($rootScope.state) {
-      $rootScope.city_state_country = $rootScope.city +','+ $rootScope.state +','+$rootScope.country;
+      $rootScope.city_state_country = $rootScope.city +', '+ $rootScope.state +', '+$rootScope.country;
   } else {
-      $rootScope.city_state_country = $rootScope.city +','+$rootScope.country;
+      $rootScope.city_state_country = $rootScope.city +', '+$rootScope.country;
   }
   
   /*
@@ -154,4 +154,5 @@ Site.config(['$routeProvider',
         redirectTo: '/ShowHome'
       });
   }]);
+
 })();
