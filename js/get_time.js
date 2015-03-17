@@ -21,8 +21,6 @@ time_app.controller("GetTimeCtrl", function($scope, $rootScope, $http) {
                 username: username
                 }
     }).success(function(data) {
-        // console.log(data.time)
-        // console.log(data.time + ': ' + data.sunrise + ': ' + data.sunset)
         $rootScope.times['fulltime'] = data.time;
         // console.log('from time api: ' + $rootScope.times.fulltime)
         var time_arr = data.time.split(' ');

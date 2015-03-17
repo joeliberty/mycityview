@@ -92,6 +92,13 @@
       };
     });
 
+    app.directive("navbar", function() {
+      return {
+        restrict: 'E',
+        templateUrl: "partials/navbar.html"
+      };
+    });
+
     app.directive('imageonload', function() {
     return {
         restrict: 'A',
