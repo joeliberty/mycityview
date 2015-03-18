@@ -8,18 +8,18 @@
 		<div class="col-md-3">
 			<div ng-controller="MusicVenueCtrl">
 				<h5 ng-show="yelp_unavailable">Unavailable for {{city}}.</h5>
-				<h4 ng-hide="yelp_unavailable">Music Venues</h4>
+				<h4 ng-hide="yelp_unavailable">Hotels</h4>
 				<ul>
-					<li ng-repeat="venue in ::musicvenues | orderBy:'-rating'">
-						<div ng-controller="ToggleCtrl">
+					<li ng-repeat="venue in musicvenues | orderBy:'-rating'">
+						<div>
 							<ul class='horz_list'>
 						  	<li><img ng-src="{{venue.rating_img_url_small}}" /> </li>
-								<li><span ng-click="toggleCustom()"> {{venue.name | limitTo:nameLength}}
-									<i ng-show="custom" class="fa fa-caret-right"></i>
-				          <i ng-hide="custom" class="fa fa-caret-down"></i></span>
+								<li><span ng-click="select(venue)"> {{venue.name | limitTo:nameLength}}
+								<i ng-class="{rotate: isActive(venue)}" class="fa fa-caret-right"></i>
+								</span>
 				        </li>
 				      </ul>
-				      <div ng-hide="custom">
+				      <div class="yelp_details" ng-class="{active: isActive(venue)}">
 				      	{{venue.name}} <br/>
 				      	{{venue.display_phone}} <br/>
 			         	{{venue.location.address | toString}}, {{venue.location.city}}<br/>
@@ -35,16 +35,16 @@
 			<div ng-controller="RestaurantCtrl">
 				<h4 ng-hide="yelp_unavailable">Restaurants</h4>
 				<ul>
-					<li ng-repeat="restaurant in ::restaurants | orderBy:'-rating'">
-						<div ng-controller="ToggleCtrl">
+					<li ng-repeat="restaurant in restaurants | orderBy:'-rating'">
+						<div>
 							<ul class='horz_list'>
 						  	<li><img ng-src="{{restaurant.rating_img_url_small}}" /> </li>
-								<li><span ng-click="toggleCustom()"> {{restaurant.name | limitTo:nameLength}}
-									<i ng-show="custom" class="fa fa-caret-right"></i>
-				          <i ng-hide="custom" class="fa fa-caret-down"></i></span>
+								<li><span ng-click="select(restaurant)"> {{restaurant.name | limitTo:nameLength}}
+								<i ng-class="{rotate: isActive(restaurant)}" class="fa fa-caret-right"></i>
+								</span>
 				        </li>
 				      </ul>
-			        <div ng-hide="custom">
+			        <div class="yelp_details" ng-class="{active: isActive(restaurant)}">
 			        	{{restaurant.name}} <br/>
 			        	{{restaurant.display_phone}} <br/> 
 			        	{{restaurant.location.address | toString}}, {{restaurant.location.city}}<br/>
@@ -60,16 +60,16 @@
 			<div ng-controller="ClubCtrl">
 				<h4 ng-hide="yelp_unavailable">Happy Hour</h4>
 				<ul>
-					<li ng-repeat="club in ::clubs | orderBy:'-rating'">
-						<div ng-controller="ToggleCtrl">
+					<li ng-repeat="club in clubs | orderBy:'-rating'">
+						<div>
 							<ul class='horz_list'>
 						  	<li><img ng-src="{{club.rating_img_url_small}}" /> </li>
-								<li><span ng-click="toggleCustom()"> {{club.name | limitTo:nameLength}}
-									<i ng-show="custom" class="fa fa-caret-right"></i>
-				          <i ng-hide="custom" class="fa fa-caret-down"></i></span>
+								<li><span ng-click="select(club)"> {{club.name | limitTo:nameLength}}
+								<i ng-class="{rotate: isActive(club)}" class="fa fa-caret-right"></i>
+								</span>
 				        </li>
 				      </ul>
-			        <div ng-hide="custom">
+			        <div class="yelp_details" ng-class="{active: isActive(club)}">
 			        	{{club.name}} <br/>
 			        	{{club.display_phone}} <br/> 
 			        	Loc: {{club.location.address | toString}}, {{club.location.city}}<br/>
@@ -83,18 +83,18 @@
 		</div>
 		<div class = "col-md-3">
 			<div ng-controller="GallaryCtrl">
-				<h4 ng-hide="yelp_unavailable">Galleries</h4>
+				<h4 ng-hide="yelp_unavailable">Entertainment</h4>
 				<ul>
-					<li ng-repeat="gallery in ::galleries | orderBy:'-rating'">
-						<div ng-controller="ToggleCtrl">
+					<li ng-repeat="gallery in galleries | orderBy:'-rating'">
+						<div>
 							<ul class='horz_list'>
 						  	<li><img ng-src="{{gallery.rating_img_url_small}}" /> </li>
-								<li><span ng-click="toggleCustom()"> {{gallery.name | limitTo:nameLength}}
-									<i ng-show="custom" class="fa fa-caret-right"></i>
-				          <i ng-hide="custom" class="fa fa-caret-down"></i></span>
+								<li><span ng-click="select(gallery)"> {{gallery.name | limitTo:nameLength}}
+									<i ng-class="{rotate: isActive(gallery)}" class="fa fa-caret-right"></i>
+				          </span>
 				        </li>
 				      </ul>
-			        <div ng-hide="custom">
+			        <div class="yelp_details" ng-class="{active: isActive(gallery)}">
 			        	{{gallery.name}} <br/>
 			        	{{gallery.display_phone}} <br/> 
 			        	Loc: {{gallery.location.address | toString}}, {{gallery.location.city}}<br/>

@@ -6,24 +6,46 @@ var map_app = angular.module('map_app', []);
 map_app.controller("GetMapCtrl", function($scope, $rootScope) {
     var t_city = $rootScope.city_id;
     var city_data = $rootScope.locs;
+    var city_state_country = $rootScope.city_state_country;
 
     $rootScope.lat_lng = new google.maps.LatLng(city_data[t_city].lat,city_data[t_city].lon);
+    $rootScope.zoom = 13;
     var mapOptions = {
         zoom: 13,
         center: $rootScope.lat_lng
     };
-
     var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+    var markers = [];
+    var marker = '';
+    var geocoder = new google.maps.Geocoder();
+
+    // Might need this later so leave it here for now.
+    // geocoder.geocode( { 'address': city_state_country}, function(results, status) {
+    //     if (status == google.maps.GeocoderStatus.OK) {
+    //       map.setCenter(results[0].geometry.location);
+    //       marker = new google.maps.Marker({
+    //           map: map,
+    //           position: results[0].geometry.location
+    //       });
+    //       markers.push(marker);
+    //       console.log('first zoom')
+    //         map.setZoom(13);
+    //     } else {
+    //       alert('Geocode was not successful for the following reason: ' + status);
+    //     }
+    // });
     
     /*
     * Watch for change on $rootScope.lat_lng and update marker on map.
     */
-    var markers = [];
+    // var markers = [];
     $scope.$watch('lat_lng', function() {
         var lat_lng = null;
         var scroll_to_map = false;
         if(typeof $rootScope.lat_lng === 'object') {
-            // Only happens on startup
+            /*
+            * Check to see if loading the map for the first time.
+            */
             lat_lng = $rootScope.lat_lng;
         } else {
             // Clear markers
@@ -36,10 +58,11 @@ map_app.controller("GetMapCtrl", function($scope, $rootScope) {
             lat_lng = new google.maps.LatLng(lat, lng);
             scroll_to_map = true;
         }
-        var marker = new google.maps.Marker({
+        marker = new google.maps.Marker({
             position: lat_lng,
             map: map
         });
+        map.setZoom($rootScope.zoom);
         map.setCenter(marker.getPosition());
         markers.push(marker);
         if(scroll_to_map) {
@@ -113,6 +136,7 @@ map_app.controller('SetLatLng', function ($scope, $rootScope) {
         }
         // console.log('lat: ' + lat + ' lng: ' + lng)
         $rootScope.lat_lng = lat + ', ' + lng;
+        $rootScope.zoom = 18;
     };
 });
 })();

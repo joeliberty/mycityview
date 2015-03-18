@@ -200,7 +200,7 @@ ul {
   margin-right: 4%;
 }
 
-.forcast_container h4 {
+#forcast_h4 {
   margin-left: 3%;
 }
 
@@ -255,6 +255,11 @@ ul {
   padding-right:3%;
   position: relative;
   clear: both;
+  /*box-shadow: 1px 1px 20px #E8E7E7;*/
+}
+
+.nav-tabs>li.active>a {
+  /*z-index: 1000;*/
 }
 
 .nav-tabs>li>a {
@@ -358,3 +363,19 @@ top: 2px;
 #header_image img{
   display:none;
 }
+
+.yelp_details {
+  display: none;
+}
+
+.active {
+    display: block;
+}
+
+.rotate {
+  -ms-transform: rotate(90deg); /* IE 9 */
+  -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
+  transform: rotate(90deg);
+}
+
+

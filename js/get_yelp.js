@@ -6,7 +6,7 @@ yelp_app.controller("MusicVenueCtrl", function($scope, $rootScope, $http) {
     $http({
         url: 'php/yelp_sample.php', 
         method: "GET",
-        params: {term: 'music venue',
+        params: {term: 'hotels',
                 location: $rootScope.city_state_country}
     }).success(function(data) {
         var data_array = jQuery.parseJSON(data);
@@ -16,11 +16,18 @@ yelp_app.controller("MusicVenueCtrl", function($scope, $rootScope, $http) {
             $scope.yelp_unavailable = true;
         }
         $scope.musicvenues = data_array.businesses;
-    }); 
+    });
+    $scope.select= function(item) {
+        var same = (item === $scope.selected) ? true : false;
+        $scope.selected = (item === $scope.selected) ? null : item;
+    };
+
+    $scope.isActive = function(item) {
+        return $scope.selected === item;
+    };
 });
 
 yelp_app.controller("RestaurantCtrl", function($scope, $rootScope, $http) {
-    $scope.restaurant_limit = 16;
     $http({
         url: 'php/yelp_sample.php', 
         method: "GET",
@@ -34,7 +41,15 @@ yelp_app.controller("RestaurantCtrl", function($scope, $rootScope, $http) {
             $scope.yelp_unavailable = true;
         }
         $scope.restaurants = data_array.businesses;
-    }); 
+    });
+    $scope.select= function(item) {
+        var same = (item === $scope.selected) ? true : false;
+        $scope.selected = (item === $scope.selected) ? null : item;
+    };
+
+    $scope.isActive = function(item) {
+        return $scope.selected === item;
+    };
 });
 
 yelp_app.controller("ClubCtrl", function($scope, $rootScope, $http) {
@@ -52,15 +67,22 @@ yelp_app.controller("ClubCtrl", function($scope, $rootScope, $http) {
             $scope.yelp_unavailable = true;
         }
         $scope.clubs = data_array.businesses;
-    }); 
+    });
+    $scope.select= function(item) {
+        var same = (item === $scope.selected) ? true : false;
+        $scope.selected = (item === $scope.selected) ? null : item;
+    };
+
+    $scope.isActive = function(item) {
+        return $scope.selected === item;
+    };
 });
 
 yelp_app.controller("GallaryCtrl", function($scope, $rootScope, $http) {
-    $scope.gallery_limit = 16;
     $http({
         url: 'php/yelp_sample.php', 
         method: "GET",
-        params: {term: 'art',
+        params: {term: 'entertainment',
                 location: $rootScope.city_state_country}
     }).success(function(data) {
         var data_array = jQuery.parseJSON(data);
@@ -71,13 +93,17 @@ yelp_app.controller("GallaryCtrl", function($scope, $rootScope, $http) {
         }
         $scope.galleries = data_array.businesses;
     }); 
-});
+    /*
+    * Select and isActive toggle Yelp details
+    */
+    $scope.select= function(item) {
+        $scope.selected = (item === $scope.selected) ? null : item;
+        
+    };
 
-yelp_app.controller('ToggleCtrl', function($scope) {
-    $scope.custom = true;
-    $scope.toggleCustom = function() {
-        $scope.custom = $scope.custom === false ? true: false;
-    }
+    $scope.isActive = function(item) {
+        return $scope.selected === item;
+    };
 });
 
 yelp_app.filter('toString', function () {
