@@ -82,7 +82,7 @@ yelp_app.controller("GallaryCtrl", function($scope, $rootScope, $http) {
     $http({
         url: 'php/yelp_sample.php', 
         method: "GET",
-        params: {term: 'entertainment',
+        params: {term: 'show',
                 location: $rootScope.city_state_country}
     }).success(function(data) {
         var data_array = jQuery.parseJSON(data);

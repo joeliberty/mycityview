@@ -7,8 +7,14 @@
 					<li ng-repeat="event in events">
 							<ul>
 								<!-- Event Image -->
-								<li ng-show="event.img_url" ><img ng-src="{{event.img_url}}"/></li>
-								<li ng-show="event.performers[0].image" ><img ng-src="{{event.performers[0].image}}"/></li>
+								<li>
+									<a ng-show="event.img_url" href="{{event.url}}" target="_blank">
+									<img ng-src="{{event.img_url}}"/></a>
+								</li>
+								<li>
+									<a ng-show="event.performers[0].image" href="{{event.url}}" target="_blank">
+									<img ng-src="{{event.performers[0].image}}"/></a>
+								</li>
 								<!-- Event Name -->
 								<li ng-show="event.name" class="mname"> {{event.name}}</li>
 								<li ng-show="event.title" class="mname"> {{event.title}}</li>
