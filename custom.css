@@ -276,6 +276,10 @@ ul {
   overflow-y: scroll;
 }
 
+.event_container img {
+  max-width: 200px;
+}
+
 .mapit {
   color: #337ab7;
 }

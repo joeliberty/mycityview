@@ -103,12 +103,13 @@ events_app.controller("EventsCtrl", function($scope, $rootScope, $http, formatDa
             var event_cnt = 0;
             $.each(data.Events, function () {
                 var sw_event = {};
-                var show_date = this.Date.substring(6, 18);
+                var show_date = this.Date.substring(6, 19);
                 sw_event['name'] = this.EventGroupName;
                 sw_event['location_summary'] = this.VenueName;
                 sw_event['type'] = 'Music';
                 sw_event['timestamp'] = show_date;
                 sw_event['url'] = this.SwURL;
+                sw_event['img_url'] = this.EventGroupImageURL;
                 sw_events.push(sw_event);
             });
             sw_events = sw_events.sort(dateSort.comparator);
@@ -155,7 +156,7 @@ events_app.controller("EventsCtrl", function($scope, $rootScope, $http, formatDa
 events_app.filter('findDateTime', function (formatDate) {
   return function (item) {
     if(item) {
-        var show_date = new Date(parseInt(item+'0000'));
+        var show_date = new Date(parseInt(item));
         var time = show_date.toString().substring(16,21);
         show_date = formatDate.yyyy_mm_dd(show_date);
         return show_date + ' @ ' + time;
