@@ -67,6 +67,7 @@ events_app.controller("EventsCtrl", function($scope, $rootScope, $http, formatDa
                     end_date: tomorrow
                     }
         }).success(function(data) {
+            $scope.logo = 'eventfinda.gif';
             $scope.events = data;
         }); 
     } 

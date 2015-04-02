@@ -1,50 +1,52 @@
-<div class='row'>
-	<div class="event_container">
-		<div class="col-md-12">
-			<div ng-controller="EventsCtrl">
-				<!-- <h4>Events</h4> -->
-				<ul>
-					<li ng-repeat="event in events">
-							<ul>
-								<!-- Event Image -->
-								<li>
-									<a ng-show="event.img_url" href="{{event.url}}" target="_blank">
-									<img ng-src="{{event.img_url}}"/></a>
-								</li>
-								<li>
-									<a ng-show="event.performers[0].image" href="{{event.url}}" target="_blank">
-									<img ng-src="{{event.performers[0].image}}"/></a>
-								</li>
-								<!-- Event Name -->
-								<li ng-show="event.name" class="mname"> {{event.name}}</li>
-								<li ng-show="event.title" class="mname"> {{event.title}}</li>
-								<!-- Event Type -->
-								<li ng-show="event.type"> {{event.type}}</li>
-								<!-- Event Venue Name -->
-								<li ng-show="event.venue.name"> {{event.venue.name}}</li>
-								<!-- Event Date/Time -->
-								<li ng-show="event.date_summary"> {{event.date_summary}}</li>
-								<li ng-show="event.date_time"> {{event.date_time}}</li>
-								<li ng-show="event.timestamp"> {{event.timestamp | findDateTime}}</li>
-								<li ng-show="event.datetime_local"> {{event.datetime_local | parseDateTime }}</li>
-								<!-- Event Rating/Description -->
-								<li ng-show="event.rating"> {{event.rating}}</li>
-								<li ng-show="event.description"> {{event.description}}</li>
-								<!-- Event Address -->
-								<li ng-show="event.location_summary"> {{event.location_summary}}</li>
-								<li ng-show="event.address"> {{event.address}}</li>
-								<li ng-show="event.venue.address"> {{event.venue.address}}</li>
-								<li ng-show="event.venue.extended_address"> {{event.venue.extended_address}}</li>
-								<div>
-									<span ng-controller="SetLatLng" class="mapit" ng-show="event.point" ng-click="set_marker(event.point)"> Map it</span>
-									<span ng-controller="SetLatLng" class="mapit" ng-show="event.venue.location" ng-click="set_marker(event.venue.location)"> Map it</span><br/>
-				         	<a ng-show="event.url" href="{{event.url}}" target="_blank">Event/Tickets</a>
-			         </div>
-								<li><hr></li>
-				      </ul>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</div>
-</div>
+<section ng-controller="EventsCtrl">
+  <div class='row'>
+    <div class="col-md-12">
+      <div class="event_container">
+        <div id="event_logos">
+          <a  ng-show="logo" href="http://eventfinda.com/" target="_blank">
+          <img ng-src="all_images/logos/{{logo}}"/></a>
+        </div>
+        <ul>
+          <li ng-repeat="event in events">
+            <ul>
+              <!-- Event Image -->
+              <li>
+                <a ng-show="event.img_url" href="{{event.url}}" target="_blank">
+                <img ng-src="{{event.img_url}}"/></a>
+              </li>
+              <li>
+                <a ng-show="event.performers[0].image" href="{{event.url}}" target="_blank">
+                <img ng-src="{{event.performers[0].image}}"/></a>
+              </li>
+              <!-- Event Name -->
+              <li ng-show="event.name" class="mname"> {{event.name}}</li>
+              <li ng-show="event.title" class="mname"> {{event.title}}</li>
+              <!-- Event Type -->
+              <li ng-show="event.type"> {{event.type}}</li>
+              <!-- Event Venue Name -->
+              <li ng-show="event.venue.name"> {{event.venue.name}}</li>
+              <!-- Event Date/Time -->
+              <li ng-show="event.date_summary"> {{event.date_summary}}</li>
+              <li ng-show="event.date_time"> {{event.date_time}}</li>
+              <li ng-show="event.timestamp"> {{event.timestamp | findDateTime}}</li>
+              <li ng-show="event.datetime_local"> {{event.datetime_local | parseDateTime }}</li>
+              <!-- Event Rating/Description -->
+              <li ng-show="event.rating"> {{event.rating}}</li>
+              <li ng-show="event.description"> {{event.description}}</li>
+              <!-- Event Address -->
+              <li ng-show="event.location_summary"> {{event.location_summary}}</li>
+              <li ng-show="event.address"> {{event.address}}</li>
+              <li ng-show="event.venue.address"> {{event.venue.address}}</li>
+              <li ng-show="event.venue.extended_address"> {{event.venue.extended_address}}</li>
+              <div>
+                <span ng-controller="SetLatLng" class="mapit" ng-show="event.point" ng-click="set_marker(event.point)"> Map it</span>
+                <span ng-controller="SetLatLng" class="mapit" ng-show="event.venue.location" ng-click="set_marker(event.venue.location)"> Map it</span><br/>
+                <a ng-show="event.url" href="{{event.url}}" target="_blank">Event/Tickets</a>
+              </div>
+            <li><hr></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>

@@ -382,6 +382,7 @@ top: 2px;
   transform: rotate(90deg);
 }
 
+
 .meetup_names {
   font-size: 110%;
   font-weight: 600;
@@ -390,6 +391,10 @@ top: 2px;
 
 .meetup_container img {
   max-width: 200px;
+}
+
+#event_logos {
+  margin-bottom: 10px;
 }
 
 
