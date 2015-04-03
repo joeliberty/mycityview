@@ -271,7 +271,7 @@ ul {
   overflow-y: scroll;
 }
 
-.event_container, .places_container, .twitter_container {
+.event_container, .places_container, .twitter_container, .meetup_container{
   height: 300px;
   overflow-y: scroll;
 }
@@ -368,7 +368,7 @@ top: 2px;
   display:none;
 }
 
-.yelp_details {
+.details {
   display: none;
 }
 
@@ -380,6 +380,16 @@ top: 2px;
   -ms-transform: rotate(90deg); /* IE 9 */
   -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
   transform: rotate(90deg);
+}
+
+.meetup_names {
+  font-size: 110%;
+  font-weight: 600;
+  font-style: italic;
+}
+
+.meetup_container img {
+  max-width: 200px;
 }
 
 

@@ -83,9 +83,10 @@ map_app.controller("GetMapCtrl", function($scope, $rootScope) {
         }
     });
     
-    $scope.change_lat_lng = function(point){
-        console.log('point: ' + point)
-    };
+    // Used with get_map_service.js
+    // $scope.change_lat_lng = function(point){
+    //     console.log('point: ' + point)
+    // };
 
     // Copyright is hidden till last element is displayed
     $('#copyright').css('display', 'inline-block');
@@ -105,18 +106,14 @@ map_app.controller('SetLatLng', function ($scope, $rootScope) {
         var lng = null;
         for(var key in location) {
             if(location.hasOwnProperty(key)) {
-                lng = (key == 'lng') ? location[key] : location['lon'];
                 switch(key) {
                 case 'lng':
-                    // console.log('lng')
                     lng = location[key];
                     break;
                 case 'lon':
-                    // console.log('lon')
                     lng = location[key];
                     break;
                 case 'longitude':
-                    // console.log('longitude')
                     lng = location[key];
                     break;
                 case 'lat':
@@ -134,7 +131,6 @@ map_app.controller('SetLatLng', function ($scope, $rootScope) {
                 }
             }
         }
-        // console.log('lat: ' + lat + ' lng: ' + lng)
         $rootScope.lat_lng = lat + ', ' + lng;
         $rootScope.zoom = 18;
     };

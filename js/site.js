@@ -1,6 +1,6 @@
 (function() {
 'use strict';
-var Site = angular.module('Site', ['ngRoute', 'ngSanitize', 'weather_app', 'yelp_app', 'astro_app', 'movie_app','news_app', 'quote_app', 'time_app', 'mycity-directives', 'events_app', 'map_app', 'places_app', 'twitter_app', 'ngTouch']);
+var Site = angular.module('Site', ['ngRoute', 'ngSanitize', 'weather_app', 'yelp_app', 'astro_app', 'movie_app','news_app', 'quote_app', 'time_app', 'mycity-directives', 'events_app', 'map_app', 'places_app', 'twitter_app', 'ngTouch', 'meetup_app']);
 
 Site.controller('ShowHomeController', function($scope, $rootScope, $location, $http, MyService) {
   $rootScope.locs = MyService.get_json_data();

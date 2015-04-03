@@ -1,0 +1,45 @@
+<div class="row">
+		<div class='meetup_container'>
+			<div class="col-md-12">
+				<div ng-controller="meetupCtrl">
+					<h5 ng-show="meetup_unavailable">Unavailable for {{city}}.</h5>
+					<p id='meetup_spinner'><i class="fa fa-refresh fa-spin fa-2x"></i></p>
+					<ul>
+						<li ng-repeat="event in ::events track by $index">
+							<div>
+								<ul class='horz_list'>
+									<li>
+										<span class="meetup_names" ng-click="select(event)"> <i class="fa fa-search-plus"></i> {{event.name}}
+											<i ng-class="{rotate: isActive(event)}" class="fa fa-caret-right"></i>
+										</span>
+									</li>
+								</ul>
+								<div class="details" ng-class="{active: isActive(event)}">
+								<ul>
+									<li ng-show="event.group_name" class="mname">By: {{event.group_name}}</li>
+									<li ng-show="event.description" ng-bind-html="event.description"></li>
+									<li ng-show="event.join_mode">{{event.join_mode}}</li>
+									<li ng-show="event.who">{{event.who}}</li>
+									<li ng-show="event.why">{{event.why}}</li>
+									<li ng-show="event.how_to_find_us">{{event.how_to_find_us}}</li>
+									<li ng-show="event.venue_name">{{event.venue_name}}</li>
+									<li ng-show="event.venue_address">{{event.venue_address}}, {{event.venue_city}}</li>
+									<li ng-show="event.venue_phone">{{event.venue_phone}}</li>
+									<li ng-show="event.time">{{event.time}}</li>
+									<li ng-show="event.fee_amount">{{event.fee_amount}} {{event.fee_currency}} {{event.fee_description}}</li>
+									<li ng-show="event.url"><a ng-href="{{event.url}}" target="_blank">Website</a></li>
+									<div>
+										<span ng-controller="SetLatLng" class="mapit" ng-show="event.point" ng-click="set_marker(event.point)"> Map it</span><br/>
+										<a ng-show="event.url" href="{{event.url}}" target="_blank">{{event.name}}</a>
+									</div>
+									</ul>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+        
