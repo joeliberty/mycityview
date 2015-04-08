@@ -1,7 +1,7 @@
 (function() {
 'use strict';
 //comment
-$( '#Aries' ).tooltip( "option", "content", "Awesome title!" );
+// $( '#Aries' ).tooltip( "option", "content", "Awesome title!" );
 
 var astro_app = angular.module('astro_app', []);
 

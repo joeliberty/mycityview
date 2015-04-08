@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="rate_container">
+    <div class="col-md-12">
+      <div ng-controller='RatesCtrl'>
+      <h4 ng-controller="GetTimeCtrl">Exchange Rates @ {{times.current}}</h4>
+      <div ng-repeat="currency in currencies">
+        <h5>By {{currency.fullname}}</h5>
+        <ul>
+          <li ng-repeat="data in currency.rates">
+            <!-- <a href="#" tooltip-placement="top" tooltip={{data.fullname}}><img class='flags' ng-src="all_images/flags/{{data.country}}.png" /></a> -->
+             <img ng-hide="currency.showflag" class='flags' ng-src="all_images/flags/{{data.country}}.png" popover="{{data.fullname}}" popover-trigger="mouseenter"/>
+            <p ng-show="data.Rate" class="mname"> {{data.Rate}}</p>
+          </li>
+        </ul>
+        <hr>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+

@@ -6,64 +6,64 @@
   });
 </script>
 <div class="container">
-	<div class="page_container" ng-controller="GetTimeCtrl">
-		<div class="row">
-			<div class="col-md-4">
-				<div class="weather_container">
-					<div ng-controller="CurWeatherCtrl">
-						<h4 ng-show="cur_temp">Weather</h4>
-						<ul>
-							<li ng-show="cur_temp">It's {{cur_temp | temp:[2, 'C']}}/{{cur_temp | temp:[2, 'F']}} @ {{times.current}}</li>
-							<li><img ng-src="{{imagepath}}"/><li>
-							<li>{{description}}</li>
-						<ul>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="astro_container">
-					<h4>Horoscope</h4>
-					<div ng-controller="AstroCtrl">
-						<div class="astro_imgs">
-		        	<a href id='Aries' ng-click="call('aries')"><img border="0" alt="Aries" src="all_images/astro/40px-Aries.svg.png" width="20" height="19" data-toggle="tooltip" data-original-title="Aries"></a>
+  <div class="page_container" ng-controller="GetTimeCtrl">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="weather_container">
+          <div ng-controller="CurWeatherCtrl">
+            <h4 ng-show="cur_temp">Weather</h4>
+            <ul>
+              <li ng-show="cur_temp">It's {{cur_temp | temp:[2, 'C']}}/{{cur_temp | temp:[2, 'F']}} @ {{times.current}}</li>
+              <li><img ng-src="{{imagepath}}"/><li>
+              <li>{{description}}</li>
+            <ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="astro_container">
+          <h4>Horoscope</h4>
+          <div ng-controller="AstroCtrl">
+            <div class="astro_imgs">
+              <a href id='Aries' ng-click="call('aries')"><img border="0" alt="Aries" src="all_images/astro/40px-Aries.svg.png" width="20" height="19" data-toggle="tooltip" data-original-title="Aries"></a>
 
-		        	<a href id='Taurus' ng-click="call('taurus')"><img border="0" alt="Taurus" src="all_images/astro/40px-Taurus.svg.png" width="20" height="19" data-toggle="tooltip" data-original-title="Taurus"></a>
+              <a href id='Taurus' ng-click="call('taurus')"><img border="0" alt="Taurus" src="all_images/astro/40px-Taurus.svg.png" width="20" height="19" data-toggle="tooltip" data-original-title="Taurus"></a>
 
-		        	<a href id='Gemini' ng-click="call('gemini')"><img border="0" alt="Gemini" src="all_images/astro/40px-Gemini.svg.png" width="20" height="19" data-toggle="tooltip" data-original-title="Gemini"></a>
+              <a href id='Gemini' ng-click="call('gemini')"><img border="0" alt="Gemini" src="all_images/astro/40px-Gemini.svg.png" width="20" height="19" data-toggle="tooltip" data-original-title="Gemini"></a>
 
-		        	<a href id='Cancer' ng-click="call('cancer')"><img border="0" alt="Cancer" src="all_images/astro/40px-Cancer.svg.png" width="20" height="19" data-toggle="tooltip" data-original-title="Cancer"></a>
+              <a href id='Cancer' ng-click="call('cancer')"><img border="0" alt="Cancer" src="all_images/astro/40px-Cancer.svg.png" width="20" height="19" data-toggle="tooltip" data-original-title="Cancer"></a>
 
-		        	<a href id='Leo' ng-click="call('leo')"><img border="0" alt="Leo" src="all_images/astro/40px-Leo.svg.png" width="20" height="19" data-toggle="tooltip" data-original-title="Leo"></a>
+              <a href id='Leo' ng-click="call('leo')"><img border="0" alt="Leo" src="all_images/astro/40px-Leo.svg.png" width="20" height="19" data-toggle="tooltip" data-original-title="Leo"></a>
 
-		        	<a href id='Virgo' ng-click="call('virgo')"><img border="0" alt="Virgo" src="all_images/astro/40px-Virgo.svg.png" width="20" height="19" data-toggle="tooltip" data-original-title="Virgo"></a>
-		        	
-		        	<a href id='Libra' ng-click="call('libra')"><img border="0" alt="Libra" src="all_images/astro/40px-Libra.svg.png" width="20" height="19" data-toggle="tooltip" data-original-title="Libra"></a>
+              <a href id='Virgo' ng-click="call('virgo')"><img border="0" alt="Virgo" src="all_images/astro/40px-Virgo.svg.png" width="20" height="19" data-toggle="tooltip" data-original-title="Virgo"></a>
+              
+              <a href id='Libra' ng-click="call('libra')"><img border="0" alt="Libra" src="all_images/astro/40px-Libra.svg.png" width="20" height="19" data-toggle="tooltip" data-original-title="Libra"></a>
 
-		        	<a href id='Scorpio' ng-click="call('scorpio')"><img border="0" alt="Scorpio" src="all_images/astro/40px-Scorpio.svg.png" width="20" height="19" data-toggle="tooltip" data-original-title="Scorpio"></a>
+              <a href id='Scorpio' ng-click="call('scorpio')"><img border="0" alt="Scorpio" src="all_images/astro/40px-Scorpio.svg.png" width="20" height="19" data-toggle="tooltip" data-original-title="Scorpio"></a>
 
-		        	<a href id='Sagittarius' ng-click="call('sagittarius')"><img border="0" alt="Sagittarius" src="all_images/astro/40px-Sagittarius.svg.png" width="20" height="19" data-toggle="tooltip" data-original-title="Sagittarius"></a>
+              <a href id='Sagittarius' ng-click="call('sagittarius')"><img border="0" alt="Sagittarius" src="all_images/astro/40px-Sagittarius.svg.png" width="20" height="19" data-toggle="tooltip" data-original-title="Sagittarius"></a>
 
-		        	<a href id='Capricorn' ng-click="call('capricorn')"><img border="0" alt="Capricorn" src="all_images/astro/40px-Capricorn.svg.png" width="20" height="19" data-toggle="tooltip" data-original-title="Capricorn"></a>
+              <a href id='Capricorn' ng-click="call('capricorn')"><img border="0" alt="Capricorn" src="all_images/astro/40px-Capricorn.svg.png" width="20" height="19" data-toggle="tooltip" data-original-title="Capricorn"></a>
 
-		        	<a href id='Aquarius' ng-click="call('aquarius')"><img border="0" alt="Aquarius" src="all_images/astro/40px-Aquarius.svg.png" width="20" height="19" data-toggle="tooltip" data-original-title="Aquarius"></a>
+              <a href id='Aquarius' ng-click="call('aquarius')"><img border="0" alt="Aquarius" src="all_images/astro/40px-Aquarius.svg.png" width="20" height="19" data-toggle="tooltip" data-original-title="Aquarius"></a>
 
-		        	<a href id='Pisces' ng-click="call('pisces')"><img border="0" alt="Pisces" src="all_images/astro/40px-Pisces.svg.png" width="20" height="19" data-toggle="tooltip" data-original-title="Pisces"></a>
+              <a href id='Pisces' ng-click="call('pisces')"><img border="0" alt="Pisces" src="all_images/astro/40px-Pisces.svg.png" width="20" height="19" data-toggle="tooltip" data-original-title="Pisces"></a>
 
-						</div>
-						<p id='astro_horoscope'>{{horoscope}}<i class="fa fa-refresh fa-spin fa-2x"></i></p>
-					</div>
-			  </div>
-			</div>
-			<div class="col-md-4">
-				<div class="quote_container">
-					<h4>Quote</h4>
-					<div ng-controller="QuoteCtrl">
-						<span ng-click="toggle_more_less()" ng-bind-html="quote"></span>
-						<br/>{{author}}
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+            </div>
+            <p id='astro_horoscope'>{{horoscope}}<i class="fa fa-refresh fa-spin fa-2x"></i></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="quote_container">
+          <h4>Quote</h4>
+          <div ng-controller="QuoteCtrl">
+            <span ng-click="toggle_more_less()" ng-bind-html="quote"></span>
+            <br/>{{author}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 

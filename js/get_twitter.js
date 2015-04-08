@@ -67,7 +67,7 @@ twitter_app.filter('addUrls', function ($sce, formatText) {
         item = formatText.add_links(item, 'http');
         item = formatText.add_links(item, '#');
         item = formatText.add_links(item, '@');
-        return $sce.trustAsHtml(item);;
+        return $sce.trustAsHtml(item);
     }
   };
 });

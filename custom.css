@@ -6,6 +6,21 @@
   margin-bottom: 0px;
 }
 
+/*.btn-primary {
+  color: #fff;
+  background-color: #222;
+  border-color: #222;
+}
+
+#citybtn {
+  margin-top: 12%;
+}
+
+#citybtn:hover {
+ background-color: #222;
+ border-color: #222;
+}*/
+
 .navbar-inverse .navbar-brand, .navbar-inverse .navbar-nav>li>a {
   color: #f9f9f9;
   
@@ -395,6 +410,41 @@ top: 2px;
 
 #event_logos {
   margin-bottom: 10px;
+}
+
+.rate_container {
+  position: relative;
+  /*width: 97%;*/
+  font-size: 90%;
+  /*min-width: 355px;*/
+}
+
+.rate_container li img{
+  margin-left: 9%;
+}
+
+.baseflags{
+  float: left;
+  /*margin-top: 2%;*/
+}
+
+.rate_container li{
+  display:inline-block;
+  width: 64px;
+}
+
+.rate_container p{
+  white-space: nowrap;
+  /*margin-right:16px;*/
+}
+
+.rate_container hr {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.vertflags {
+  float:left;
 }
 
 

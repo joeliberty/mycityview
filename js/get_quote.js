@@ -1,3 +1,4 @@
+(function() {
 'use strict';
 var quote_app = angular.module('quote_app', []);
 
@@ -45,3 +46,5 @@ quote_app.controller("QuoteCtrl", function($scope, $http) {
 
     }
 });
+
+})();

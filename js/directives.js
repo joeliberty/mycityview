@@ -99,6 +99,13 @@
       };
     });
 
+    app.directive("rates", function() {
+      return {
+        restrict: 'E',
+        templateUrl: "partials/rates.html"
+      };
+    });
+
     app.directive("navbar", function() {
       return {
         restrict: 'E',
