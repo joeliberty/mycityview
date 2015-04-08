@@ -67,6 +67,7 @@ events_app.controller("EventsCtrl", function($scope, $rootScope, $http, formatDa
                     end_date: tomorrow
                     }
         }).success(function(data) {
+            $scope.ev_corp_url = 'eventfinda.com';
             $scope.logo = 'eventfinda.gif';
             $scope.events = data;
         }); 
@@ -83,6 +84,8 @@ events_app.controller("EventsCtrl", function($scope, $rootScope, $http, formatDa
             method: "GET"
             
         }).success(function(data) {
+            $scope.ev_corp_url = 'seatgeek.com';
+            $scope.logo = 'seatgeek.png';
             $scope.events = data.events;
         }); 
     }

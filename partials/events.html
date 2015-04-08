@@ -3,7 +3,7 @@
     <div class="col-md-12">
       <div class="event_container">
         <div id="event_logos">
-          <a  ng-show="logo" href="http://eventfinda.com/" target="_blank">
+          <a  ng-show="logo" href="http://{{ev_corp_url}}/" target="_blank">
           <img ng-src="all_images/logos/{{logo}}"/></a>
         </div>
         <ul>
@@ -43,10 +43,15 @@
                 <span ng-controller="SetLatLng" class="mapit" ng-show="event.venue.location" ng-click="set_marker(event.venue.location)"> Map it</span><br/>
                 <a ng-show="event.url" href="{{event.url}}" target="_blank">Event/Tickets</a>
               </div>
-            <li><hr></li>
-          </ul>
-        </li>
-      </ul>
+              <li><hr></li>
+            </ul>
+          </li>
+        </ul>
+        <div id="event_logos">
+          <a  ng-show="logo" href="http://{{ev_corp_url}}/" target="_blank">
+          <img ng-src="all_images/logos/{{logo}}"/></a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
