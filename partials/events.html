@@ -1,57 +1,387 @@
-<section ng-controller="EventsCtrl">
-  <div class='row'>
-    <div class="col-md-12">
-      <div class="event_container">
-        <div id="event_logos">
-          <a  ng-show="logo" href="http://{{ev_corp_url}}/" target="_blank">
-          <img ng-src="all_images/logos/{{logo}}"/></a>
-        </div>
-        <ul>
-          <li ng-repeat="event in events">
-            <ul>
-              <!-- Event Image -->
-              <li>
-                <a ng-show="event.img_url" href="{{event.url}}" target="_blank">
-                <img ng-src="{{event.img_url}}"/></a>
-              </li>
-              <li>
-                <a ng-show="event.performers[0].image" href="{{event.url}}" target="_blank">
-                <img ng-src="{{event.performers[0].image}}"/></a>
-              </li>
-              <!-- Event Name -->
-              <li ng-show="event.name" class="mname"> {{event.name}}</li>
-              <li ng-show="event.title" class="mname"> {{event.title}}</li>
-              <!-- Event Type -->
-              <li ng-show="event.type"> {{event.type}}</li>
-              <!-- Event Venue Name -->
-              <li ng-show="event.venue.name"> {{event.venue.name}}</li>
-              <!-- Event Date/Time -->
-              <li ng-show="event.date_summary"> {{event.date_summary}}</li>
-              <li ng-show="event.date_time"> {{event.date_time}}</li>
-              <li ng-show="event.timestamp"> {{event.timestamp | findDateTime}}</li>
-              <li ng-show="event.datetime_local"> {{event.datetime_local | parseDateTime }}</li>
-              <!-- Event Rating/Description -->
-              <li ng-show="event.rating"> {{event.rating}}</li>
-              <li ng-show="event.description"> {{event.description}}</li>
-              <!-- Event Address -->
-              <li ng-show="event.location_summary"> {{event.location_summary}}</li>
-              <li ng-show="event.address"> {{event.address}}</li>
-              <li ng-show="event.venue.address"> {{event.venue.address}}</li>
-              <li ng-show="event.venue.extended_address"> {{event.venue.extended_address}}</li>
-              <div>
-                <span ng-controller="SetLatLng" class="mapit" ng-show="event.point" ng-click="set_marker(event.point)"> Map it</span>
-                <span ng-controller="SetLatLng" class="mapit" ng-show="event.venue.location" ng-click="set_marker(event.venue.location)"> Map it</span><br/>
-                <a ng-show="event.url" href="{{event.url}}" target="_blank">Event/Tickets</a>
+<div class="row">
+  <div class="col-md-12">
+    <div class="event_container">
+      <div ng-controller="EventsCtrl">
+        <accordion>
+          <accordion-group heading="{{catart | capitalize_fist_char}}" ng-show='catart'>
+            <div class="newspanel">
+              <p ng-show='spinner' class='event_spinner'><i class="fa fa-refresh fa-spin fa-2x"></i></p>
+              <span ng-hide='spinner' ng-repeat="event in art">
+                <ul>
+                  <eventa url="event.url" image="event.image" title="event.title" venuename="event.venue_name" start="event.start_time" stop="event.stop_time" address="event.venue_address">
+                  </eventa>
+
+                  <li ng-show="event.description" hmtext="event.description" hmlimit="150" hmfulltext="true"></li>
+
+                  <eventb geocode="event.geocode_type" latitude="event.latitude" longitude="event.longitude" url="event.url">
+                  </eventb>
+                </ul>
+              </span>
+              <pagination ng-hide='spinner' id="catart" page="artcurrentPage" total-items="arttotalItems" items-per-page="artitemsPerPage" on-select-page="setPage(page, 'art')"></pagination>
+            </div>
+          </accordion-group>
+
+          <accordion-group heading="{{catattractions | capitalize_fist_char}}" ng-show='catattractions'>
+            <div class="newspanel">
+              <p ng-show='spinner' class='event_spinner'><i class="fa fa-refresh fa-spin fa-2x"></i></p>
+              <div ng-hide='spinner' ng-repeat="event in attractions">
+                <ul>
+                  <eventa url="event.url" image="event.image" title="event.title" venuename="event.venue_name" start="event.start_time" stop="event.stop_time" address="event.venue_address">
+                  </eventa>
+
+                  <li ng-show="event.description" hmtext="event.description" hmlimit="150" hmfulltext="true"></li>
+
+                  <eventb geocode="event.geocode_type" latitude="event.latitude" longitude="event.longitude" url="event.url">
+                  </eventb>
+                </ul>
               </div>
-              <li><hr></li>
-            </ul>
-          </li>
-        </ul>
-        <div id="event_logos">
-          <a  ng-show="logo" href="http://{{ev_corp_url}}/" target="_blank">
-          <img ng-src="all_images/logos/{{logo}}"/></a>
-        </div>
+              <pagination ng-hide='spinner' id="catattractions" page="attractionscurrentPage" total-items="attractionstotalItems" items-per-page="attractionsitemsPerPage" on-select-page="setPage(page, 'attractions')"></pagination>
+            </div>
+          </accordion-group>
+
+          <accordion-group heading="{{catbusiness | capitalize_fist_char}}" ng-show='catbusiness'>
+            <div class="newspanel">
+              <p ng-show='spinner' class='event_spinner'><i class="fa fa-refresh fa-spin fa-2x"></i></p>
+              <div ng-hide='spinner' ng-repeat="event in business">
+                <ul>
+                  <eventa url="event.url" image="event.image" title="event.title" venuename="event.venue_name" start="event.start_time" stop="event.stop_time" address="event.venue_address">
+                  </eventa>
+
+                  <li ng-show="event.description" hmtext="event.description" hmlimit="150" hmfulltext="true"></li>
+
+                  <eventb geocode="event.geocode_type" latitude="event.latitude" longitude="event.longitude" url="event.url">
+                  </eventb>
+                </ul>
+              </div>
+              <pagination ng-hide='spinner' id="catbusiness" page="businesscurrentPage" total-items="businesstotalItems" items-per-page="businessitemsPerPage" on-select-page="setPage(page, 'business')"></pagination>
+            </div>
+          </accordion-group>
+
+          <accordion-group heading="{{catbooks | capitalize_fist_char}}" ng-show='catbooks'>
+            <div class="newspanel">
+              <p ng-show='spinner' class='event_spinner'><i class="fa fa-refresh fa-spin fa-2x"></i></p>
+              <div ng-hide='spinner' ng-repeat="event in books">
+                <ul>
+                  <eventa url="event.url" image="event.image" title="event.title" venuename="event.venue_name" start="event.start_time" stop="event.stop_time" address="event.venue_address">
+                  </eventa>
+
+                  <li ng-show="event.description" hmtext="event.description" hmlimit="150" hmfulltext="true"></li>
+
+                  <eventb geocode="event.geocode_type" latitude="event.latitude" longitude="event.longitude" url="event.url">
+                  </eventb>
+                </ul>
+              </div>
+              <pagination ng-hide='spinner' id="catbooks" page="bookscurrentPage" total-items="bookstotalItems" items-per-page="booksitemsPerPage" on-select-page="setPage(page, 'books')"></pagination>
+            </div>
+          </accordion-group>
+
+          <accordion-group heading="{{catclubs_associations | capitalize_fist_char}}" ng-show='catclubs_associations'>
+            <div class="newspanel">
+              <p ng-show='spinner' class='event_spinner'><i class="fa fa-refresh fa-spin fa-2x"></i></p>
+              <div ng-hide='spinner' ng-repeat="event in clubs_associations">
+                <ul>
+                  <eventa url="event.url" image="event.image" title="event.title" venuename="event.venue_name" start="event.start_time" stop="event.stop_time" address="event.venue_address">
+                  </eventa>
+
+                  <li ng-show="event.description" hmtext="event.description" hmlimit="150" hmfulltext="true"></li>
+
+                  <eventb geocode="event.geocode_type" latitude="event.latitude" longitude="event.longitude" url="event.url">
+                  </eventb>
+                </ul>
+              </div>
+              <pagination ng-hide='spinner' id="catclubs_associations" page="clubs_associationscurrentPage" total-items="clubs_associationstotalItems" items-per-page="clubs_associationsitemsPerPage" on-select-page="setPage(page, 'clubs_associations')"></pagination>
+            </div>
+          </accordion-group>
+
+          <accordion-group heading="{{catcomedy | capitalize_fist_char}}" ng-show='catcomedy'>
+            <div class="newspanel">
+              <p ng-show='spinner' class='event_spinner'><i class="fa fa-refresh fa-spin fa-2x"></i></p>
+              <div ng-hide='spinner' ng-repeat="event in comedy">
+                <ul>
+                  <eventa url="event.url" image="event.image" title="event.title" venuename="event.venue_name" start="event.start_time" stop="event.stop_time" address="event.venue_address">
+                  </eventa>
+
+                  <li ng-show="event.description" hmtext="event.description" hmlimit="150" hmfulltext="true"></li>
+
+                  <eventb geocode="event.geocode_type" latitude="event.latitude" longitude="event.longitude" url="event.url">
+                  </eventb>
+                </ul>
+              </div>
+              <pagination ng-hide='spinner' id="catcomedy" page="comedycurrentPage" total-items="comedytotalItems" items-per-page="comedyitemsPerPage" on-select-page="setPage(page, 'comedy')"></pagination>
+            </div>
+          </accordion-group>
+
+          <accordion-group heading="{{catcommunity | capitalize_fist_char}}" ng-show='catcommunity'>
+            <div class="newspanel">
+              <p ng-show='spinner' class='event_spinner'><i class="fa fa-refresh fa-spin fa-2x"></i></p>
+              <div ng-hide='spinner' ng-repeat="event in community">
+                <ul>
+                  <eventa url="event.url" image="event.image" title="event.title" venuename="event.venue_name" start="event.start_time" stop="event.stop_time" address="event.venue_address">
+                  </eventa>
+
+                  <li ng-show="event.description" hmtext="event.description" hmlimit="150" hmfulltext="true"></li>
+
+                  <eventb geocode="event.geocode_type" latitude="event.latitude" longitude="event.longitude" url="event.url">
+                  </eventb>
+                </ul>
+              </div>
+              <pagination ng-hide='spinner' id="catcommunity" page="communitycurrentPage" total-items="communitytotalItems" items-per-page="communityitemsPerPage" on-select-page="setPage(page, 'community')"></pagination>
+            </div>
+          </accordion-group>
+
+          <accordion-group heading="{{catfamily_fun_kids | capitalize_fist_char}}" ng-show='catfamily_fun_kids'>
+            <div class="newspanel">
+              <p ng-show='spinner' class='event_spinner'><i class="fa fa-refresh fa-spin fa-2x"></i></p>
+              <div ng-hide='spinner' ng-repeat="event in family_fun_kids">
+                <ul>
+                  <eventa url="event.url" image="event.image" title="event.title" venuename="event.venue_name" start="event.start_time" stop="event.stop_time" address="event.venue_address">
+                  </eventa>
+
+                  <li ng-show="event.description" hmtext="event.description" hmlimit="150" hmfulltext="true"></li>
+
+                  <eventb geocode="event.geocode_type" latitude="event.latitude" longitude="event.longitude" url="event.url">
+                  </eventb>
+                </ul>
+              </div>
+              <pagination ng-hide='spinner' id="catfamily_fun_kids" page="family_fun_kidscurrentPage" total-items="family_fun_kidstotalItems" items-per-page="family_fun_kidsitemsPerPage" on-select-page="setPage(page, 'family_fun_kids')"></pagination>
+            </div>
+          </accordion-group>
+
+          <accordion-group heading="{{catfestivals_parades | capitalize_fist_char}}" ng-show='catfestivals_parades'>
+            <div class="newspanel">
+              <p ng-show='spinner' class='event_spinner'><i class="fa fa-refresh fa-spin fa-2x"></i></p>
+              <div ng-hide='spinner' ng-repeat="event in festivals_parades">
+                <ul>
+                  <eventa url="event.url" image="event.image" title="event.title" venuename="event.venue_name" start="event.start_time" stop="event.stop_time" address="event.venue_address">
+                  </eventa>
+
+                  <li ng-show="event.description" hmtext="event.description" hmlimit="150" hmfulltext="true"></li>
+
+                  <eventb geocode="event.geocode_type" latitude="event.latitude" longitude="event.longitude" url="event.url">
+                  </eventb>
+                </ul>
+              </div>
+              <pagination ng-hide='spinner' id="catfestivals_parades" page="festivals_paradescurrentPage" total-items="festivals_paradestotalItems" items-per-page="festivals_paradesitemsPerPage" on-select-page="setPage(page, 'festivals_parades')"></pagination>
+            </div>
+          </accordion-group>
+
+          <accordion-group heading="{{catfundraisers | capitalize_fist_char}}" ng-show='catfundraisers'>
+            <div class="newspanel">
+              <p ng-show='spinner' class='event_spinner'><i class="fa fa-refresh fa-spin fa-2x"></i></p>
+              <div ng-hide='spinner' ng-repeat="event in fundraisers">
+                <ul>
+                  <eventa url="event.url" image="event.image" title="event.title" venuename="event.venue_name" start="event.start_time" stop="event.stop_time" address="event.venue_address">
+                  </eventa>
+
+                  <li ng-show="event.description" hmtext="event.description" hmlimit="150" hmfulltext="true"></li>
+
+                  <eventb geocode="event.geocode_type" latitude="event.latitude" longitude="event.longitude" url="event.url">
+                  </eventb>
+                </ul>
+              </div>
+              <pagination ng-hide='spinner' id="catfundraisers" page="fundraiserscurrentPage" total-items="fundraiserstotalItems" items-per-page="fundraisersitemsPerPage" on-select-page="setPage(page, 'fundraisers')"></pagination>
+            </div>
+          </accordion-group>
+
+          <accordion-group heading="{{catlearning_education | capitalize_fist_char}}" ng-show='catlearning_education'>
+            <div class="newspanel">
+              <p ng-show='spinner' class='event_spinner'><i class="fa fa-refresh fa-spin fa-2x"></i></p>
+              <div ng-hide='spinner' ng-repeat="event in learning_education">
+                <ul>
+                  <eventa url="event.url" image="event.image" title="event.title" venuename="event.venue_name" start="event.start_time" stop="event.stop_time" address="event.venue_address">
+                  </eventa>
+
+                  <li ng-show="event.description" hmtext="event.description" hmlimit="150" hmfulltext="true"></li>
+
+                  <eventb geocode="event.geocode_type" latitude="event.latitude" longitude="event.longitude" url="event.url">
+                  </eventb>
+                </ul>
+              </div>
+              <pagination ng-hide='spinner' id="catlearning_education" page="learning_educationcurrentPage" total-items="learning_educationtotalItems" items-per-page="learning_educationitemsPerPage" on-select-page="setPage(page, 'learning_education')"></pagination>
+            </div>
+          </accordion-group>
+
+          <accordion-group heading="{{catmovies_film | capitalize_fist_char}}" ng-show='catmovies_film'>
+            <div class="newspanel">
+              <p ng-show='spinner' class='event_spinner'><i class="fa fa-refresh fa-spin fa-2x"></i></p>
+              <div ng-hide='spinner' ng-repeat="event in movies_film">
+                <ul>
+                  <eventa url="event.url" image="event.image" title="event.title" venuename="event.venue_name" start="event.start_time" stop="event.stop_time" address="event.venue_address">
+                  </eventa>
+
+                  <li ng-show="event.description" hmtext="event.description" hmlimit="150" hmfulltext="true"></li>
+
+                  <eventb geocode="event.geocode_type" latitude="event.latitude" longitude="event.longitude" url="event.url">
+                  </eventb>
+                </ul>
+              </div>
+              <pagination ng-hide='spinner' id="catmovies_film" page="movies_filmcurrentPage" total-items="movies_filmtotalItems" items-per-page="movies_filmitemsPerPage" on-select-page="setPage(page, 'movies_film')"></pagination>
+            </div>
+          </accordion-group>
+
+          <accordion-group heading="{{catmusic | capitalize_fist_char}}" ng-show='catmusic'>
+            <div class="newspanel">
+              <p ng-show='spinner' class='event_spinner'><i class="fa fa-refresh fa-spin fa-2x"></i></p>
+              <div ng-hide='spinner' ng-repeat="event in music">
+                <ul>
+                  <eventa url="event.url" image="event.image" title="event.title" venuename="event.venue_name" start="event.start_time" stop="event.stop_time" address="event.venue_address">
+                  </eventa>
+
+                  <li ng-show="event.description" hmtext="event.description" hmlimit="150" hmfulltext="true"></li>
+
+                  <eventb geocode="event.geocode_type" latitude="event.latitude" longitude="event.longitude" url="event.url">
+                  </eventb>
+                </ul>
+              </div>
+              <pagination ng-hide='spinner' id="catmusic" page="musiccurrentPage" total-items="musictotalItems" items-per-page="musicitemsPerPage" on-select-page="setPage(page, 'music')"></pagination>
+            </div>
+          </accordion-group>
+
+          <accordion-group heading="{{catoutdoors_recreation | capitalize_fist_char}}" ng-show='catoutdoors_recreation'>
+            <div class="newspanel">
+              <p ng-show='spinner' class='event_spinner'><i class="fa fa-refresh fa-spin fa-2x"></i></p>
+              <div ng-hide='spinner' ng-repeat="event in outdoors_recreation">
+                <ul>
+                  <eventa url="event.url" image="event.image" title="event.title" venuename="event.venue_name" start="event.start_time" stop="event.stop_time" address="event.venue_address">
+                  </eventa>
+
+                  <li ng-show="event.description" hmtext="event.description" hmlimit="150" hmfulltext="true"></li>
+
+                  <eventb geocode="event.geocode_type" latitude="event.latitude" longitude="event.longitude" url="event.url">
+                  </eventb>
+                </ul>
+              </div>
+              <pagination ng-hide='spinner' id="catoutdoors_recreation" page="outdoors_recreationcurrentPage" total-items="outdoors_recreationtotalItems" items-per-page="outdoors_recreationitemsPerPage" on-select-page="setPage(page, 'outdoors_recreation')"></pagination>
+            </div>
+          </accordion-group>
+
+          <accordion-group heading="{{catperforming_arts | capitalize_fist_char}}" ng-show='catperforming_arts'>
+            <div class="newspanel">
+              <p ng-show='spinner' class='event_spinner'><i class="fa fa-refresh fa-spin fa-2x"></i></p>
+              <div ng-hide='spinner' ng-repeat="event in performing_arts">
+                <ul>
+                  <eventa url="event.url" image="event.image" title="event.title" venuename="event.venue_name" start="event.start_time" stop="event.stop_time" address="event.venue_address">
+                  </eventa>
+
+                  <li ng-show="event.description" hmtext="event.description" hmlimit="150" hmfulltext="true"></li>
+
+                  <eventb geocode="event.geocode_type" latitude="event.latitude" longitude="event.longitude" url="event.url">
+                  </eventb>
+                </ul>
+              </div>
+              <pagination ng-hide='spinner' id="catperforming_arts" page="performing_artscurrentPage" total-items="performing_artstotalItems" items-per-page="performing_artsitemsPerPage" on-select-page="setPage(page, 'performing_arts')"></pagination>
+            </div>
+          </accordion-group>
+
+          <accordion-group heading="{{catpolitics_activism | capitalize_fist_char}}" ng-show='catpolitics_activism'>
+            <div class="newspanel">
+              <p ng-show='spinner' class='event_spinner'><i class="fa fa-refresh fa-spin fa-2x"></i></p>
+              <div ng-hide='spinner' ng-repeat="event in politics_activism">
+                <ul>
+                  <eventa url="event.url" image="event.image" title="event.title" venuename="event.venue_name" start="event.start_time" stop="event.stop_time" address="event.venue_address">
+                  </eventa>
+
+                  <li ng-show="event.description" hmtext="event.description" hmlimit="150" hmfulltext="true"></li>
+
+                  <eventb geocode="event.geocode_type" latitude="event.latitude" longitude="event.longitude" url="event.url">
+                  </eventb>
+                </ul>
+              </div>
+              <pagination ng-hide='spinner' id="catpolitics_activism" page="politics_activismcurrentPage" total-items="politics_activismtotalItems" items-per-page="politics_activismitemsPerPage" on-select-page="setPage(page, 'politics_activism')"></pagination>
+            </div>
+          </accordion-group>
+
+          <accordion-group heading="{{catsales | capitalize_fist_char}}" ng-show='catsales'>
+            <div class="newspanel">
+              <p ng-show='spinner' class='event_spinner'><i class="fa fa-refresh fa-spin fa-2x"></i></p>
+              <div ng-hide='spinner' ng-repeat="event in sales">
+                <ul>
+                  <eventa url="event.url" image="event.image" title="event.title" venuename="event.venue_name" start="event.start_time" stop="event.stop_time" address="event.venue_address">
+                  </eventa>
+
+                  <li ng-show="event.description" hmtext="event.description" hmlimit="150" hmfulltext="true"></li>
+
+                  <eventb geocode="event.geocode_type" latitude="event.latitude" longitude="event.longitude" url="event.url">
+                  </eventb>
+                </ul>
+              </div>
+              <pagination ng-hide='spinner' id="catsales" page="salescurrentPage" total-items="salestotalItems" items-per-page="salesitemsPerPage" on-select-page="setPage(page, 'sales')"></pagination>
+            </div>
+          </accordion-group>
+
+          <accordion-group heading="{{catsingles_social | capitalize_fist_char}}" ng-show='catsingles_social'>
+            <div class="newspanel">
+              <p ng-show='spinner' class='event_spinner'><i class="fa fa-refresh fa-spin fa-2x"></i></p>
+              <div ng-hide='spinner' ng-repeat="event in singles_social">
+                <ul>
+                  <eventa url="event.url" image="event.image" title="event.title" venuename="event.venue_name" start="event.start_time" stop="event.stop_time" address="event.venue_address">
+                  </eventa>
+
+                  <li ng-show="event.description" hmtext="event.description" hmlimit="150" hmfulltext="true"></li>
+
+                  <eventb geocode="event.geocode_type" latitude="event.latitude" longitude="event.longitude" url="event.url">
+                  </eventb>
+                </ul>
+              </div>
+              <pagination ng-hide='spinner' id="catsingles_social" page="singles_socialcurrentPage" total-items="singles_socialtotalItems" items-per-page="singles_socialitemsPerPage" on-select-page="setPage(page, 'singles_social')"></pagination>
+            </div>
+          </accordion-group>
+
+          <accordion-group heading="{{catsports | capitalize_fist_char}}" ng-show='catsports'>
+            <div class="newspanel">
+              <p ng-show='spinner' class='event_spinner'><i class="fa fa-refresh fa-spin fa-2x"></i></p>
+              <div ng-hide='spinner' ng-repeat="event in sports">
+                <ul>
+                  <eventa url="event.url" image="event.image" title="event.title" venuename="event.venue_name" start="event.start_time" stop="event.stop_time" address="event.venue_address">
+                  </eventa>
+
+                  <li ng-show="event.description" hmtext="event.description" hmlimit="150" hmfulltext="true"></li>
+
+                  <eventb geocode="event.geocode_type" latitude="event.latitude" longitude="event.longitude" url="event.url">
+                  </eventb>
+                </ul>
+              </div>
+              <pagination ng-hide='spinner' id="catsports" page="sportscurrentPage" total-items="sportstotalItems" items-per-page="sportsitemsPerPage" on-select-page="setPage(page, 'sports')"></pagination>
+            </div>
+          </accordion-group>
+
+          <accordion-group heading="{{catsupport | capitalize_fist_char}}" ng-show='catsupport'>
+            <div class="newspanel">
+              <p ng-show='spinner' class='event_spinner'><i class="fa fa-refresh fa-spin fa-2x"></i></p>
+              <div ng-hide='spinner' ng-repeat="event in support">
+                <ul>
+                  <eventa url="event.url" image="event.image" title="event.title" venuename="event.venue_name" start="event.start_time" stop="event.stop_time" address="event.venue_address">
+                  </eventa>
+
+                  <li ng-show="event.description" hmtext="event.description" hmlimit="150" hmfulltext="true"></li>
+
+                  <eventb geocode="event.geocode_type" latitude="event.latitude" longitude="event.longitude" url="event.url">
+                  </eventb>
+                </ul>
+              </div>
+              <pagination ng-hide='spinner' id="catsupport" page="supportcurrentPage" total-items="supporttotalItems" items-per-page="supportitemsPerPage" on-select-page="setPage(page, 'support')"></pagination>
+            </div>
+          </accordion-group>
+
+          <accordion-group heading="{{cattechnology | capitalize_fist_char}}" ng-show='cattechnology'>
+            <div class="newspanel">
+              <p ng-show='spinner' class='event_spinner'><i class="fa fa-refresh fa-spin fa-2x"></i></p>
+              <div ng-hide='spinner' ng-repeat="event in technology">
+                <ul>
+                  <eventa url="event.url" image="event.image" title="event.title" venuename="event.venue_name" start="event.start_time" stop="event.stop_time" address="event.venue_address">
+                  </eventa>
+
+                  <li ng-show="event.description" hmtext="event.description" hmlimit="150" hmfulltext="true"></li>
+
+                  <eventb geocode="event.geocode_type" latitude="event.latitude" longitude="event.longitude" url="event.url">
+                  </eventb>
+                </ul>
+              </div>
+              <pagination ng-hide='spinner' id="cattechnology" page="technologycurrentPage" total-items="technologytotalItems" items-per-page="technologyitemsPerPage" on-select-page="setPage(page, 'technology')"></pagination>
+            </div>
+          </accordion-group>
+        </accordian>
       </div>
     </div>
   </div>
-</section>
+</div>

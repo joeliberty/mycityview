@@ -29,153 +29,199 @@ events_app.factory('dateSort', function() {
     }
 });
 
-events_app.controller("EventsCtrl", function($scope, $rootScope, $http, formatDate, dateSort) {
-    var t_city = $rootScope.city_id;
-    var city_data = $rootScope.locs;
-    var point = city_data[t_city].lat + ',' + city_data[t_city].lon;
-    // Get todays date and format it.
-    var today = new Date();
-    today = formatDate.yyyy_mm_dd(today);
-    // Get tomorrows date and format it.
-    var now = new Date();
-    var tomorrow = new Date(now);
-    tomorrow = tomorrow.setDate(now.getDate()+1);
-    tomorrow = new Date(tomorrow);
-    tomorrow = formatDate.yyyy_mm_dd(tomorrow).toString();
-
-    $scope.events = { events: {name:'Sorry there are no events for ' + $rootScope.city + '.'}};
-
-    var decrypted = CryptoJS.AES.decrypt('U2FsdGVkX19chVesPhEt4kavFEA2gU1flPvBpDcAz0w=', "secret");
-    var pass_phrase = decrypted.toString(CryptoJS.enc.Utf8);
+events_app.controller("EventsCtrl", function($scope, $rootScope, $http, formatDate) {
+    $scope.categories = [];
     
-    if($rootScope.country == 'au') {
-        decrypted = CryptoJS.AES.decrypt('U2FsdGVkX19SrczeGTVDtIbwjXRpRU7x+YJ3MxyfSt/sYCmm71NaXfGPs87xYS6C', pass_phrase);
-        var username = decrypted.toString(CryptoJS.enc.Utf8);
-        decrypted = CryptoJS.AES.decrypt('U2FsdGVkX1+YqEl8lzoQ2ayDSoYlXnezuxWUQPL3BjE=', pass_phrase);
-        var password = decrypted.toString(CryptoJS.enc.Utf8);
-        $scope.events = { events: {name:'Retrieving Events'}};
+    $scope.find_events = function(page_num, category) {
+        $scope.spinner = true;
+        var self = this;
+        var t_city = $rootScope.city;
+        var today = new Date();
+        today = formatDate.yyyy_mm_dd(today);
+        today = today.replace(/-/g, '')+'00';
+        var date = today + '-' + today;
+        var page_size = '10';
+
+        $scope.events = { events: {title:'Retreiving events for ' + $rootScope.city + '.'}};
+        var city_state_country = '';
+        var t_city = $rootScope.city;
+        if($rootScope.state) {
+            city_state_country = t_city +','+ $rootScope.state+','+$rootScope.country;
+        } else {
+            city_state_country = t_city +','+$rootScope.country;
+        }
+
         var url = 'php/get_event.php';
         $http({
             url: url,
-            dataType: 'json', 
+            dataType: 'json',
             method: 'GET',
-            params: {username: username,
-                    password: password,
-                    point: point,
-                    radius: '100',
-                    start_date: today,
-                    end_date: tomorrow
-                    }
-        }).success(function(data) {
-            $scope.ev_corp_url = 'eventfinda.com';
-            $scope.logo = 'eventfinda.gif';
-            $scope.events = data;
-        }); 
-    } 
-
-    if($rootScope.country == 'us' || $rootScope.country == 'ca') {
-        decrypted = CryptoJS.AES.decrypt('U2FsdGVkX18KWlc+LIQYiib9sGesYalJZCzXUUTravM=', pass_phrase);
-        var aid = decrypted.toString(CryptoJS.enc.Utf8);
-        $scope.events = { events: {name:'Retrieving Events'}};
-        url = 'http://api.seatgeek.com/2/events?lon=' + city_data[t_city].lon + '&lat=' + city_data[t_city].lat + '&range=15mi&aid=' + aid
-        $http({
-            url: url,
-            dataType: 'json', 
-            method: "GET"
-            
-        }).success(function(data) {
-            $scope.ev_corp_url = 'seatgeek.com';
-            $scope.logo = 'seatgeek.png';
-            $scope.events = data.events;
-        }); 
-    }
-
-    var euro_countries = ['uk', 'fr', 'it', 'es', 'nl', 'ie', 'ru', 'fi'];
-    var is_euro = 0;
-    is_euro = euro_countries.indexOf($rootScope.country);
-    if(is_euro != -1) {
-        decrypted = CryptoJS.AES.decrypt('U2FsdGVkX1/usFxGy6+N1xBtTWtGqqXfxpFtmVWpZMEHHICHW0qU3kEWOJrSzDbSXnifUlz22zFXPKiWh1E2Nw==', "secret");
-        var apikey = decrypted.toString(CryptoJS.enc.Utf8);
-        $scope.events = { events: {name:'Retrieving Events'}};
-        var sw_events = [];
-        var url = 'http://api-sandbox.seatwave.com/v2/discovery/events?apikey=' + apikey + '&where=' + $rootScope.city + '&what=concerts&callback=JSON_CALLBACK';
-        $http.jsonp(url).success(function(data) {
-            if(data.Events.length == 0) {
-                $scope.events = { events: {name:'Sorry not events for ' + $rootScope.city +'.'}};
+            cache: true,
+            params: {
+                location: city_state_country,
+                date: date,
+                category: category,
+                page_size: page_size,
+                sort_order: 'popularity',
+                page_number: page_num
+            },
+            config: {
+                category: category
             }
-            var event_total = 30;
-            var event_cnt = 0;
-            $.each(data.Events, function () {
-                var sw_event = {};
-                var show_date = this.Date.substring(6, 19);
-                sw_event['name'] = this.EventGroupName;
-                sw_event['location_summary'] = this.VenueName;
-                sw_event['type'] = 'Music';
-                sw_event['timestamp'] = show_date;
-                sw_event['url'] = this.SwURL;
-                sw_event['img_url'] = this.EventGroupImageURL;
-                sw_events.push(sw_event);
-            });
-            sw_events = sw_events.sort(dateSort.comparator);
-        });
+        }).success(function(data, status, headers, config) {
+            if(data.events) {
+                $scope.spinner = false;
+                var results;
+                if(data.events.event.length) {
+                    results = $scope.events = data.events.event;
+                } else {
+                    results = data.events;
+                }
+                var arr = [];
+                $.each(results, function (i, item) {
+                    var event = {};
+                    event.image = (item.image != null) ? item.image.medium.url : '';
+                    event.title = (item.title != null) ? item.title : false;
+                    event.url = (item.url != null) ? item.url : false;
+                    event.venue_name = (item.venue_name != null) ? item.venue_name : false;
+                    event.start_time = (item.start_time != null) ? item.start_time : false;
+                    var stop_time = self.clean_stop_time(event.start_time, item.stop_time);
+                    event.stop_time = (stop_time != null) ? stop_time : false;
+                    event.description = (item.description != null) ? self.cleanIt(item.description) : false;
+                    event.venue_address = (item.venue_address != null) ? item.venue_address : false;
+                    event.geocode_type = (item.geocode_type != null) ? self.checkGeocode(item.geocode_type) : false;
+                    event.latitude = (item.latitude != null) ? item.latitude : false;
+                    event.longitude = (item.longitude != null) ? item.longitude : false;
+                    arr.push(event);
+                });
+                $('.newspanel').scrollTop(0,0);
 
-        var url = 'http://api-sandbox.seatwave.com/v2/discovery/events?apikey=' + apikey + '&where=' + $rootScope.city + '&what=sports&callback=JSON_CALLBACK';
-        $http.jsonp(url).success(function(data) {
-            var event_total = 30;
-            var event_cnt = 0;
-            $.each(data.Events, function () {
-                var sw_event = {};
-                var show_date = this.Date.substring(6, 18);
-                sw_event['name'] = this.EventGroupName;
-                sw_event['type'] = 'Sports';
-                sw_event['location_summary'] = this.VenueName;
-                sw_event['timestamp'] = show_date;
-                sw_event['url'] = this.SwURL;
-                sw_events.push(sw_event);
-            });
-            sw_events = sw_events.sort(dateSort.comparator);
-        });
+                var type = String(config.config.category);
+                var catname = 'cat'+type;
+                $scope[catname] = type;
 
-        var url = 'http://api-sandbox.seatwave.com/v2/discovery/events?apikey=' + apikey + '&where=' + $rootScope.city + '&what=theater&callback=JSON_CALLBACK';
-        $http.jsonp(url).success(function(data) {
-            var event_total = 30;
-            var event_cnt = 0;
-            $.each(data.Events, function () {
-                var sw_event = {};
-                var show_date = this.Date.substring(6, 18);
-                sw_event['name'] = this.EventGroupName;
-                sw_event['type'] = 'Theater';
-                sw_event['location_summary'] = this.VenueName;
-                sw_event['timestamp'] = show_date;
-                sw_event['url'] = this.SwURL;
-                sw_events.push(sw_event);
-            });
-        sw_events = sw_events.sort(dateSort.comparator);
-        });
+                $scope[type+'totalItems'] = data.total_items;
+                $scope[type+'currentPage'] = data.page_number;
+                $scope[type+'numOfPages'] = data.page_count;
+                $scope[type+'itemsPerPage'] = page_size;
+                var pagerState = (parseInt($scope[type+'totalItems']) <= parseInt($scope[type+'itemsPerPage'])) ? 'none' : 'block';
+                $('#'+catname).css('display', pagerState);
 
-        $scope.events = sw_events;
+                $scope[type] = arr;
+
+            }
+            // console.log('totalItems: ', $scope[type+'totalItems'] + ' currentPage: ', $scope[type+'currentPage'] + ' numOfPages: ' , $scope[type+'numOfPages'] + ' itemsPerPage: ', $scope[type+'itemsPerPage'])
+        }); 
+
+        this.cleanIt = function(str) {
+            return str.replace(/(<([^>]+)>)/ig," ");
+        };
+
+        this.clean_stop_time = function(start_time, stop_time) {
+            if(start_time && stop_time ) {
+                var ind = start_time.indexOf(' ');
+                var sdate = start_time.slice(0, ind);
+                ind = stop_time.indexOf(' ');
+                var edate = stop_time.slice(0, ind);
+                var etime = stop_time.slice(ind);
+                etime = (sdate == edate) ? etime : stop_time;
+                return etime;
+            } else {
+                return;
+            }
+        };
+
+        this.checkGeocode = function(geocode) {
+            // For ng-hide, hide if true
+            return (geocode == 'EVDB Geocoder') ? false : true;
+        };
+
+    };
+
+    var cats = ['attractions', 'art', 'business','clubs_associations', 'comedy', 'community', 'family_fun_kids', 'festivals_parades', 'fundraisers', 'learning_education', 'movies_film', 'music', 'outdoors_recreation', 'performing_arts', 'politics_activism', 'sales', 'singles_social', 'sports', 'support', 'technology'];
+    for( var v = 0; v < cats.length; v++) {
+        $scope.find_events(1, cats[v]);
     }
+
+    $scope.setPage = function (pageNo, type) {
+        $scope.find_events(pageNo, type);
+    };
+
 });
 
-events_app.filter('findDateTime', function (formatDate) {
-  return function (item) {
-    if(item) {
-        var show_date = new Date(parseInt(item));
-        var time = show_date.toString().substring(16,21);
-        show_date = formatDate.yyyy_mm_dd(show_date);
-        return show_date + ' @ ' + time;
-    }
-  };
+events_app.directive('hmtext', function () {
+    return {
+        restrict:'EA',
+        scope:{
+            hmtext : '=hmtext',
+            hmlimit : '=',
+            hmfulltext:'='
+        },
+        templateUrl: 'partials/moreless.html',
+        controller : function($scope){
+            $scope.toggleValue=function(){
+                if($scope.hmfulltext == true)
+                    $scope.hmfulltext=false;
+                else if($scope.hmfulltext == false)
+                    $scope.hmfulltext=true;
+                else
+                    $scope.hmfulltext=true;
+            }
+        }
+    };
 });
 
-events_app.filter('parseDateTime', function (formatDate) {
-  return function (item) {
-    if(item) {
-        var show_date = new Date(item);
-        var time = show_date.toString().substring(16,21);
-        show_date = formatDate.yyyy_mm_dd(show_date);
-        return show_date + ' @ ' + time;
-    }
-  };
+events_app.directive('eventa', function () {
+    return {
+        restrict:'EA',
+        scope:{
+            url : '=',
+            image : '=',
+            title:'=',
+            venuename: '=',
+            start: '=',
+            stop: '=',
+            address: '='
+        },
+        templateUrl: 'partials/eventsa.html',
+    };
 });
+
+events_app.directive('eventb', function () {
+    return {
+        restrict:'EA',
+        scope:{
+            geocode : '=',
+            latitude : '=',
+            longitude:'=',
+            url: '='
+        },
+        templateUrl: 'partials/eventsb.html',
+    };
+});
+
+events_app.filter('cleanTime', function () {
+    return function (item) {
+        if(!item) { return; }
+        if(item.indexOf(' ')) {
+            var arr = item.split(' ');
+            var time = (arr[1] != '00:00:00') ? item : arr[0];
+            return time;
+        } else {
+            return item;
+        }
+    };
+});
+
+events_app.filter('capitalize_fist_char', function () {
+    return function (item) {
+        if(!item) { return; }
+        var title = item.charAt(0).toUpperCase() + item.slice(1);
+        // Also take out underscore
+        title = title.replace(/_/g, ' ');
+        return title;
+    };
+});
+
+
 })();

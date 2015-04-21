@@ -1,0 +1,11 @@
+<li>
+  <a ng-show="image" href="{{url}}" target="_blank">
+  <img ng-src="{{image}}"/></a>
+</li>
+<li class="mname">{{title}}: </li> 
+<li ng-show="venuename">{{venuename}}</li>
+<li>
+  <span ng-show="start"> {{start | cleanTime}}</span>
+  <span ng-show="stop"> to {{stop | cleanTime}}</span>
+</li>
+<li ng-show="address">{{address}}</li>

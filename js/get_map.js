@@ -94,7 +94,7 @@ map_app.controller("GetMapCtrl", function($scope, $rootScope) {
 
 map_app.controller('SetLatLng', function ($scope, $rootScope) {
     $scope.isCollapsed = false;
-    $scope.set_marker = function(location) {
+    $scope.set_marker = function(loc1, loc2) {
         /*
         * Latitude and longitude are dependent on the datasource.
         * Until there is a better solution, sort them out here 
@@ -102,35 +102,41 @@ map_app.controller('SetLatLng', function ($scope, $rootScope) {
         * seatGeek: lon
         * eventFinda: lng
         */
-        var lat = null;
-        var lng = null;
-        for(var key in location) {
-            if(location.hasOwnProperty(key)) {
-                switch(key) {
-                case 'lng':
-                    lng = location[key];
-                    break;
-                case 'lon':
-                    lng = location[key];
-                    break;
-                case 'longitude':
-                    lng = location[key];
-                    break;
-                case 'lat':
-                    lat = location[key];
-                    break;
-                case 'latitude':
-                    lat = location[key];
-                    break;
-                case 'k':
-                    lat = location[key];
-                    break;
-                case 'D':
-                    lng = location[key];
-                    break;
+        if(typeof loc1 == 'object') {
+            var lat = null;
+            var lng = null;
+            for(var key in loc1) {
+                if(loc1.hasOwnProperty(key)) {
+                    switch(key) {
+                    case 'lng':
+                        lng = loc1[key];
+                        break;
+                    case 'lon':
+                        lng = loc1[key];
+                        break;
+                    case 'longitude':
+                        lng = loc1[key];
+                        break;
+                    case 'lat':
+                        lat = loc1[key];
+                        break;
+                    case 'latitude':
+                        lat = loc1[key];
+                        break;
+                    case 'k':
+                        lat = loc1[key];
+                        break;
+                    case 'D':
+                        lng = loc1[key];
+                        break;
+                    }
                 }
             }
+        } else {
+            lat = loc1;
+            lng = loc2;
         }
+        // console.log('lat: ', lat , ' lng: ', lng)
         $rootScope.lat_lng = lat + ', ' + lng;
         $rootScope.zoom = 18;
     };

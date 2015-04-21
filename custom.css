@@ -140,6 +140,8 @@ ul {
 
 .panel-heading a{
   text-decoration: none;
+  font-size: 2rem;
+  font-weight: 600;
 }
 
 .panel-heading a:hover {
@@ -286,7 +288,7 @@ ul {
   overflow-y: scroll;
 }
 
-.event_container, .places_container, .twitter_container, .meetup_container{
+.places_container, .twitter_container, .meetup_container{
   height: 300px;
   overflow-y: scroll;
 }
@@ -447,4 +449,17 @@ top: 2px;
   float:left;
 }
 
+.event_container li a{
+  cursor:pointer;
+}
 
+.pagination {
+  position: relative;
+  bottom: 0px;
+}
+
+.event_spinner {
+  text-align: center;
+  position: relative;
+  margin-top: 10%;
+}

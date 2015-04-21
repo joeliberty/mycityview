@@ -1,6 +1,6 @@
 {
     "Santa_Fe": {"cat": 7, "subcat": 294, "state": "nm", "country": "us", "lon": "-105.94","lat": "35.69"},
-    "Melbourne": {"cat": 547, "subcat": 21594, "state": "", "country": "au", "lon": "144.97","lat": "-37.82"},
+    "Melbourne": {"cat": 547, "subcat": 21594, "state": "", "country": "au", "lon": "144.9629796","lat": "-37.8131869"},
     "New_York": {"cat": 7, "subcat": 297, "state": "ny", "country": "us", "lon": "-74.01","lat": "40.71"},
     "Boston": {"cat": 7, "subcat": 250, "state": "ma", "country": "us", "lon": "-71.06","lat": "42.36"},
     "Leesburg": {"cat": 7, "subcat": 323, "state": "va", "country": "us", "lon": "-77.57","lat": "39.12"},
@@ -22,7 +22,7 @@
     "Toledo": {"cat": 1070, "subcat": 27034, "state": "", "country": "es", "lon": "-4.02","lat": "39.86"},
     "Granada": {"cat": 1070, "subcat": 27034, "state": "", "country": "es", "lon": "-3.61","lat": "37.19"},
     "Seville": {"cat": 1070, "subcat": 27034, "state": "", "country": "es", "lon": "-6","lat": "37.39"},
-    "Costa_del_Sol": {"cat": 1070, "subcat": 27034, "state": "", "country": "es", "lon": "-15.39","lat": "27.95"},
+    "Marbella": {"cat": 1070, "subcat": 27034, "state": "", "country": "es", "lon": "-4.88635229","lat": "36.5099367"},
     "Amsterdam": {"cat": 1070, "subcat": 28050, "state": "", "country": "nl", "lon": "4.89","lat": "52.37"},
     "Auckland": {"cat": 19, "subcat": 989, "state": "", "country": "nz", "lon": "174.77","lat": "-36.87"},
     "Montreal": {"cat": 19, "subcat": 919, "state": "", "country": "ca", "lon": "-73.59","lat": "45.51"},
