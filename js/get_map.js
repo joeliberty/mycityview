@@ -15,9 +15,11 @@ map_app.controller("GetMapCtrl", function($scope, $rootScope) {
         center: $rootScope.lat_lng
     };
     var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+    $rootScope.map = map;
     var markers = [];
+    $rootScope.markers = markers;
     var marker = '';
-    var geocoder = new google.maps.Geocoder();
+    // var geocoder = new google.maps.Geocoder();
 
     // Might need this later so leave it here for now.
     // geocoder.geocode( { 'address': city_state_country}, function(results, status) {

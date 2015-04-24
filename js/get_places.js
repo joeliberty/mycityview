@@ -2,7 +2,7 @@
 'use strict';
 var places_app = angular.module('places_app', []);
 
-places_app.controller("PlacesCtrl", function($scope, $http, $rootScope) {
+places_app.controller("PlacesCtrl", function($scope, $http, $rootScope, $q) {
   var t_city = $rootScope.city_id;
   var city_data = $rootScope.locs;
   var pyrmont = new google.maps.LatLng(city_data[t_city].lat,city_data[t_city].lon);
@@ -25,21 +25,44 @@ function callback(results, status, pagination) {
     for (var i = 0; i < results.length; i++) {
        (function(ind) {
            setTimeout(function(){
-            // console.log(ind);
-            // console.log(results[ind].place_id)
             var request = {
               placeId: results[ind].place_id
             };
             places_service.getDetails(request, function(place, status) {
               if (status == google.maps.places.PlacesServiceStatus.OK) {
-                // console.log(place)
-                $scope.places.push(place);
+                //Pull photo geturl from nested object
+                var url = (typeof place.photos !== 'undefined') ? place.photos[0].getUrl({'maxWidth': 200, 'maxHeight': 200}) : null;
+                if(!url) { return; }
+                var promise = isImage(url);
+                promise.then(function(ok){
+                  if(ok) {
+                    place.url = url;
+                    $scope.places.push(place);
+                  } else {
+                    place.url = false;
+                    $scope.places.push(place);
+                  }
+                });
               } else {
                 console.log('got error')
               }
             });
           }, 1000 + (1000 * ind));
        })(i);
+    }
+
+    var isImage = function(src) {
+      /* Check that the image  exits befor including it. */
+      var deferred = $q.defer();
+      var image = new Image();
+      image.onerror = function() {
+          deferred.resolve(false);
+      };
+      image.onload = function() {
+          deferred.resolve(true);
+      };
+      image.src = src;
+      return deferred.promise;
     }
     /*
     * Leave this code in for use of markers later
@@ -90,6 +113,8 @@ function createMarkers(places) {
 }
 */
 });
+
+
 
 places_app.filter('formatType', function () {
   return function (item) {

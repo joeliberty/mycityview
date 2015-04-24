@@ -5,6 +5,10 @@
 					<ul>
 						<li ng-repeat="place in places">
 							<ul>
+								<li>
+								  <a ng-show="place.url" href="{{place.website}}" target="_blank">
+								  <img ng-show="place.url" ng-src="{{place.url}}"/></a>
+								</li>
 								<li ng-show="place.name" class="mname"> {{place.name}}</li>
 								<li ng-show="place.types[0]"> {{place.types[0] | formatType}}</li>
 								<li ng-show="place.formatted_phone_number"> {{place.formatted_phone_number}}</li>

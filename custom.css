@@ -463,3 +463,20 @@ top: 2px;
   position: relative;
   margin-top: 10%;
 }
+
+.nearby_container li {
+  width: 160px;
+}
+
+.nearby_container .dropdown-menu {
+  width: 260px;
+}
+
+/*.nearby_container .btn-group {
+  float: left;
+}*/
+#nearby {
+  /*left: 8px;*/
+  position: relative;
+  padding-top: 7px;
+}

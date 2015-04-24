@@ -106,6 +106,13 @@
       };
     });
 
+    app.directive("nearby", function() {
+      return {
+        restrict: 'E',
+        templateUrl: "partials/nearby.html"
+      };
+    });
+
     app.directive("navbar", function() {
       return {
         restrict: 'E',

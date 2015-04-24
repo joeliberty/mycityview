@@ -33,6 +33,7 @@
     "Moscow": {"cat": 19, "subcat": 967, "state": "", "country": "ru", "lon": "37.62","lat": "55.75"},
     "Helsinki": {"cat": 19, "subcat": 950, "state": "", "country": "fi", "lon": "24.94","lat": "60.17"},
     "McCrae": {"cat": 547, "subcat": 21594, "state": "", "country": "au", "lon": "144.93","lat": "-38.35"},
+    "San_Diego": {"cat": 7, "subcat": 251, "state": "ca", "country": "us", "lon": "-117.157255","lat": "32.7153292"},
     "Sydney": {"cat": 547, "subcat": 21113, "state": "", "country": "au", "lon": "151.21","lat": "-33.87"}
 
   }
