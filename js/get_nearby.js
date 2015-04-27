@@ -2,7 +2,8 @@
 'use strict';
 var nearby_app = angular.module('nearby_app', []);
 
-nearby_app.controller("NearbyCtrl", function($scope, $rootScope) {
+nearby_app.controller("NearbyCtrl", ['$scope', '$rootScope',
+  function($scope, $rootScope) {
   $scope.message = 'Select a place to find.'
   //get lat-lng location
   $scope.getCoordinates = function(what){
@@ -164,7 +165,7 @@ nearby_app.controller("NearbyCtrl", function($scope, $rootScope) {
     $scope.status.isopen = !$scope.status.isopen;
   };
 
-}); // end controller
+}]); // end controller
 
 nearby_app.filter('remove_underscore', function () {
   return function (item) {

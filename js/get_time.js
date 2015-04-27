@@ -3,7 +3,8 @@
 
 var time_app = angular.module('time_app', []);
 
-time_app.controller("GetTimeCtrl", function($scope, $rootScope, $http) {
+time_app.controller("GetTimeCtrl", ['$scope', '$rootScope', '$http',
+    function($scope, $rootScope, $http) {
     // var self = this;
     var t_city = $rootScope.city_id;
     var city_data = $rootScope.locs;
@@ -34,5 +35,5 @@ time_app.controller("GetTimeCtrl", function($scope, $rootScope, $http) {
         $rootScope.times['sunset'] = sunset_arr[1];
         // console.log('time: ' + $scope.current_time)
    });
-});
+}]);
 })();

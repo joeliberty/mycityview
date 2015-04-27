@@ -2,7 +2,8 @@
 'use strict';
 var yelp_app = angular.module('yelp_app', []);
 
-yelp_app.controller("MusicVenueCtrl", function($scope, $rootScope, $http) {
+yelp_app.controller("MusicVenueCtrl", ['$scope', '$rootScope', '$http',
+    function($scope, $rootScope, $http) {
     $http({
         url: 'php/yelp_sample.php', 
         method: "GET",
@@ -25,9 +26,10 @@ yelp_app.controller("MusicVenueCtrl", function($scope, $rootScope, $http) {
     $scope.isActive = function(item) {
         return $scope.selected === item;
     };
-});
+}]);
 
-yelp_app.controller("RestaurantCtrl", function($scope, $rootScope, $http) {
+yelp_app.controller("RestaurantCtrl", ['$scope', '$rootScope', '$http',
+    function($scope, $rootScope, $http) {
     $http({
         url: 'php/yelp_sample.php', 
         method: "GET",
@@ -50,9 +52,10 @@ yelp_app.controller("RestaurantCtrl", function($scope, $rootScope, $http) {
     $scope.isActive = function(item) {
         return $scope.selected === item;
     };
-});
+}]);
 
-yelp_app.controller("ClubCtrl", function($scope, $rootScope, $http) {
+yelp_app.controller("ClubCtrl", ['$scope', '$rootScope', '$http',
+    function($scope, $rootScope, $http) {
     $http({
         url: 'php/yelp_sample.php', 
         method: "GET",
@@ -76,9 +79,10 @@ yelp_app.controller("ClubCtrl", function($scope, $rootScope, $http) {
     $scope.isActive = function(item) {
         return $scope.selected === item;
     };
-});
+}]);
 
-yelp_app.controller("GallaryCtrl", function($scope, $rootScope, $http) {
+yelp_app.controller("GallaryCtrl", ['$scope', '$rootScope', '$http',
+    function($scope, $rootScope, $http) {
     $http({
         url: 'php/yelp_sample.php', 
         method: "GET",
@@ -104,7 +108,7 @@ yelp_app.controller("GallaryCtrl", function($scope, $rootScope, $http) {
     $scope.isActive = function(item) {
         return $scope.selected === item;
     };
-});
+}]);
 
 yelp_app.filter('toString', function () {
   return function (item) {

@@ -12,7 +12,8 @@ var rates_app = angular.module('rates_app', ['ui.bootstrap']);
 //   });
 // }]);
 
-rates_app.controller('RatesCtrl', function($scope, $rootScope, $http) {
+rates_app.controller('RatesCtrl', ['$scope', '$rootScope', '$http',
+    function($scope, $rootScope, $http) {
     
     var self = this;
     $scope.amount = 1;
@@ -85,6 +86,6 @@ rates_app.controller('RatesCtrl', function($scope, $rootScope, $http) {
         });
     }
 
-});
+}]);
 
 })();

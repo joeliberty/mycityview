@@ -29,7 +29,8 @@ events_app.factory('dateSort', function() {
     }
 });
 
-events_app.controller("EventsCtrl", function($scope, $rootScope, $http, formatDate) {
+events_app.controller("EventsCtrl", ['$scope', '$rootScope', '$http', 'formatDate',
+    function($scope, $rootScope, $http, formatDate) {
     $scope.categories = [];
     
     $scope.find_events = function(page_num, category) {
@@ -147,7 +148,7 @@ events_app.controller("EventsCtrl", function($scope, $rootScope, $http, formatDa
         $scope.find_events(pageNo, type);
     };
 
-});
+}]);
 
 events_app.directive('hmtext', function () {
     return {

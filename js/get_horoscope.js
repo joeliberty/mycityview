@@ -5,7 +5,8 @@
 
 var astro_app = angular.module('astro_app', []);
 
-astro_app.controller("AstroCtrl", function($scope, $http) {
+astro_app.controller("AstroCtrl", ['$scope', '$http',
+  function($scope, $http) {
   $scope.horoscope = 'Choose your sign';
 
   $scope.call = function(sign) {
@@ -24,7 +25,7 @@ astro_app.controller("AstroCtrl", function($scope, $http) {
       $scope.horoscope = data.horoscope;
     }); 
   };
-});
+}]);
 })();
 
 

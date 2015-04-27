@@ -2,7 +2,8 @@
 'use strict';
 var news_app = angular.module('news_app', ['ui.bootstrap']);
 
-news_app.controller("NewsCtrl", function($scope, $rootScope, $http) {
+news_app.controller("NewsCtrl", ['$scope', '$rootScope', '$http',
+    function($scope, $rootScope, $http) {
     /* Make the tabs container visible. */
     $('.tabs_container').css('visibility', 'visible');
     $scope.isnews = false;
@@ -92,7 +93,7 @@ news_app.controller("NewsCtrl", function($scope, $rootScope, $http) {
         $scope.musicnews = data.articles;
     }); 
 
-});
+}]);
 
 news_app.filter('removehtml', function () {
   return function (item) {

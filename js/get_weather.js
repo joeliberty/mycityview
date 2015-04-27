@@ -3,7 +3,8 @@
 
 var weather_app = angular.module('weather_app', []);
 
-weather_app.controller("CurWeatherCtrl", function($scope, $rootScope, $http) {
+weather_app.controller("CurWeatherCtrl", ['$scope', '$rootScope', '$http',
+    function($scope, $rootScope, $http) {
     $http({
         url: 'http://api.openweathermap.org/data/2.5/weather',
         dataType: 'json', 
@@ -16,9 +17,10 @@ weather_app.controller("CurWeatherCtrl", function($scope, $rootScope, $http) {
         $scope.imagepath = 'http://openweathermap.org/img/w/' + data.weather[0]['icon'] + '.png';
         $scope.description = data.weather[0]['description'];
     }); 
-});
+}]);
 
-weather_app.controller("DayForcastCtrl", function($scope, $rootScope, $http) {
+weather_app.controller("DayForcastCtrl", ['$scope', '$rootScope', '$http',
+    function($scope, $rootScope, $http) {
     var url= 'http://api.openweathermap.org/data/2.5/forecast';
     $http({
         url: url,
@@ -67,7 +69,7 @@ weather_app.controller("DayForcastCtrl", function($scope, $rootScope, $http) {
         }
         $scope.daycast = weather_data;
     });
-});
+}]);
 
 weather_app.filter('temp', function($filter, $rootScope) {
     return function(input, t_array) {

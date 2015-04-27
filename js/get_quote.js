@@ -2,7 +2,8 @@
 'use strict';
 var quote_app = angular.module('quote_app', []);
 
-quote_app.controller("QuoteCtrl", function($scope, $http) {
+quote_app.controller("QuoteCtrl", ['$scope', '$http',
+  function($scope, $http) {
   var self = this;
   var less_len = 300; 
   var quotes = [];
@@ -45,6 +46,6 @@ quote_app.controller("QuoteCtrl", function($scope, $http) {
       }
 
     }
-});
+}]);
 
 })();

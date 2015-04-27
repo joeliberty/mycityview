@@ -2,7 +2,8 @@
 'use strict';
 var Site = angular.module('Site', ['ngRoute', 'ui.bootstrap', 'ngSanitize', 'weather_app', 'yelp_app', 'astro_app', 'movie_app','news_app', 'quote_app', 'time_app', 'mycity-directives', 'events_app', 'map_app', 'places_app', 'twitter_app', 'ngTouch', 'meetup_app', 'rates_app', 'nearby_app']);
 
-Site.controller('ShowHomeController', function($scope, $rootScope, $location, $http, MyService) {
+Site.controller('ShowHomeController', ['$scope', '$rootScope', '$location', '$http', 'MyService',
+  function($scope, $rootScope, $location, $http, MyService) {
   $rootScope.locs = MyService.get_json_data();
   $rootScope.nameLength = 20; // Yelp uses this!
   $rootScope.times = {
@@ -70,9 +71,10 @@ Site.controller('ShowHomeController', function($scope, $rootScope, $location, $h
 
   $rootScope.isMobile = $scope.mobileAndTabletcheck();
 
-});
+}]);
  
-Site.controller('GetHeaderImage', function($scope, $rootScope, $http) {
+Site.controller('GetHeaderImage', ['$scope', '$rootScope', '$http',
+  function($scope, $rootScope, $http) {
   var random_num = Math.floor((Math.random() * 10) + 1);
   var city = $rootScope.city_id.toLowerCase();
   if($rootScope.state) {
@@ -97,9 +99,10 @@ Site.controller('GetHeaderImage', function($scope, $rootScope, $http) {
   }).success(function(data) {
     $scope.slides = data;
   }); 
-});
+}]);
 
-Site.service('MyService', function($http) {
+Site.service('MyService', ['$http',
+  function($http) {
   var myData = null;
 
   var promise = $http.get('js/city_data.json').success(function (data) {
@@ -115,7 +118,7 @@ Site.service('MyService', function($http) {
         return myData;
     }
   };
-});
+}]);
 
 Site.config(['$routeProvider',
   function($routeProvider) {

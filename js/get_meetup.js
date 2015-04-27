@@ -3,7 +3,8 @@
 
 var meetup_app = angular.module('meetup_app', []);
 
-meetup_app.controller("meetupCtrl", function($scope, $rootScope, $http) {
+meetup_app.controller("meetupCtrl", ['$scope', '$rootScope', '$http',
+    function($scope, $rootScope, $http) {
     var startdate = new Date();
     var now = new Date();
     var enddate = new Date(now);
@@ -71,6 +72,6 @@ meetup_app.controller("meetupCtrl", function($scope, $rootScope, $http) {
     $scope.isActive = function(item) {
         return $scope.selected === item;
     }; 
-});
+}]);
 
 })();

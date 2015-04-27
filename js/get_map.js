@@ -3,7 +3,8 @@
 
 var map_app = angular.module('map_app', []);
 
-map_app.controller("GetMapCtrl", function($scope, $rootScope) {
+map_app.controller("GetMapCtrl", ['$scope', '$rootScope',
+    function($scope, $rootScope) {
     var t_city = $rootScope.city_id;
     var city_data = $rootScope.locs;
     var city_state_country = $rootScope.city_state_country;
@@ -92,9 +93,10 @@ map_app.controller("GetMapCtrl", function($scope, $rootScope) {
 
     // Copyright is hidden till last element is displayed
     $('#copyright').css('display', 'inline-block');
-});
+}]);
 
-map_app.controller('SetLatLng', function ($scope, $rootScope) {
+map_app.controller('SetLatLng', ['$scope', '$rootScope',
+    function ($scope, $rootScope) {
     $scope.isCollapsed = false;
     $scope.set_marker = function(loc1, loc2) {
         /*
@@ -142,5 +144,5 @@ map_app.controller('SetLatLng', function ($scope, $rootScope) {
         $rootScope.lat_lng = lat + ', ' + lng;
         $rootScope.zoom = 18;
     };
-});
+}]);
 })();

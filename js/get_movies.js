@@ -2,7 +2,8 @@
 'use strict';
 var movie_app = angular.module('movie_app', ['ui.bootstrap']);
 
-movie_app.controller("MovieCtrl", function($scope, $rootScope, $http) {
+movie_app.controller("MovieCtrl", ['$scope', '$rootScope', '$http',
+  function($scope, $rootScope, $http) {
     var city_state = $rootScope.city.replace(' ', ',') + ',' + $rootScope.state;
     // console.log('city_state: ' + city_state)
     $scope.good_data = true;
@@ -18,7 +19,7 @@ movie_app.controller("MovieCtrl", function($scope, $rootScope, $http) {
         }
     }); 
 
-});
+}]);
 
 movie_app.filter('movie_times', function () {
   return function (item) {
