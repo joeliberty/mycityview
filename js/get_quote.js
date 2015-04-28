@@ -10,8 +10,8 @@ quote_app.controller("QuoteCtrl", ['$scope', '$http',
     $http.get('js/quotes.json').success(function(data){
       $.each(data, function () {
         var quote = {};
-        quote['quote'] = this.quote;
-        quote['author'] = this.author;
+        quote.quote = this.quote;
+        quote.author = this.author;
         quotes.push(quote);
       });
       /* choose random quote */
@@ -36,7 +36,6 @@ quote_app.controller("QuoteCtrl", ['$scope', '$http',
     };
 
     $scope.toggle_more_less = function() {
-      console.log('$scope.toggle_quote:' + $scope.toggle_quote)
       if($scope.toggle_quote) { 
         $scope.toggle_quote = false;
         self.get_less_n_more('more');
@@ -45,7 +44,7 @@ quote_app.controller("QuoteCtrl", ['$scope', '$http',
          self.get_less_n_more('less');
       }
 
-    }
+    };
 }]);
 
 })();

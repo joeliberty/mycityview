@@ -37,7 +37,7 @@ twitter_app.factory('formatText', function() {
                 x +=  1;
             } 
         }  
-    }
+    };
 });
 
 twitter_app.controller("TwitterCtrl", ['$scope', '$rootScope', '$http',

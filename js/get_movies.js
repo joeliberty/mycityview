@@ -44,7 +44,7 @@ movie_app.filter('movie_times', function () {
 movie_app.filter('theater_name', function () {
   return function (item,scope) {
     /* Check for bad movie info */
-    if(item == null || item.indexOf(';&#') != -1){
+    if(item === null || item.indexOf(';&#') != -1){
       scope.good_data = false;
       return "Unavailable";
     }

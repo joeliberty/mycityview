@@ -16,7 +16,7 @@ events_app.factory('formatDate', function() {
         var year = today.getFullYear(today);
         return year + '-' + month + '-' + day; 
         }  
-    }
+    };
 });
 
 events_app.factory('dateSort', function() {
@@ -26,7 +26,7 @@ events_app.factory('dateSort', function() {
         if (a.timestamp > b.timestamp) return 1;
         return 0;
         }
-    }
+    };
 });
 
 events_app.controller("EventsCtrl", ['$scope', '$rootScope', '$http', 'formatDate',
@@ -45,7 +45,6 @@ events_app.controller("EventsCtrl", ['$scope', '$rootScope', '$http', 'formatDat
 
         $scope.events = { events: {title:'Retreiving events for ' + $rootScope.city + '.'}};
         var city_state_country = '';
-        var t_city = $rootScope.city;
         if($rootScope.state) {
             city_state_country = t_city +','+ $rootScope.state+','+$rootScope.country;
         } else {
@@ -81,18 +80,18 @@ events_app.controller("EventsCtrl", ['$scope', '$rootScope', '$http', 'formatDat
                 var arr = [];
                 $.each(results, function (i, item) {
                     var event = {};
-                    event.image = (item.image != null) ? item.image.medium.url : '';
-                    event.title = (item.title != null) ? item.title : false;
-                    event.url = (item.url != null) ? item.url : false;
-                    event.venue_name = (item.venue_name != null) ? item.venue_name : false;
-                    event.start_time = (item.start_time != null) ? item.start_time : false;
+                    event.image = (item.image !== null) ? item.image.medium.url : '';
+                    event.title = (item.title !== null) ? item.title : false;
+                    event.url = (item.url !== null) ? item.url : false;
+                    event.venue_name = (item.venue_name !== null) ? item.venue_name : false;
+                    event.start_time = (item.start_time !== null) ? item.start_time : false;
                     var stop_time = self.clean_stop_time(event.start_time, item.stop_time);
-                    event.stop_time = (stop_time != null) ? stop_time : false;
-                    event.description = (item.description != null) ? self.cleanIt(item.description) : false;
-                    event.venue_address = (item.venue_address != null) ? item.venue_address : false;
-                    event.geocode_type = (item.geocode_type != null) ? self.checkGeocode(item.geocode_type) : false;
-                    event.latitude = (item.latitude != null) ? item.latitude : false;
-                    event.longitude = (item.longitude != null) ? item.longitude : false;
+                    event.stop_time = (stop_time !== null) ? stop_time : false;
+                    event.description = (item.description !== null) ? self.cleanIt(item.description) : false;
+                    event.venue_address = (item.venue_address !== null) ? item.venue_address : false;
+                    event.geocode_type = (item.geocode_type !== null) ? self.checkGeocode(item.geocode_type) : false;
+                    event.latitude = (item.latitude !== null) ? item.latitude : false;
+                    event.longitude = (item.longitude !== null) ? item.longitude : false;
                     arr.push(event);
                 });
                 $('.newspanel').scrollTop(0,0);
@@ -161,13 +160,13 @@ events_app.directive('hmtext', function () {
         templateUrl: 'partials/moreless.html',
         controller : function($scope){
             $scope.toggleValue=function(){
-                if($scope.hmfulltext == true)
+                if($scope.hmfulltext === true)
                     $scope.hmfulltext=false;
-                else if($scope.hmfulltext == false)
+                else if($scope.hmfulltext === false)
                     $scope.hmfulltext=true;
                 else
                     $scope.hmfulltext=true;
-            }
+            };
         }
     };
 });

@@ -17,7 +17,7 @@ meetup_app.controller("meetupCtrl", ['$scope', '$rootScope', '$http',
     var t_city = $rootScope.city_id;
     var lat = city_data[t_city].lat;
     var lon = city_data[t_city].lon; 
-    var url = 'https://api.meetup.com/2/open_events?callback=?&lat=' + lat + '&country=' + country + '&city=' + city + '&state=' + state + '&text=travel&lon=' + lon + '&key=5579136d5823c8054341258e452f'
+    var url = 'https://api.meetup.com/2/open_events?callback=?&lat=' + lat + '&country=' + country + '&city=' + city + '&state=' + state + '&text=travel&lon=' + lon + '&key=5579136d5823c8054341258e452f';
     var arr = [];
     $('#meetup_spinner i').css('display', 'inline-block');
     $.getJSON(url, 
@@ -57,7 +57,7 @@ meetup_app.controller("meetupCtrl", ['$scope', '$rootScope', '$http',
                 arr.push(event);
             }
          });
-        $scope.meetup_unavailable = (arr.length == 0) ? true : false;
+        $scope.meetup_unavailable = (arr.length === 0) ? true : false;
         $scope.events = arr;
     });
     

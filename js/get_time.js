@@ -22,17 +22,17 @@ time_app.controller("GetTimeCtrl", ['$scope', '$rootScope', '$http',
                 username: username
                 }
     }).success(function(data) {
-        $rootScope.times['fulltime'] = data.time;
+        $rootScope.times.fulltime = data.time;
         // console.log('from time api: ' + $rootScope.times.fulltime)
         var time_arr = data.time.split(' ');
          // $scope.current_time = time_arr[1];
-        $rootScope.times['current'] = time_arr[1];
+        $rootScope.times.current = time_arr[1];
         var sunrise_arr = data.sunrise.split(' ');
         // $scope.sunrise = sunrise_arr[1];
-        $rootScope.times['sunrise'] = sunrise_arr[1];
+        $rootScope.times.sunrise = sunrise_arr[1];
         var sunset_arr = data.sunset.split(' ');
         // $scope.sunset = sunset_arr[1];
-        $rootScope.times['sunset'] = sunset_arr[1];
+        $rootScope.times.sunset = sunset_arr[1];
         // console.log('time: ' + $scope.current_time)
    });
 }]);

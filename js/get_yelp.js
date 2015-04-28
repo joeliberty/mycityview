@@ -10,8 +10,9 @@ yelp_app.controller("MusicVenueCtrl", ['$scope', '$rootScope', '$http',
         params: {term: 'hotels',
                 location: $rootScope.city_state_country}
     }).success(function(data) {
-        var data_array = jQuery.parseJSON(data);
-        var data_array = eval('(' + data_array + ')');
+        var data_array = [];
+        data_array.push(jQuery.parseJSON(data));
+        data_array = jQuery.parseJSON(data_array);
         $scope.yelp_unavailable = false;
         if(data_array.error) {
             $scope.yelp_unavailable = true;
@@ -36,8 +37,9 @@ yelp_app.controller("RestaurantCtrl", ['$scope', '$rootScope', '$http',
         params: {term: 'restaurant',
                 location: $rootScope.city_state_country}
     }).success(function(data) {
-        var data_array = jQuery.parseJSON(data);
-        var data_array = eval('(' + data_array + ')');
+        var data_array = [];
+        data_array.push(jQuery.parseJSON(data));
+        data_array = jQuery.parseJSON(data_array);
         $scope.yelp_unavailable = false;
         if(data_array.error) {
             $scope.yelp_unavailable = true;
@@ -62,8 +64,9 @@ yelp_app.controller("ClubCtrl", ['$scope', '$rootScope', '$http',
         params: {term: 'happy hour',
                 location: $rootScope.city_state_country}
     }).success(function(data) {
-        var data_array = jQuery.parseJSON(data);
-        var data_array = eval('(' + data_array + ')');
+        var data_array = [];
+        data_array.push(jQuery.parseJSON(data));
+        data_array = jQuery.parseJSON(data_array);
         var type = Object.prototype.toString.call(data_array);
         $scope.yelp_unavailable = false;
         if(data_array.error) {
@@ -89,8 +92,9 @@ yelp_app.controller("GallaryCtrl", ['$scope', '$rootScope', '$http',
         params: {term: 'show',
                 location: $rootScope.city_state_country}
     }).success(function(data) {
-        var data_array = jQuery.parseJSON(data);
-        var data_array = eval('(' + data_array + ')');
+        var data_array = [];
+        data_array.push(jQuery.parseJSON(data));
+        data_array = jQuery.parseJSON(data_array);
         $scope.yelp_unavailable = false;
         if(data_array.error) {
             $scope.yelp_unavailable = true;

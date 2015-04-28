@@ -106,12 +106,16 @@ map_app.controller('SetLatLng', ['$scope', '$rootScope',
         * seatGeek: lon
         * eventFinda: lng
         */
+        var lat, lng;
         if(typeof loc1 == 'object') {
-            var lat = null;
-            var lng = null;
+            lat = null;
+            lng = null;
             for(var key in loc1) {
                 if(loc1.hasOwnProperty(key)) {
                     switch(key) {
+                    case 'F':
+                        lng = loc1[key];
+                        break;
                     case 'lng':
                         lng = loc1[key];
                         break;
@@ -120,6 +124,9 @@ map_app.controller('SetLatLng', ['$scope', '$rootScope',
                         break;
                     case 'longitude':
                         lng = loc1[key];
+                        break;
+                    case 'A':
+                        lat = loc1[key];
                         break;
                     case 'lat':
                         lat = loc1[key];

@@ -4,7 +4,7 @@ var nearby_app = angular.module('nearby_app', []);
 
 nearby_app.controller("NearbyCtrl", ['$scope', '$rootScope',
   function($scope, $rootScope) {
-  $scope.message = 'Select a place to find.'
+  $scope.message = 'Select a place to find.';
   //get lat-lng location
   $scope.getCoordinates = function(what){
     $scope.what = what;
@@ -14,8 +14,9 @@ nearby_app.controller("NearbyCtrl", ['$scope', '$rootScope',
         $rootScope.user_lat = position.coords.latitude;
         $rootScope.user_lng = position.coords.longitude;
         
-        $scope.find_nearby($rootScope.user_lat, $rootScope.user_lng, what)
-        }, function() {
+        $scope.find_nearby($rootScope.user_lat, $rootScope.user_lng, what);
+      },
+        function() {
         handleNoGeolocation(true);
       });
     } else {
@@ -25,17 +26,18 @@ nearby_app.controller("NearbyCtrl", ['$scope', '$rootScope',
   };
 
   function handleNoGeolocation(errorFlag) {
+    var content;
     if (errorFlag) {
-      var content = 'Error: The Geolocation service failed.';
+      content = 'Error: The Geolocation service failed.';
     } else {
-      var content = 'Error: Your browser doesn\'t support geolocation.';
+      content = 'Error: Your browser doesn\'t support geolocation.';
     }
     $scope.set_message(content);
   }
 
   $scope.set_message = function(message) {
     $scope.message = message;
-  }
+  };
 
   $scope.find_nearby = function(lat, lng, what) {
     clearMarkers();
@@ -91,7 +93,7 @@ nearby_app.controller("NearbyCtrl", ['$scope', '$rootScope',
           if(typeof place.formatted_phone_number !== 'undefined') {
             var num = place.formatted_phone_number;
             num = num.replace(/ /g, '');
-            num = num.replace('(', ''),
+            num = num.replace('(', '');
             num = num.replace(')', '');
             if(place.formatted_phone_number) {
               $('#info_win_phone_detail').html('<a href=tel:' + num + '>ph: ' + place.formatted_phone_number + '</a>');
@@ -101,10 +103,10 @@ nearby_app.controller("NearbyCtrl", ['$scope', '$rootScope',
             }
           }
         } else {
-          console.log('got error')
+          console.log('got error');
         }
       });
-    }
+    };
 
     $scope.createMarker = function(place, service) {
       var pinColor = "009933";
@@ -147,7 +149,7 @@ nearby_app.controller("NearbyCtrl", ['$scope', '$rootScope',
     };
 
   
-  }
+  };
 
   $scope.places = ['airport', 'aquarium', 'art_gallery', 'atm', 'bakery', 'bank', 'bar', 'beauty_salon', 'bicycle_store', 'book_store', 'bowling_alley', 'bus_station', 'cafe', 'campground', 'car_dealer', 'car_rental', 'car_repair', 'car_wash', 'casino', 'church', 'clothing_store', 'convenience_store', 'dentist', 'department_store', 'doctor', 'electrician', 'electronics_store', 'fire_station', 'florist', 'food', 'furniture_store', 'gas_station',  'grocery_or_supermarket', 'gym', 'hair_care', 'hardware_store', 'hindu_temple', 'home_goods_store', 'hospital', 'jewelry_store', 'laundry', 'library', 'liquor_store', 'locksmith', 'lodging', 'meal_delivery', 'meal_takeaway', 'mosque', 'movie_rental', 'movie_theater', 'museum', 'night_club', 'park', 'parking', 'pet_store', 'pharmacy', 'place_of_worship', 'police', 'post_office', 'restaurant', 'rv_park', 'school', 'shoe_store', 'shopping_mall', 'spa', 'store', 'subway_station', 'synagogue', 'taxi_stand', 'train_station', 'university', 'veterinary_care', 'zoo'];
 
@@ -174,7 +176,7 @@ nearby_app.filter('remove_underscore', function () {
     } else {
       return item.replace(/_/g, ' ');
     } 
-  }
+  };
 });
 
 })();

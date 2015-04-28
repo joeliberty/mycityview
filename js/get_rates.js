@@ -44,19 +44,19 @@ rates_app.controller('RatesCtrl', ['$scope', '$rootScope', '$http',
                 currency.rates = data.query.results.rate;
                 $scope.currencies.push(currency);
                 if($scope.currencies.length == $scope.base_rates.length) {
-
-                    var compare = function(a,b) {
-                      if (a.sortid < b.sortid)
-                         return -1;
-                      if (a.sortid > b.sortid)
-                        return 1;
-                      return 0;
-                    }
-                    $scope.currencies.sort(compare);
+                    $scope.currencies.sort(self.compare);
                 }
             });
         }
     });
+
+    this.compare = function(a,b) {
+      if (a.sortid < b.sortid)
+         return -1;
+      if (a.sortid > b.sortid)
+        return 1;
+      return 0;
+    };
 
     this.get_full_names= function(abbrev, data) {
     for(var key in data) {
@@ -73,10 +73,9 @@ rates_app.controller('RatesCtrl', ['$scope', '$rootScope', '$http',
         $('.rate_container').on('click', function (e) {
             $('*[popover]').each(function () {
                 //Only do this for all popovers other than the current one that cause this event
-                if (!($(this).is(e.target) || $(this).has(e.target).length > 0)
-                    && $(this).siblings('.popover').length !== 0
-                    && $(this).siblings('.popover').has(e.target).length === 0)
-                {
+                if (!($(this).is(e.target) || $(this).has(e.target).length > 0) &&
+                        $(this).siblings('.popover').length !== 0 &&
+                        $(this).siblings('.popover').has(e.target).length === 0) {
                     //Remove the popover element from the DOM
                     $(this).siblings('.popover').remove();
                     //Set the state of the popover in the scope to reflect this

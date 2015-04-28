@@ -8,7 +8,7 @@ news_app.controller("NewsCtrl", ['$scope', '$rootScope', '$http',
     $('.tabs_container').css('visibility', 'visible');
     $scope.isnews = false;
     var locnews = $scope.locnews;
-    var url = 'http://api.feedzilla.com/v1/categories/' + $rootScope.newsdata.cat + '/subcategories/' + $rootScope.newsdata.subcat + '/articles.json'
+    var url = 'http://api.feedzilla.com/v1/categories/' + $rootScope.newsdata.cat + '/subcategories/' + $rootScope.newsdata.subcat + '/articles.json';
     $('#local_spinner i').css('display', 'inline-block');
     $http({
         url: url,
@@ -17,7 +17,7 @@ news_app.controller("NewsCtrl", ['$scope', '$rootScope', '$http',
     }).success(function(data) {
         // console.log('data: ' + data)
         $('#local_spinner i').css('display', 'none');
-        if(data.articles != '') {
+        if(data.articles !== '') {
             $scope.localnews = data.articles;
             $scope.isnews = true;
         } else {
@@ -27,7 +27,7 @@ news_app.controller("NewsCtrl", ['$scope', '$rootScope', '$http',
         }
     }); 
 
-    url = 'http://api.feedzilla.com/v1/categories/1071/articles.json'
+    url = 'http://api.feedzilla.com/v1/categories/1071/articles.json';
     $('#sports_spinner i').css('display', 'inline-block');
     $http({
         url: url,
@@ -38,7 +38,7 @@ news_app.controller("NewsCtrl", ['$scope', '$rootScope', '$http',
         $scope.sportsnews = data.articles;
     }); 
 
-    url = 'http://api.feedzilla.com/v1/categories/1073/articles.json'
+    url = 'http://api.feedzilla.com/v1/categories/1073/articles.json';
     $('#travel_spinner i').css('display', 'inline-block');
     $http({
         url: url,
@@ -49,7 +49,7 @@ news_app.controller("NewsCtrl", ['$scope', '$rootScope', '$http',
         $scope.travelnews = data.articles;
     }); 
 
-    url = 'http://api.feedzilla.com/v1/categories/1141/articles.json'
+    url = 'http://api.feedzilla.com/v1/categories/1141/articles.json';
     $('#world_spinner i').css('display', 'inline-block');
     $http({
         url: url,
@@ -60,7 +60,7 @@ news_app.controller("NewsCtrl", ['$scope', '$rootScope', '$http',
         $scope.topnews = data.articles;
     }); 
 
-    url = 'http://api.feedzilla.com/v1/categories/1082/articles.json'
+    url = 'http://api.feedzilla.com/v1/categories/1082/articles.json';
     $('#entertainment_spinner i').css('display', 'inline-block');
     $http({
         url: url,
@@ -71,7 +71,7 @@ news_app.controller("NewsCtrl", ['$scope', '$rootScope', '$http',
         $scope.entertainmentnews = data.articles;
     }); 
 
-    url = 'http://api.feedzilla.com/v1/categories/1086/articles.json'
+    url = 'http://api.feedzilla.com/v1/categories/1086/articles.json';
     $('#tech_spinner i').css('display', 'inline-block');
     $http({
         url: url,
@@ -82,7 +82,7 @@ news_app.controller("NewsCtrl", ['$scope', '$rootScope', '$http',
         $scope.technews = data.articles;
     }); 
 
-    url = 'http://api.feedzilla.com/v1/categories/1084/articles.json'
+    url = 'http://api.feedzilla.com/v1/categories/1084/articles.json';
     $('#music_spinner i').css('display', 'inline-block');
     $http({
         url: url,
