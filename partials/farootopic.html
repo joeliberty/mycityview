@@ -1,0 +1,19 @@
+<p ng-show='spinner' class='news_spinner'><i class="fa fa-refresh fa-spin fa-2x"></i></p>
+<ul>
+  <li ng-repeat="story in article.results">
+    <div ng-hide="spinner">
+      <ul>
+        <li>
+          <a ng-show="story.iurl" href="{{story.url}}" target="_blank">
+          <img ng-src="{{story.iurl}}"/></a>
+        </li>
+        <li ng-show="story.domain"  class="domain">{{story.domain}}</li>
+        <li ng-show="story.title" class="mname">{{story.title}}</li>
+        <li ng-show="story.kwic">{{story.kwic}}</li>
+        <li ng-show="story.url"><a href="{{story.url}}" target="_blank">Read More</a></li>
+        <li><hr></li>
+      </ul>
+    </div>
+    <br/>
+  </li>
+</ul>

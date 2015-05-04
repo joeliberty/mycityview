@@ -45,7 +45,7 @@ places_app.controller("PlacesCtrl", ['$scope', '$http', '$rootScope', '$q',
               place.photos[0].getUrl({'maxWidth':200, 'maxHeight': 200}) : null;
             if(!url) { return; }
             isImage(url, place);
-            } else {
+          } else {
             console.log('got error');
           }
         });

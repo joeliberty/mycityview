@@ -36,10 +36,10 @@
       };
     });
 
-    app.directive("news", function() {
+    app.directive("faroo", function() {
       return {
         restrict: 'E',
-        templateUrl: "partials/news.html"
+        templateUrl: "partials/faroo.html"
       };
     });
 

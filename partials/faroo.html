@@ -1,0 +1,67 @@
+<div class="row">
+	<div class="col-md-12">
+		<div class="faroo">
+			<div ng-controller="FarooCtrl">
+		    <accordion>
+			  	<accordion-group heading="Search">
+				    <div class="newspanel">
+				    	<p class="input-group">
+                <form ng-submit="submit()" >
+                	<input type="query" ng-model="query" name="query" />
+									<input class="btn btn-default" type="submit" id="submit" value="Submit" />
+                </form>
+              </p>
+	            <div>
+	            	<farootopic article="search" spinner="news_spinner" ></farootopic>
+					    	<pagination ng-show="is_search" id="search" page="search.currentPage" total-items="search.count" items-per-page="search.length" on-select-page="setPage(page, 'search')"></pagination>
+					    </div>
+				    </div>
+				  </accordion-group> 
+
+			    <accordion-group heading="World">
+				    <div class="newspanel">
+				    	<farootopic article="world" spinner="news_spinner" ></farootopic>
+				    	<pagination ng-hide="news_spinner" id="world" page="world.currentPage" total-items="world.count" items-per-page="world.length" on-select-page="setPage(page, 'world')"></pagination>
+				    </div>
+				  </accordion-group>   
+			  
+				  <accordion-group heading="Technology">
+				    <div class="newspanel">
+				    	<farootopic article="technology" spinner="news_spinner" ></farootopic>
+				    	<pagination ng-hide="news_spinner" id="technology" page="technology.currentPage" total-items="technology.count" items-per-page="technology.length" on-select-page="setPage(page, 'technology')"></pagination>
+				    </div>
+				  </accordion-group>
+
+				  <accordion-group heading="Entertainment">
+				    <div class="newspanel">
+				    	<farootopic article="entertainment" spinner="news_spinner" ></farootopic>
+							<pagination ng-hide="news_spinner" id="entertainment" page="entertainment.currentPage" total-items="entertainment.count" items-per-page="entertainment.length" on-select-page="setPage(page, 'entertainment')"></pagination>
+				    </div>
+				  </accordion-group>
+
+				  <accordion-group heading="Sports">
+				    <div class="newspanel">
+				    	<farootopic article="sports" spinner="news_spinner" ></farootopic>
+							<pagination ng-hide="news_spinner" id="sports" page="sports.currentPage" total-items="sports.count" items-per-page="sports.length" on-select-page="setPage(page, 'sports')"></pagination>
+				    </div>
+				  </accordion-group>
+
+				  <accordion-group heading="Travel">
+				    <div class="newspanel">
+				    	<farootopic article="travel" spinner="news_spinner" ></farootopic>
+							<pagination ng-hide="news_spinner" id="travel" page="travel.currentPage" total-items="travel.count" items-per-page="travel.length" on-select-page="setPage(page, 'travel')"></pagination>
+				    </div>
+				  </accordion-group>
+
+				  <accordion-group heading="Music">
+				    <div class="newspanel">
+				    	<farootopic article="music" spinner="news_spinner" ></farootopic>
+							<pagination ng-hide="news_spinner" id="music" page="music.currentPage" total-items="music.count" items-per-page="music.length" on-select-page="setPage(page, 'music')"></pagination>
+				    </div>
+				  </accordion-group>
+
+			  </accordion>
+			</div>
+		</div>
+	</div>
+</div>
